@@ -11,7 +11,9 @@
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
+
+        <!-- 퍼즐 그리드 -->
+        <Grid Grid.Column="0" Margin="20" ShowGridLines="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition/>
@@ -28,16 +30,43 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
+
+            <!-- 퍼즐 이름 텍스트 블록 -->
+            <TextBlock x:Name="puzzleNameLabel"
+                       Text="(puzzle name)"
+                       TextWrapping="WrapWithOverflow"
+                       FontSize="30"
+                       FontFamily="./Font/#Pacifico"/>
         </Grid>
         <Grid Grid.Column="1">
-            <Canvas>
-                <Label Content=":"
-                       FontSize="70"
-                       Width="300"
-                       Height="100">
+            <!-- 일시정지 버튼 -->
+            <Button x:Name="pauseButton"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Margin="20"
+                    Height="100"
+                    Width="100"
+                    FontSize="70">
+                <Grid Height="100" Width="100">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Rectangle Width="16" Height="56" Fill="Black" Grid.Column="1"/>
+                    <Rectangle Width="16" Height="56" Fill="Black" Grid.Column="3"/>
+                </Grid>
+                
+            </Button>
 
-                </Label>
-            </Canvas>
+            <!-- 타이머 -->
+            <Label HorizontalAlignment="Center"
+                   VerticalAlignment="Bottom"
+                   Margin="0 0 0 20"
+                   Content="0 : 00"
+                   FontSize="70"/>
         </Grid>
     </Grid>
 </Window>
