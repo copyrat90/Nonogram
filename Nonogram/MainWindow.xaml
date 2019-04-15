@@ -6,7 +6,35 @@
         xmlns:local="clr-namespace:Nonogram"
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280">
-    <Grid>
-        
-    </Grid>
+    <StackPanel Margin="20">
+        <TextBlock Text="Nonogram"
+                   HorizontalAlignment="Center"
+                   FontFamily="./Font/#Pacifico"
+                   FontSize="90"/>
+        <Button Content="게임하기"
+                HorizontalAlignment="Center"
+                Width="500"
+                Margin="0 30 0 15"
+                FontSize="50"/>
+        <Button Content="퍼즐 만들기"
+                HorizontalAlignment="Center"
+                Width="500"
+                Margin="15"
+                FontSize="50"/>
+        <Button Content="튜토리얼"
+                HorizontalAlignment="Center"
+                Width="500"
+                Margin="15"
+                FontSize="50"/>
+        <Button Content="옵션"
+                HorizontalAlignment="Center"
+                Width="500"
+                Margin="15"
+                FontSize="50"/>
+        <Button Content="나가기"
+                HorizontalAlignment="Center"
+                Width="500"
+                Margin="15"
+                FontSize="50"/>
+    </StackPanel>
 </Window>
