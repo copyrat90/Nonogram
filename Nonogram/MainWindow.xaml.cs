@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nonogram.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,12 @@ namespace Nonogram
         public MainWindow()
         {
             InitializeComponent();
+
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            frame.NavigationService.Navigate(new MainPage());
         }
     }
 }

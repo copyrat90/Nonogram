@@ -10,18 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Nonogram
+namespace Nonogram.Pages
 {
     /// <summary>
-    /// PuzzlePlay.xaml에 대한 상호 작용 논리
+    /// MainPage.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class PuzzlePlay : Window
+    public partial class MainPage : Page
     {
-        public PuzzlePlay()
+        public MainPage()
         {
             InitializeComponent();
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new PuzzlePlay());
         }
     }
 }
