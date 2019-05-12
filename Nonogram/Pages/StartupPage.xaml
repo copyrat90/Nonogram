@@ -5,18 +5,21 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Nonogram.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="720" d:DesignWidth="1280"
-      Title="StartupPage">
-    <StackPanel HorizontalAlignment="Center"
+      d:DesignHeight="690" d:DesignWidth="1280"
+      Title="StartupPage"
+      MouseLeftButtonDown="Page_MouseLeftButtonDown">
+    <Grid Width="1280" Height="690">
+        <StackPanel HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Height="400"
                 Width="800">
-        <Label Content="Nonogram"
+            <Label Content="Nonogram"
                HorizontalAlignment="Center"
                FontSize="140"
                FontFamily="/Font/#Pacifico"/>
-        <Label Content="Press any key or click anywhere"
+            <Label Content="Press any key or click anywhere"
                HorizontalAlignment="Center"
                FontSize="30"/>
-    </StackPanel>
+        </StackPanel>
+    </Grid>
 </Page>

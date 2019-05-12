@@ -16,16 +16,16 @@ using System.Windows.Shapes;
 namespace Nonogram.Pages
 {
     /// <summary>
-    /// StartupPage.xaml에 대한 상호 작용 논리
+    /// StartingGamePage.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class StartupPage : Page
+    public partial class StartingGamePage : Page
     {
-        public StartupPage()
+        public StartingGamePage()
         {
             InitializeComponent();
         }
 
-        private void Page_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void ReturnButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new MainPage());
         }
