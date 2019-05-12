@@ -7,20 +7,16 @@
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1280"
       Title="StartupPage">
-
-    <Grid>
+    <StackPanel HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Height="400"
+                Width="800">
         <Label Content="Nonogram"
                HorizontalAlignment="Center"
-               VerticalAlignment="Center"
                FontSize="140"
-               FontFamily="/Font/#Pacifico"
-               />
+               FontFamily="/Font/#Pacifico"/>
         <Label Content="Press any key or click anywhere"
                HorizontalAlignment="Center"
-               VerticalAlignment="Bottom"
-               FontSize="30"
-               Margin="0, 0, 0, 170"
-               />
-
-    </Grid>
+               FontSize="30"/>
+    </StackPanel>
 </Page>
