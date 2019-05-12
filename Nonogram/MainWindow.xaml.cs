@@ -31,9 +31,10 @@ namespace Nonogram
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            frame.NavigationService.Navigate(new MainPage());
+            frame.NavigationService.Navigate(new StartupPage());
         }
 
+        #region Resize Constant Aspect Ratio 
         private double _aspectRatio;
         private bool? _adjustingHeight = null;
 
@@ -129,5 +130,6 @@ namespace Nonogram
 
             return IntPtr.Zero;
         }
+        #endregion
     }
 }
