@@ -1,0 +1,26 @@
+﻿<Page x:Class="Nonogram.Pages.StartupPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Nonogram.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="StartupPage">
+
+    <Grid>
+        <Label Content="Nonogram"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontSize="140"
+               FontFamily="/Font/#Pacifico"
+               />
+        <Label Content="Press any key or click anywhere"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Bottom"
+               FontSize="30"
+               Margin="0, 0, 0, 170"
+               />
+
+    </Grid>
+</Page>
