@@ -74,7 +74,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-	<Page Include="Pages\PuzzlePlay.xaml">
+    <Page Include="Pages\PuzzlePlay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PuzzleSelectPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -86,6 +90,9 @@
   <ItemGroup>
     <Compile Include="Pages\PuzzlePlay.xaml.cs">
       <DependentUpon>PuzzlePlay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PuzzleSelectPage.xaml.cs">
+      <DependentUpon>PuzzleSelectPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\StartupPage.xaml.cs">
       <DependentUpon>StartupPage.xaml</DependentUpon>
@@ -116,6 +123,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Return.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
