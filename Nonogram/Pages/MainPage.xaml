@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Nonogram.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="720" d:DesignWidth="1280"
+      d:DesignHeight="690" d:DesignWidth="1280"
       Title="MainPage">
 
     <Grid>
@@ -21,7 +21,7 @@
                        FontFamily="/Font/#Pacifico"
                        FontSize="90"/>
             <Button Content="게임하기"
-                    Click="Button_Click"
+                    Click="StartingGameButton_Click"
                     HorizontalAlignment="Center"
                     Width="500"
                     Margin="0 30 0 15"
@@ -37,11 +37,13 @@
                     Margin="15"
                     FontSize="50"/>
             <Button Content="옵션"
+                    Click="OptionButton_Click"
                     HorizontalAlignment="Center"
                     Width="500"
                     Margin="15"
                     FontSize="50"/>
             <Button Content="나가기"
+                    Click="ExitButton_Click"
                     HorizontalAlignment="Center"
                     Width="500"
                     Margin="15"

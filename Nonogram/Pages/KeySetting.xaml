@@ -1,0 +1,73 @@
+﻿<Page x:Class="Nonogram.Pages.KeySetting"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Nonogram.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="690" d:DesignWidth="1280"
+      Title="KeySetting">
+
+    <Grid Width="1280" Height="690">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Canvas>
+                <Label Content="Key Setting"
+                       Canvas.Left="50"
+                       FontSize="50"
+                       FontFamily="/Font/#Pacifico"/>
+            </Canvas>
+        </Grid>
+        <Grid Grid.Row="1">
+            <StackPanel Background="LightGreen"
+                        Width="1000"
+                        Height="580">
+
+                <Button Content="블럭 채우기"
+                        HorizontalContentAlignment="Left"
+                        FontSize="60"
+                        Width="900"
+                        Height="80"
+                        Margin="8">
+                </Button>
+                <Button Content="X(드래그)"
+                        HorizontalContentAlignment="Left"
+                        FontSize="60"
+                        Width="900"
+                        Height="80"
+                        Margin="8">
+                </Button>
+                <Button Content="가정 레이어 생성"
+                        HorizontalContentAlignment="Left"
+                        FontSize="60"
+                        Width="900"
+                        Height="80"
+                        Margin="8">
+                </Button>
+                <Button Content="블럭 수 세주기"
+                        HorizontalContentAlignment="Left"
+                        FontSize="60"
+                        Width="900"
+                        Height="80"
+                        Margin="8">
+                </Button>
+                <Button Content="되돌리기"
+                        HorizontalContentAlignment="Left"
+                        FontSize="60"
+                        Width="900"
+                        Height="80"
+                        Margin="8">
+                </Button>
+                <Button Content="저장"
+                        FontSize="60"
+                        Width="200"
+                        Height="80"
+                        Margin="8">
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace Nonogram.Pages
 {
     /// <summary>
-    /// StartupPage.xaml에 대한 상호 작용 논리
+    /// KeySetting.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class StartupPage : Page
+    public partial class KeySetting : Page
     {
-        public StartupPage()
+        public KeySetting()
         {
             InitializeComponent();
-        }
-
-        private void Page_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            NavigationService.Navigate(new MainPage());
         }
     }
 }

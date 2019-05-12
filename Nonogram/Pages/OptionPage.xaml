@@ -1,0 +1,123 @@
+﻿<Page x:Class="Nonogram.Pages.OptionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Nonogram.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="690" d:DesignWidth="1280"
+      Title="OptionPage">
+
+    <Grid Width="1280" Height="690">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Canvas>
+                <Label Content="Option"
+                       Canvas.Left="50"
+                       FontSize="100"
+                       FontFamily="/Font/#Pacifico"/>
+                <Button 
+                        Canvas.Right="0"
+                        Height="100"
+                        Width="100"
+                        Margin="50"
+                        Click="ReturnButton_Click">
+                    돌아가기
+                </Button>
+            </Canvas>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Canvas>
+                    <Label Content="게임 방식 선택"
+                           FontSize="60"
+                           Canvas.Left="100"
+                           Canvas.Top="20"/>
+                    <StackPanel Orientation="Horizontal"
+                                Background="LightCyan"
+                                Width="700"
+                                Height="110"
+                                Canvas.Right="40"
+                                Canvas.Top="20">
+
+                        <Button Content="타임어택"
+                                FontSize="60"
+                                Width="330"
+                                Height="80"
+                                Margin="10">
+                        </Button>
+                        <Button Content="클래식"
+                                FontSize="60"
+                                Width="330"
+                                Height="80"
+                                Margin="10">
+                        </Button>
+                    </StackPanel>
+                </Canvas>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Canvas>
+                    <Label Content="키설정"
+                           FontSize="60"
+                           Canvas.Left="100"
+                           Canvas.Top="20"/>
+                    <StackPanel Orientation="Horizontal"
+                                Width="700"
+                                Height="110"
+                                Canvas.Right="40"
+                                Canvas.Top="20">
+
+                        <Button Content="설정하기"
+                                FontSize="60"
+                                Width="330"
+                                Height="80"
+                                Margin="10">
+                        </Button>
+                        <Button Content="설정 초기화"
+                                FontSize="60"
+                                Width="330"
+                                Height="80"
+                                Margin="10">
+                        </Button>
+                    </StackPanel>
+                </Canvas>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Canvas>
+                    <Label Content="숫자 힌트"
+                           FontSize="60"
+                           Canvas.Left="100"
+                           Canvas.Top="20"/>
+                    <StackPanel Orientation="Horizontal"
+                                Background="LightCyan"
+                                Width="700"
+                                Height="110"
+                                Canvas.Right="40"
+                                Canvas.Top="20">
+
+                        <Button Content="On"
+                                FontSize="60"
+                                Width="330"
+                                Height="80"
+                                Margin="10">
+                        </Button>
+                        <Button Content="Off"
+                                FontSize="60"
+                                Width="330"
+                                Height="80"
+                                Margin="10">
+                        </Button>
+                    </StackPanel>
+                </Canvas>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

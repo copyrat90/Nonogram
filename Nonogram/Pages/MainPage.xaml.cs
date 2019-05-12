@@ -24,9 +24,19 @@ namespace Nonogram.Pages
         {
             InitializeComponent();
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void StartingGameButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new PuzzlePlay());
+            NavigationService.Navigate(new StartingGamePage());
+        }
+
+        private void OptionButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new OptionPage());
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO 나가기 구현
         }
     }
 }
