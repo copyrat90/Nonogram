@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestProject.Classes.BoardUI
+namespace Nonogram.Classes.BoardUI
 {
     /// <summary>
     /// 한 칸이 비어있는지, 칠해져 있는지, X 표시 되어있는지 나타내는 enum

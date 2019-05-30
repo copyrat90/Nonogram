@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestProject.Properties {
+namespace Nonogram.Properties {
     using System;
     
     

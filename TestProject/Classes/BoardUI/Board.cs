@@ -6,15 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using TestProject.Classes.FileData;
+using Nonogram.Classes.FileData;
 
-namespace TestProject.Classes.BoardUI
+namespace Nonogram.Classes.BoardUI
 {
     public class Board : INotifyPropertyChanged
     {
         #region 보드판 2차원 컬렉션
         bool[,] AnswerArray { get; }
-        ObservableCollection<ObservableCollection<Cell>> CurrentBoard { get; set; }
+        public ObservableCollection<ObservableCollection<Cell>> CurrentBoard { get; set; }
         #endregion
 
         /// <summary>
@@ -22,8 +22,8 @@ namespace TestProject.Classes.BoardUI
         /// 1차원 : 각 행(열)의 힌트 -> 2차원 : 각 숫자 힌트 (검은색, 흐린색)
         /// </summary>
         #region 힌트 2차원 컬렉션
-        ObservableCollection<ObservableCollection<TextBlock>> LeftHintRows { get; set; }
-        ObservableCollection<ObservableCollection<TextBlock>> UpperHintColumns { get; set; }
+        public ObservableCollection<ObservableCollection<TextBlock>> LeftHintRows { get; set; }
+        public ObservableCollection<ObservableCollection<TextBlock>> UpperHintColumns { get; set; }
         #endregion
 
 
@@ -34,11 +34,11 @@ namespace TestProject.Classes.BoardUI
             // 퍼즐 크기에 맞게 보드판 생성
             for (int y = 0; y < puzzleAnswer.Height; ++y)
             {
-                CurrentBoard[y] = new ObservableCollection<Cell>();
+                CurrentBoard.Add(new ObservableCollection<Cell>());
                 for (int x = 0; x < puzzleAnswer.Width; ++x)
                 {
                     // TODO : 중단된 퍼즐 불러오기 할 때 Fill 처리 추가
-                    CurrentBoard[y][x] = new Cell(y, x);
+                    CurrentBoard[y].Add(new Cell(y, x));
                     // Cell 이 변경되면 Callback 될 이벤트 등록
                     CurrentBoard[y][x].PropertyChanged += DoWhenPropertyChanged;
                 }
@@ -121,7 +121,7 @@ namespace TestProject.Classes.BoardUI
                         }
                         else if (prevIsFill)
                         {
-                            oneLineHint.Add(new TextBlock() { Text = fillCount.ToString(), FontWeight = System.Windows.FontWeights.Bold });
+                            oneLineHint.Add(new TextBlock() { Text = fillCount.ToString(), FontWeight = System.Windows.FontWeights.Bold, Foreground=System.Windows.Media.Brushes.Black });
                             fillCount = 0;
                         }
                         prevIsFill = curIsFill;
@@ -129,7 +129,7 @@ namespace TestProject.Classes.BoardUI
                     // 마지막 칸 채워져 있으면 마지막 힌트 추가
                     if (prevIsFill)
                     {
-                        oneLineHint.Add(new TextBlock() { Text = fillCount.ToString(), FontWeight = System.Windows.FontWeights.Bold });
+                        oneLineHint.Add(new TextBlock() { Text = fillCount.ToString(), FontWeight = System.Windows.FontWeights.Bold, Foreground=System.Windows.Media.Brushes.Black });
                     }
 
                     // 힌트 목록에 넣음
@@ -232,7 +232,7 @@ namespace TestProject.Classes.BoardUI
                 {
                     // TODO
                 }
-                CellFill fill = CurrentBoard[y][3].FillValue;
+                //CellFill fill = CurrentBoard[y][3].FillValue;
 
                 // 역방향 힌트 업데이트 TODO
             }

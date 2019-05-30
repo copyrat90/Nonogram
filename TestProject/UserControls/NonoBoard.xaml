@@ -1,9 +1,10 @@
-﻿<UserControl x:Class="BoardTestProject.UserControls.NonoBoard"
+﻿<UserControl x:Class="Nonogram.UserControls.NonoBoard"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:TestProject.UserControls"
+             xmlns:local="clr-namespace:Nonogram.UserControls"
+             xmlns:boardui="clr-namespace:Nonogram.Classes.BoardUI"
              mc:Ignorable="d" 
              HorizontalAlignment="Stretch"
              HorizontalContentAlignment="Stretch"
@@ -11,12 +12,109 @@
              VerticalContentAlignment="Stretch"
              Foreground="White"
              Height="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}">
-    <ItemsControl Background="Gray">
-        <ItemsControl.ItemsPanel>
-            <ItemsPanelTemplate>
-                <UniformGrid Rows="2"/>
-            </ItemsPanelTemplate>
-        </ItemsControl.ItemsPanel>
-    </ItemsControl>
+
+    <UserControl.Resources>
+
+        <!-- 위쪽 힌트 한 열 템플릿 -->
+        <DataTemplate x:Key="UpperHintRowTemplate">
+            <Border BorderBrush="Black" BorderThickness="1">
+                <ItemsControl ItemsSource="{Binding}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="1"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </Border>
+        </DataTemplate>
+
+        <!-- 왼쪽 힌트 한 행 템플릿 -->
+        <DataTemplate x:Key="LeftHintColumnTemplate">
+            <Border BorderBrush="Black" BorderThickness="1">
+                <ItemsControl ItemsSource="{Binding}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Rows="1"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </Border>
+        </DataTemplate>
+        
+        <!-- 보드판 한 칸 템플릿 -->
+        <DataTemplate x:Key="CellTemplate">
+            <Border BorderBrush="Black" BorderThickness="1" Background="White">
+                
+            </Border>
+        </DataTemplate>
+        
+        <!-- 보드판 한 행 템플릿 -->
+        <DataTemplate x:Key="BoardRowTemplate">
+            <Border BorderBrush="Black" BorderThickness="1">
+                <ItemsControl ItemsSource="{Binding}"
+                              ItemTemplate="{StaticResource CellTemplate}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Rows="1"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </Border>
+        </DataTemplate>
+
+    </UserControl.Resources>
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.3*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <!-- 왼쪽 힌트 컨트롤 -->
+        <Border Grid.Row="1"
+                BorderBrush="Black" BorderThickness="1">
+            <ItemsControl x:Name="LeftHintControl"
+                          ItemsSource="{Binding Path=LeftHintRows}"
+                          ItemTemplate="{StaticResource LeftHintColumnTemplate}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="1"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </Border>
+        
+        <!-- 위쪽 힌트 컨트롤 -->
+        <Border Grid.Column="1"
+                BorderBrush="Black" BorderThickness="1">
+            <ItemsControl x:Name="UpperHintControl"
+                          ItemsSource="{Binding Path=UpperHintColumns}"
+                          ItemTemplate="{StaticResource UpperHintRowTemplate}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows="1"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </Border>
+
+        <!-- 보드판 컨트롤 -->
+        <Border Grid.Row="1" Grid.Column="1"
+                BorderBrush="Black" BorderThickness="1">
+            <ItemsControl x:Name="BoardControl"
+                          ItemsSource="{Binding Path=CurrentBoard}"
+                          ItemTemplate="{StaticResource BoardRowTemplate}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="1"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </Border>
+    </Grid>
     
 </UserControl>

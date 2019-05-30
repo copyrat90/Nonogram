@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BoardTestProject
+namespace Nonogram
 {
     /// <summary>
     /// MainWindow.xaml에 대한 상호 작용 논리
@@ -25,21 +25,6 @@ namespace BoardTestProject
         public MainWindow()
         {
             InitializeComponent();
-            testGrid.ColumnDefinitions.Add(new ColumnDefinition());
         }
     }
-
-
-    
-
-    
-
-    public class SaveData
-    {
-
-    }
-
-
-    
-
 }
