@@ -140,7 +140,7 @@ namespace TestProject.Classes.BoardUI
 
 
         /// <summary>
-        /// 특정 Y, X 칸의 좌측, 상단 힌트 업데이트 (흐리게, 진하게)
+        /// 특정 Y, X 칸(Cell)의 좌측, 상단 힌트 업데이트 (흐리게, 진하게)
         /// </summary>
         /// <param name="changed_Y"> 변경된 Cell의 y좌표 </param>
         /// <param name="changed_X"> 변경된 Cell의 x좌표 </param>
@@ -148,28 +148,104 @@ namespace TestProject.Classes.BoardUI
         {
             // TODO : 힌트 업데이트 기능 구현!
             throw new NotImplementedException("UpdateHint() Is Not Implemented");
+            UpdateLeftHint();
+            UpdateUpperHint();
 
-            // 힌트 색깔 초기화
-            foreach (var oneLineHint in LeftHintRows)
+            #region 좌측, 상단 힌트 업데이트 기능
+            void UpdateLeftHint()
             {
-                foreach (TextBlock numberTextBlock in oneLineHint)
+                // 힌트 색깔 초기화
+                var oneLineHint = LeftHintRows[changed_Y];
+                foreach (TextBlock oneHintTextBlock in oneLineHint)
                 {
-                    numberTextBlock.Foreground = System.Windows.Media.Brushes.Black;
-                    numberTextBlock.FontWeight = System.Windows.FontWeights.Bold;
+                    oneHintTextBlock.Foreground = System.Windows.Media.Brushes.Black;
+                    oneHintTextBlock.FontWeight = System.Windows.FontWeights.Bold;
+                }
+
+                // 모든 힌트 숫자를 순서대로 칠했으면,
+                // 즉, 줄이 완성되었으면, X와 관계없이 전부 흐린색 처리
+                bool lineIsDone = true;
+                bool prevIsFill = false;
+                int fillCount = 0;  // 연속된 블록 덩어리 수
+                int hintIdx = 0;    // 현재 검사중인 힌트 숫자의 인덱스
+                int hintNum = 0;    // 현재 검사중인 힌트 숫자
+                for (int x = 0; x < CurrentBoard[0].Count; ++x)
+                {
+                    bool curIsFill = (CurrentBoard[changed_Y][x].FillValue == CellFill.FILL);
+                    hintNum = Convert.ToInt32(LeftHintRows[changed_Y][hintIdx].Text);
+                    if (curIsFill)
+                    {
+                        ++fillCount;
+                        if (fillCount > hintNum)
+                        {
+                            lineIsDone = false;
+                            break;
+                        }
+                    }
+                    // prev == T, cur == F
+                    else if (prevIsFill)
+                    {
+                        if (fillCount != hintNum)
+                        {
+                            lineIsDone = false;
+                            break;
+                        }
+                        fillCount = 0;
+                        ++hintIdx;
+                    }
+
+                    prevIsFill = curIsFill;
+                }
+                // 한 줄이 완성된 것 같을 때 처리
+                if (lineIsDone)
+                {
+                    // 마지막 칸 채워져 있으면 힌트 인덱스 올림
+                    if (prevIsFill)
+                    {
+                        ++hintIdx;
+                    }
+                    // 힌트 개수가 연속된 블록 덩어리 수와 같고 && 마지막 힌트가 마지막 덩어리 수와 같으면
+                    // 즉, 이 줄이 정상적으로 완료된 줄이면
+                    if (hintIdx == LeftHintRows[changed_Y].Count && hintNum == fillCount)
+                    {
+                        foreach (TextBlock oneHintTextBlock in LeftHintRows[changed_Y])
+                        {
+                            oneHintTextBlock.Foreground = System.Windows.Media.Brushes.Gray;
+                            oneHintTextBlock.FontWeight = System.Windows.FontWeights.Regular;
+                        }
+                        return;
+                    }
+                }
+
+                // 왼쪽부터 or 오른쪽부터 한 칸씩 보면서 X로 둘러싸인 FILL 덩어리를 검사
+                // 덩어리를 찾았으면 해당하는 힌트 TextBlock 을 흐리게 한다.
+                
+                // TODO : 정방향 및 역방향 힌트 업데이트 기능 구현!
+                throw new NotImplementedException("정방향과 역방향 힌트 업데이트 기능 구현 필요!");
+                // 정방향 힌트 업데이트 TODO
+                CellFill prevFill = CellFill.X;
+                CellFill curFill = CellFill.BLANK;
+                fillCount = 0;
+                hintIdx = 0;
+                hintNum = 0;
+                for (int x = 0; x < CurrentBoard[0].Count; ++x)
+                {
+                    // TODO
+                }
+                CellFill fill = CurrentBoard[y][3].FillValue;
+
+                // 역방향 힌트 업데이트 TODO
+            }
+
+            void UpdateUpperHint()
+            {
+                // 상단 힌트 업데이트
+                for (int x = 0; x < AnswerArray.GetLength(1); ++x)
+                {
+                    
                 }
             }
-
-            // 좌측 힌트 업데이트
-            for (int y = 0; y < AnswerArray.GetLength(0); ++y)
-            {
-                
-            }
-
-            // 상단 힌트 업데이트
-            for (int x = 0; x < AnswerArray.GetLength(1); ++x)
-            {
-
-            }
+            #endregion
         }
         #endregion
 
