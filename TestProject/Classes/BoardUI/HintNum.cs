@@ -23,6 +23,7 @@ namespace TestProject.Classes.BoardUI
             }
         }
         public int Num { get; set; }
+        public string NumString { get { return Num.ToString(); } }
 
         public HintNum(int num)
         {

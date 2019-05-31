@@ -13,7 +13,14 @@
              Foreground="White"
              Height="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}">
 
+    
+    
     <UserControl.Resources>
+        
+        <!-- 힌트 숫자 템플릿 -->
+        <DataTemplate x:Key="HintNumberTemplate">
+            <TextBlock Text="{Binding Path=NumString}"/>
+        </DataTemplate>
 
         <!-- 위쪽 힌트 한 열 템플릿 -->
         <DataTemplate x:Key="UpperHintRowTemplate">
@@ -31,7 +38,8 @@
         <!-- 왼쪽 힌트 한 행 템플릿 -->
         <DataTemplate x:Key="LeftHintColumnTemplate">
             <Border BorderBrush="Black" BorderThickness="1">
-                <ItemsControl ItemsSource="{Binding}">
+                <ItemsControl ItemsSource="{Binding}"
+                              ItemTemplate="{StaticResource HintNumberTemplate}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <UniformGrid Rows="1"/>
@@ -63,6 +71,8 @@
         </DataTemplate>
 
     </UserControl.Resources>
+    
+
 
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -73,6 +83,8 @@
             <ColumnDefinition Width="0.3*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        
+        <!--디버깅 텍스트-->
         
         <!-- 왼쪽 힌트 컨트롤 -->
         <Border Grid.Row="1"
