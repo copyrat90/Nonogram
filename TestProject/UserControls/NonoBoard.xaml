@@ -44,7 +44,7 @@
         <!-- 보드판 한 칸 템플릿 -->
         <DataTemplate x:Key="CellTemplate">
             <Border BorderBrush="Black" BorderThickness="1" Background="White">
-                
+                <!-- TODO : enum 에 대응시키기 -->
             </Border>
         </DataTemplate>
         

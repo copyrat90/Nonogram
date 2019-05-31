@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using Nonogram.Classes.FileData;
+using TestProject.Classes.BoardUI;
 
 namespace Nonogram.Classes.BoardUI
 {
@@ -18,12 +19,12 @@ namespace Nonogram.Classes.BoardUI
         #endregion
 
         /// <summary>
-        /// 좌측 힌트들, 상단 힌트들을 TextBlock 의 2차원 컬렉션으로 관리
+        /// 좌측 힌트들, 상단 힌트들을 2차원 컬렉션으로 관리
         /// 1차원 : 각 행(열)의 힌트 -> 2차원 : 각 숫자 힌트 (검은색, 흐린색)
         /// </summary>
         #region 힌트 2차원 컬렉션
-        public ObservableCollection<ObservableCollection<TextBlock>> LeftHintRows { get; set; }
-        public ObservableCollection<ObservableCollection<TextBlock>> UpperHintColumns { get; set; }
+        public ObservableCollection<ObservableCollection<HintNum>> LeftHintRows { get; set; }
+        public ObservableCollection<ObservableCollection<HintNum>> UpperHintColumns { get; set; }
         #endregion
 
 
@@ -73,8 +74,8 @@ namespace Nonogram.Classes.BoardUI
         /// </summary>
         private void InitializeHint()
         {
-            LeftHintRows = new ObservableCollection<ObservableCollection<TextBlock>>();
-            UpperHintColumns = new ObservableCollection<ObservableCollection<TextBlock>>();
+            LeftHintRows = new ObservableCollection<ObservableCollection<HintNum>>();
+            UpperHintColumns = new ObservableCollection<ObservableCollection<HintNum>>();
 
             // 좌측 힌트 초기화
             InitializeOneSide(true);
@@ -84,7 +85,7 @@ namespace Nonogram.Classes.BoardUI
             void InitializeOneSide(bool isLeftSide)
             {
                 // 좌측 or 상단 라인 선택
-                ObservableCollection<ObservableCollection<TextBlock>> hintLineCollection = null;
+                ObservableCollection<ObservableCollection<HintNum>> hintLineCollection = null;
                 int outerDimension = -1;
                 int innerDimension = -1;
                 if (isLeftSide)
@@ -102,7 +103,7 @@ namespace Nonogram.Classes.BoardUI
                 // 좌측 or 상단 힌트 초기화
                 for (int i = 0; i < AnswerArray.GetLength(outerDimension); ++i)
                 {
-                    var oneLineHint = new ObservableCollection<TextBlock>();
+                    var oneLineHint = new ObservableCollection<HintNum>();
 
                     // 한 칸씩 검사하며 연속된 칸의 개수를 구해 힌트 목록에 추가
                     bool prevIsFill = false;
@@ -121,7 +122,7 @@ namespace Nonogram.Classes.BoardUI
                         }
                         else if (prevIsFill)
                         {
-                            oneLineHint.Add(new TextBlock() { Text = fillCount.ToString(), FontWeight = System.Windows.FontWeights.Bold, Foreground=System.Windows.Media.Brushes.Black });
+                            oneLineHint.Add(new HintNum(fillCount));
                             fillCount = 0;
                         }
                         prevIsFill = curIsFill;
@@ -129,7 +130,7 @@ namespace Nonogram.Classes.BoardUI
                     // 마지막 칸 채워져 있으면 마지막 힌트 추가
                     if (prevIsFill)
                     {
-                        oneLineHint.Add(new TextBlock() { Text = fillCount.ToString(), FontWeight = System.Windows.FontWeights.Bold, Foreground=System.Windows.Media.Brushes.Black });
+                        oneLineHint.Add(new HintNum(fillCount));
                     }
 
                     // 힌트 목록에 넣음
@@ -156,10 +157,9 @@ namespace Nonogram.Classes.BoardUI
             {
                 // 힌트 색깔 초기화
                 var oneLineHint = LeftHintRows[changed_Y];
-                foreach (TextBlock oneHintTextBlock in oneLineHint)
+                foreach (HintNum oneHintNum in oneLineHint)
                 {
-                    oneHintTextBlock.Foreground = System.Windows.Media.Brushes.Black;
-                    oneHintTextBlock.FontWeight = System.Windows.FontWeights.Bold;
+                    oneHintNum.IsUsed = false;
                 }
 
                 // 모든 힌트 숫자를 순서대로 칠했으면,
@@ -172,7 +172,7 @@ namespace Nonogram.Classes.BoardUI
                 for (int x = 0; x < CurrentBoard[0].Count; ++x)
                 {
                     bool curIsFill = (CurrentBoard[changed_Y][x].FillValue == CellFill.FILL);
-                    hintNum = Convert.ToInt32(LeftHintRows[changed_Y][hintIdx].Text);
+                    hintNum = LeftHintRows[changed_Y][hintIdx].Num;
                     if (curIsFill)
                     {
                         ++fillCount;
@@ -208,10 +208,9 @@ namespace Nonogram.Classes.BoardUI
                     // 즉, 이 줄이 정상적으로 완료된 줄이면
                     if (hintIdx == LeftHintRows[changed_Y].Count && hintNum == fillCount)
                     {
-                        foreach (TextBlock oneHintTextBlock in LeftHintRows[changed_Y])
+                        foreach (HintNum oneHintNum in LeftHintRows[changed_Y])
                         {
-                            oneHintTextBlock.Foreground = System.Windows.Media.Brushes.Gray;
-                            oneHintTextBlock.FontWeight = System.Windows.FontWeights.Regular;
+                            oneHintNum.IsUsed = true;
                         }
                         return;
                     }
@@ -239,7 +238,7 @@ namespace Nonogram.Classes.BoardUI
 
             void UpdateUpperHint()
             {
-                // 상단 힌트 업데이트
+                // TODO : 상단 힌트 업데이트
                 for (int x = 0; x < AnswerArray.GetLength(1); ++x)
                 {
                     

@@ -60,6 +60,7 @@
     </ApplicationDefinition>
     <Compile Include="Classes\BoardUI\Board.cs" />
     <Compile Include="Classes\BoardUI\Cell.cs" />
+    <Compile Include="Classes\BoardUI\HintNum.cs" />
     <Compile Include="Classes\FileData\PuzzleAnswerData.cs" />
     <Compile Include="Classes\FileData\PuzzleSaveData.cs" />
     <Compile Include="UserControls\NonoBoard.xaml.cs">
