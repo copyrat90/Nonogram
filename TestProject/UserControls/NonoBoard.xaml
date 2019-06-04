@@ -21,7 +21,7 @@
                        Margin="5"
                        Text="{Binding Path=NumString}"
                        HorizontalAlignment="Right" VerticalAlignment="Center"
-                       FontSize="20">
+                       FontSize="15">
                 <TextBlock.Style>
                     <Style TargetType="{x:Type TextBlock}">
                         <!-- 힌트가 아직 사용되지 않았을 때 폰트 색깔 및 두께 -->
