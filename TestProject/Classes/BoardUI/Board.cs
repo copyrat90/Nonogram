@@ -172,7 +172,7 @@ namespace Nonogram.Classes.BoardUI
                 for (int x = 0; x < CurrentBoard[0].Count; ++x)
                 {
                     bool curIsFill = (CurrentBoard[changed_Y][x].FillValue == CellFill.FILL);
-                    hintNum = LeftHintRows[changed_Y][hintIdx].Num;
+                    hintNum = int.Parse(LeftHintRows[changed_Y][hintIdx].NumString);
                     if (curIsFill)
                     {
                         ++fillCount;
