@@ -13,6 +13,20 @@ namespace Nonogram.Classes.BoardUI
 {
     public class Board : INotifyPropertyChanged
     {
+        private bool isSolved;
+        public bool IsSolved
+        {
+            get { return isSolved; }
+            set
+            {
+                if (isSolved != value)
+                {
+                    isSolved = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsSolved"));
+                }
+            }
+        }
+
         #region 보드판 2차원 컬렉션
         bool[,] AnswerArray { get; }
         public ObservableCollection<ObservableCollection<Cell>> CurrentBoard { get; set; }
@@ -41,7 +55,7 @@ namespace Nonogram.Classes.BoardUI
                     // TODO : 중단된 퍼즐 불러오기 할 때 Fill 처리 추가
                     CurrentBoard[y].Add(new Cell(y, x));
                     // Cell 이 변경되면 Callback 될 이벤트 등록
-                    CurrentBoard[y][x].PropertyChanged += DoWhenPropertyChanged;
+                    CurrentBoard[y][x].PropertyChanged += DoWhenCellPropertyChanged;
                 }
             }
             // 힌트 생성
@@ -56,15 +70,14 @@ namespace Nonogram.Classes.BoardUI
         /// </summary>
         /// <param name="sender">이벤트가 발생한 Cell 인스턴스</param>
         /// <param name="e">이벤트 정보</param>
-        private void DoWhenPropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void DoWhenCellPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             Cell cell = sender as Cell;
 
             if (e.PropertyName == "FillValue")
             {
                 UpdateHint(cell.Y, cell.X);
-                if (CheckSolved())
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsSolved"));
+                this.IsSolved = CheckSolved();
             }
         }
 
@@ -133,6 +146,10 @@ namespace Nonogram.Classes.BoardUI
                         oneLineHint.Add(new HintNum(fillCount));
                     }
 
+                    // 만약 칠이 없는 칸이면 0을 추가
+                    if (oneLineHint.Count == 0)
+                        oneLineHint.Add(new HintNum(0) { IsUsed = true });
+
                     // 힌트 목록에 넣음
                     hintLineCollection.Add(oneLineHint);
                 }
@@ -148,15 +165,19 @@ namespace Nonogram.Classes.BoardUI
         private void UpdateHint(int changed_Y, int changed_X)
         {
             // TODO : 힌트 업데이트 기능 구현!
-            throw new NotImplementedException("UpdateHint() Is Not Implemented");
+            //throw new NotImplementedException("UpdateHint() Is Not Implemented");
             UpdateLeftHint();
             UpdateUpperHint();
 
             #region 좌측, 상단 힌트 업데이트 기능
             void UpdateLeftHint()
             {
-                // 힌트 색깔 초기화
                 var oneLineHint = LeftHintRows[changed_Y];
+                // 힌트가 '0' 한 개이면 아무 작업도 안 하고 리턴
+                if (oneLineHint.Count == 1 && oneLineHint[0].Num == 0)
+                    return;
+
+                // 힌트 색깔 초기화
                 foreach (HintNum oneHintNum in oneLineHint)
                 {
                     oneHintNum.IsUsed = false;
@@ -164,21 +185,22 @@ namespace Nonogram.Classes.BoardUI
 
                 // 모든 힌트 숫자를 순서대로 칠했으면,
                 // 즉, 줄이 완성되었으면, X와 관계없이 전부 흐린색 처리
-                bool lineIsDone = true;
+                bool lineIsCandidate = true;
                 bool prevIsFill = false;
                 int fillCount = 0;  // 연속된 블록 덩어리 수
                 int hintIdx = 0;    // 현재 검사중인 힌트 숫자의 인덱스
                 int hintNum = 0;    // 현재 검사중인 힌트 숫자
+                int lastCount = 0;
                 for (int x = 0; x < CurrentBoard[0].Count; ++x)
                 {
                     bool curIsFill = (CurrentBoard[changed_Y][x].FillValue == CellFill.FILL);
-                    hintNum = int.Parse(LeftHintRows[changed_Y][hintIdx].NumString);
+                    hintNum = LeftHintRows[changed_Y][hintIdx].Num;
                     if (curIsFill)
                     {
                         ++fillCount;
                         if (fillCount > hintNum)
                         {
-                            lineIsDone = false;
+                            lineIsCandidate = false;
                             break;
                         }
                     }
@@ -187,17 +209,23 @@ namespace Nonogram.Classes.BoardUI
                     {
                         if (fillCount != hintNum)
                         {
-                            lineIsDone = false;
+                            lineIsCandidate = false;
                             break;
                         }
+                        lastCount = fillCount;
                         fillCount = 0;
                         ++hintIdx;
+                        if (hintIdx >= UpperHintColumns[changed_X].Count)
+                        {
+                            prevIsFill = curIsFill;
+                            break;
+                        }
                     }
 
                     prevIsFill = curIsFill;
                 }
-                // 한 줄이 완성된 것 같을 때 처리
-                if (lineIsDone)
+                // 한 줄이 완성된 것 같을 때 마지막 힌트 처리
+                if (lineIsCandidate)
                 {
                     // 마지막 칸 채워져 있으면 힌트 인덱스 올림
                     if (prevIsFill)
@@ -206,7 +234,7 @@ namespace Nonogram.Classes.BoardUI
                     }
                     // 힌트 개수가 연속된 블록 덩어리 수와 같고 && 마지막 힌트가 마지막 덩어리 수와 같으면
                     // 즉, 이 줄이 정상적으로 완료된 줄이면
-                    if (hintIdx == LeftHintRows[changed_Y].Count && hintNum == fillCount)
+                    if (hintIdx == LeftHintRows[changed_Y].Count && lastCount == LeftHintRows[changed_Y][hintIdx - 1].Num)
                     {
                         foreach (HintNum oneHintNum in LeftHintRows[changed_Y])
                         {
@@ -217,32 +245,234 @@ namespace Nonogram.Classes.BoardUI
                 }
 
                 // 왼쪽부터 or 오른쪽부터 한 칸씩 보면서 X로 둘러싸인 FILL 덩어리를 검사
-                // 덩어리를 찾았으면 해당하는 힌트 TextBlock 을 흐리게 한다.
-                
+                // 덩어리를 찾았으면 해당하는 힌트를 흐리게 한다.
+
                 // TODO : 정방향 및 역방향 힌트 업데이트 기능 구현!
-                throw new NotImplementedException("정방향과 역방향 힌트 업데이트 기능 구현 필요!");
+
                 // 정방향 힌트 업데이트 TODO
                 CellFill prevFill = CellFill.X;
                 CellFill curFill = CellFill.BLANK;
                 fillCount = 0;
                 hintIdx = 0;
-                hintNum = 0;
+                int lastHintCellIdx = -1;
                 for (int x = 0; x < CurrentBoard[0].Count; ++x)
                 {
-                    // TODO
+                    curFill = CurrentBoard[changed_Y][x].FillValue;
+                    // 빈 칸이 나오면 그 뒤는 완성 못 한 것이므로 힌트 흐리게 하지 않고 종료
+                    if (curFill == CellFill.BLANK)
+                        break;
+                    // 칠해져있으면 계속 카운팅
+                    if (curFill == CellFill.FILL)
+                        ++fillCount;
+                    // X 가 나오면 그 동안 셌던 블록 수와 힌트의 숫자 비교 후
+                    // 틀리면 종료, 맞으면 힌트를 흐리게 하고 카운터 초기화 후 끝났으면 종료, 맞으면 계속 반복
+                    else if (prevFill == CellFill.FILL && curFill == CellFill.X)
+                    {
+                        HintNum curHint = LeftHintRows[changed_Y][hintIdx];
+                        if (fillCount != curHint.Num)
+                            break;
+
+                        curHint.IsUsed = true;
+                        ++hintIdx;
+                        if (hintIdx >= LeftHintRows[changed_Y].Count)
+                            break;
+                        fillCount = 0;
+                        lastHintCellIdx = x - 1;
+                    }
+                    // 끝 부분은 고려하지 않아도 됨.
+                    // 끝까지 채워졌다면 이미 줄이 완성된 것이므로 앞에서 걸려졌을 것.
+
+                    prevFill = curFill;
                 }
-                //CellFill fill = CurrentBoard[y][3].FillValue;
+
 
                 // 역방향 힌트 업데이트 TODO
+                prevFill = CellFill.X;
+                curFill = CellFill.BLANK;
+                fillCount = 0;
+                hintIdx = LeftHintRows[changed_Y].Count - 1;
+                for (int x = CurrentBoard[0].Count - 1; x >= lastHintCellIdx + 1; --x)
+                {
+                    curFill = CurrentBoard[changed_Y][x].FillValue;
+                    // 빈 칸이 나오면 그 뒤는 완성 못 한 것이므로 힌트 흐리게 하지 않고 종료
+                    if (curFill == CellFill.BLANK)
+                        break;
+                    // 칠해져있으면 계속 카운팅
+                    if (curFill == CellFill.FILL)
+                        ++fillCount;
+                    // X 가 나오면 그 동안 셌던 블록 수와 힌트의 숫자 비교 후
+                    // 틀리면 종료, 맞으면 힌트를 흐리게 하고 카운터 초기화 후 끝났으면 종료, 맞으면 계속 반복
+                    else if (prevFill == CellFill.FILL && curFill == CellFill.X)
+                    {
+                        HintNum curHint = LeftHintRows[changed_Y][hintIdx];
+                        if (fillCount != curHint.Num)
+                            break;
+
+                        curHint.IsUsed = true;
+                        --hintIdx;
+                        if (hintIdx < 0)
+                            break;
+                        fillCount = 0;
+                    }
+                    // 끝 부분은 고려하지 않아도 됨.
+                    // 끝까지 채워졌다면 이미 줄이 완성된 것이므로 앞에서 걸려졌을 것.
+
+                    prevFill = curFill;
+                }
+
             }
 
+            // 상단 힌트 업데이트
             void UpdateUpperHint()
             {
-                // TODO : 상단 힌트 업데이트
-                for (int x = 0; x < AnswerArray.GetLength(1); ++x)
+                var oneLineHint = UpperHintColumns[changed_X];
+                // 힌트가 '0' 한 개이면 아무 작업도 안 하고 리턴
+                if (oneLineHint.Count == 1 && oneLineHint[0].Num == 0)
+                    return;
+
+                // 힌트 색깔 초기화
+                foreach (HintNum oneHintNum in oneLineHint)
                 {
-                    
+                    oneHintNum.IsUsed = false;
                 }
+
+                // 모든 힌트 숫자를 순서대로 칠했으면,
+                // 즉, 줄이 완성되었으면, X와 관계없이 전부 흐린색 처리
+                bool lineIsCandidate = true;
+                bool prevIsFill = false;
+                int fillCount = 0;  // 연속된 블록 덩어리 수
+                int hintIdx = 0;    // 현재 검사중인 힌트 숫자의 인덱스
+                int hintNum = 0;    // 현재 검사중인 힌트 숫자
+                int lastCount = 0;
+                for (int y = 0; y < CurrentBoard.Count; ++y)
+                {
+                    bool curIsFill = (CurrentBoard[y][changed_X].FillValue == CellFill.FILL);
+                    hintNum = UpperHintColumns[changed_X][hintIdx].Num;
+                    if (curIsFill)
+                    {
+                        ++fillCount;
+                        if (fillCount > hintNum)
+                        {
+                            lineIsCandidate = false;
+                            break;
+                        }
+                    }
+                    // prev == T, cur == F
+                    else if (prevIsFill)
+                    {
+                        if (fillCount != hintNum)
+                        {
+                            lineIsCandidate = false;
+                            break;
+                        }
+                        lastCount = fillCount;
+                        fillCount = 0;
+                        ++hintIdx;
+                        if (hintIdx >= UpperHintColumns[changed_X].Count)
+                        {
+                            prevIsFill = curIsFill;
+                            break;
+                        }
+                    }
+
+                    prevIsFill = curIsFill;
+                }
+                // 한 줄이 완성된 것 같을 때 마지막 힌트 처리
+                if (lineIsCandidate)
+                {
+                    // 마지막 칸 채워져 있으면 힌트 인덱스 올림
+                    if (prevIsFill)
+                    {
+                        ++hintIdx;
+                    }
+                    // 힌트 개수가 연속된 블록 덩어리 수와 같고 && 마지막 힌트가 마지막 덩어리 수와 같으면
+                    // 즉, 이 줄이 정상적으로 완료된 줄이면
+                    if (hintIdx == UpperHintColumns[changed_X].Count && lastCount == UpperHintColumns[changed_X][hintIdx - 1].Num)
+                    {
+                        foreach (HintNum oneHintNum in UpperHintColumns[changed_X])
+                        {
+                            oneHintNum.IsUsed = true;
+                        }
+                        return;
+                    }
+                }
+
+                // 위쪽부터 or 아래쪽부터 한 칸씩 보면서 X로 둘러싸인 FILL 덩어리를 검사
+                // 덩어리를 찾았으면 해당하는 힌트를 흐리게 한다.
+
+                // TODO : 정방향 및 역방향 힌트 업데이트 기능 구현!
+
+                // 정방향 힌트 업데이트 TODO
+                CellFill prevFill = CellFill.X;
+                CellFill curFill = CellFill.BLANK;
+                fillCount = 0;
+                hintIdx = 0;
+                int lastHintCellIdx = -1;
+                for (int y = 0; y < CurrentBoard.Count; ++y)
+                {
+                    curFill = CurrentBoard[y][changed_X].FillValue;
+                    // 빈 칸이 나오면 그 뒤는 완성 못 한 것이므로 힌트 흐리게 하지 않고 종료
+                    if (curFill == CellFill.BLANK)
+                        break;
+                    // 칠해져있으면 계속 카운팅
+                    if (curFill == CellFill.FILL)
+                        ++fillCount;
+                    // X 가 나오면 그 동안 셌던 블록 수와 힌트의 숫자 비교 후
+                    // 틀리면 종료, 맞으면 힌트를 흐리게 하고 카운터 초기화 후 끝났으면 종료, 맞으면 계속 반복
+                    else if (prevFill == CellFill.FILL && curFill == CellFill.X)
+                    {
+                        HintNum curHint = UpperHintColumns[changed_X][hintIdx];
+                        if (fillCount != curHint.Num)
+                            break;
+
+                        curHint.IsUsed = true;
+                        ++hintIdx;
+                        if (hintIdx >= UpperHintColumns[changed_X].Count)
+                            break;
+                        fillCount = 0;
+                        lastHintCellIdx = y - 1;
+                    }
+                    // 끝 부분은 고려하지 않아도 됨.
+                    // 끝까지 채워졌다면 이미 줄이 완성된 것이므로 앞에서 걸려졌을 것.
+
+                    prevFill = curFill;
+                }
+
+
+                // 역방향 힌트 업데이트 TODO
+                prevFill = CellFill.X;
+                curFill = CellFill.BLANK;
+                fillCount = 0;
+                hintIdx = UpperHintColumns[changed_X].Count - 1;
+                for (int y = CurrentBoard.Count - 1; y >= lastHintCellIdx + 1; --y)
+                {
+                    curFill = CurrentBoard[y][changed_X].FillValue;
+                    // 빈 칸이 나오면 그 뒤는 완성 못 한 것이므로 힌트 흐리게 하지 않고 종료
+                    if (curFill == CellFill.BLANK)
+                        break;
+                    // 칠해져있으면 계속 카운팅
+                    if (curFill == CellFill.FILL)
+                        ++fillCount;
+                    // X 가 나오면 그 동안 셌던 블록 수와 힌트의 숫자 비교 후
+                    // 틀리면 종료, 맞으면 힌트를 흐리게 하고 카운터 초기화 후 끝났으면 종료, 맞으면 계속 반복
+                    else if (prevFill == CellFill.FILL && curFill == CellFill.X)
+                    {
+                        HintNum curHint = UpperHintColumns[changed_X][hintIdx];
+                        if (fillCount != curHint.Num)
+                            break;
+
+                        curHint.IsUsed = true;
+                        --hintIdx;
+                        if (hintIdx < 0)
+                            break;
+                        fillCount = 0;
+                    }
+                    // 끝 부분은 고려하지 않아도 됨.
+                    // 끝까지 채워졌다면 이미 줄이 완성된 것이므로 앞에서 걸려졌을 것.
+
+                    prevFill = curFill;
+                }
+
             }
             #endregion
         }
@@ -254,8 +484,18 @@ namespace Nonogram.Classes.BoardUI
         /// <returns>현재 보드판이 정답이면 true, 아니면 false</returns>
         public bool CheckSolved()
         {
-            // TODO : 정답 체크 기능 구현!
-            throw new NotImplementedException("CheckSolved() Is Not Implemented");
+            for (int y = 0; y < AnswerArray.GetLength(0); ++y)
+            {
+                for (int x = 0; x < AnswerArray.GetLength(1); ++x)
+                {
+                    bool currentIsFill = CurrentBoard[y][x].FillValue == CellFill.FILL;
+                    bool answerIsFill = AnswerArray[y, x];
+
+                    if (currentIsFill != answerIsFill)
+                        return false;
+                }
+            }
+            return true;
         }
 
         #region INotifyPropertyChanged 멤버

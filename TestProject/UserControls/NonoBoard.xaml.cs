@@ -34,13 +34,50 @@ namespace Nonogram.UserControls
             //this.GameBoard = new Board(puzzleAnswer);
 
             // 테스트용 퍼즐
-            this.GameBoard = new Board(new PuzzleAnswerData(6,8,
-                "11101110" +
-                "11011001" +
-                "10101101" + 
-                "11101111" +
-                "00110101" +
-                "11010010"));
+            this.GameBoard = new Board(new PuzzleAnswerData(15,15,
+                "000000100011110" +
+                "001111100110011" +
+                "011111001110111" +
+                "111011001101001" +
+                "111111001101011" +
+                "011111101110111" +
+                "000111101110111" +
+                "001101111111101" +
+                "011011111111101" +
+                "000111111111010" +
+                "001111111111010" +
+                "001111111110100" +
+                "000101111001000" +
+                "000010111110000" +
+                "000111111000000"));
+        }
+
+        private bool isLeftDragging;
+        private bool isRightDragging;
+
+        private void Border_PreviewMouseMove(object sender, MouseEventArgs e)
+        {
+            // TODO
+        }
+
+        private void Border_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Border border = (Border)sender;
+            Cell cell = (Cell)(((ContentControl)border.Child).Content);
+
+            if (Mouse.LeftButton == MouseButtonState.Pressed)
+            {
+                cell.FillValue = CellFill.FILL;
+            }
+            else if (Mouse.RightButton == MouseButtonState.Pressed)
+            {
+                cell.FillValue = CellFill.X;
+            }
+        }
+
+        private void Border_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            // TODO
         }
     }
 }

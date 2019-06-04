@@ -11,32 +11,34 @@
              VerticalAlignment="Stretch"
              VerticalContentAlignment="Stretch"
              Foreground="White"
-             Height="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}">
+             Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}">
 
     <UserControl.Resources>
 
-        <!-- 왼쪽 힌트 숫자 템플릿 -->
+        <!-- 힌트 숫자 템플릿 -->
         <DataTemplate x:Key="HintNumberTemplate">
-            <TextBlock x:Name="HintNumberTextBlock"
-                       Margin="5"
-                       Text="{Binding Path=NumString}"
-                       HorizontalAlignment="Right" VerticalAlignment="Center"
-                       FontSize="20">
-                <TextBlock.Style>
-                    <Style TargetType="{x:Type TextBlock}">
-                        <!-- 힌트가 아직 사용되지 않았을 때 폰트 색깔 및 두께 -->
-                        <Setter Property="Foreground" Value="DarkBlue"/>
-                        <Setter Property="FontWeight" Value="Regular"/>
-                        <Style.Triggers>
-                            <!-- 힌트가 사용되었을때 폰트 색깔 및 두께 -->
-                            <DataTrigger Binding="{Binding Path=IsUsed}" Value="True">
-                                <Setter Property="Foreground" Value="LightGray"/>
-                                <Setter Property="FontWeight" Value="Light"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
+            <Viewbox Stretch="Uniform">
+                <TextBlock x:Name="HintNumberTextBlock"
+                           Margin="5"
+                           Text="{Binding Path=Num}"
+                           HorizontalAlignment="Right" VerticalAlignment="Center"
+                           FontSize="20">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <!-- 힌트가 아직 사용되지 않았을 때 폰트 색깔 및 두께 -->
+                            <Setter Property="Foreground" Value="DarkBlue"/>
+                            <Setter Property="FontWeight" Value="Regular"/>
+                            <Style.Triggers>
+                                <!-- 힌트가 사용되었을때 폰트 색깔 및 두께 -->
+                                <DataTrigger Binding="{Binding Path=IsUsed}" Value="True">
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="FontWeight" Value="Light"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Viewbox>
         </DataTemplate>
 
         <!-- 위쪽 힌트 한 열 템플릿 -->
@@ -72,8 +74,49 @@
         
         <!-- 보드판 한 칸 템플릿 -->
         <DataTemplate x:Key="CellTemplate">
-            <Border BorderBrush="Transparent" BorderThickness="1" Background="White">
+            <Border BorderBrush="Transparent" BorderThickness="1" Background="White"
+                    PreviewMouseDown="Border_PreviewMouseDown" PreviewMouseUp="Border_PreviewMouseUp" PreviewMouseMove="Border_PreviewMouseMove">
                 <!-- TODO : enum 에 대응시키기 -->
+                <ContentControl Content="{Binding}">
+                    <ContentControl.Style>
+                        <Style TargetType="ContentControl">
+                            <!-- 빈 칸 스타일 -->
+                            <Setter Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <Border Background="White"/>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <!-- 채워진 칸 스타일 -->
+                                <DataTrigger Binding="{Binding Path=FillValue}" Value="{x:Static boardui:CellFill.FILL}">
+                                    <Setter Property="ContentTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                                <Border Background="BlueViolet"/>
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                                <!-- X 칸 스타일 -->
+                                <DataTrigger Binding="{Binding Path=FillValue}" Value="{x:Static boardui:CellFill.X}">
+                                    <Setter Property="ContentTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                                <Border Background="White">
+                                                    <Viewbox Stretch="Uniform">
+                                                        <TextBlock Text="X" Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                    </Viewbox>
+                                                </Border>
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ContentControl.Style>
+                </ContentControl>
             </Border>
         </DataTemplate>
         
@@ -97,11 +140,11 @@
 
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.3*"/>
+            <RowDefinition Height="0.4*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="0.4*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
@@ -189,6 +232,9 @@
                 </Style>
             </Border.Style>
         </Border>
+        
+        <!-- 디버그용 클리어체크 -->
+        <TextBlock Text="{Binding Path=IsSolved}" Foreground="Black" FontSize="30"/>
     </Grid>
     
 </UserControl>

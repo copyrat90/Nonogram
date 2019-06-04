@@ -23,23 +23,22 @@ namespace TestProject.Classes.BoardUI
             }
         }
         private int number;
-        public string NumString
+        public int Num
         {
-            get { return number.ToString(); }
+            get { return number; }
             set
             {
-                int numVal = int.Parse(value);
-                if (number != numVal)
+                if (number != value)
                 {
-                    number = numVal;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("NumString"));
+                    number = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Num"));
                 }
             }
         }
 
         public HintNum(int num)
         {
-            NumString = num.ToString();
+            Num = num;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -12,6 +12,6 @@
     <!--테스트 작업!-->
 
     <Grid>
-        <mycontrol:NonoBoard Width="600"/>
+        <mycontrol:NonoBoard/>
     </Grid>
 </Window>
