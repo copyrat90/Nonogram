@@ -133,10 +133,6 @@ namespace Nonogram.Classes.BoardUI
                         oneLineHint.Add(new HintNum(fillCount));
                     }
 
-                    // 만약 칠이 없는 칸이면 0을 추가
-                    if (oneLineHint.Count == 0)
-                        oneLineHint.Add(new HintNum(0) { IsUsed = true });
-
                     // 힌트 목록에 넣음
                     hintLineCollection.Add(oneLineHint);
                 }
@@ -159,12 +155,8 @@ namespace Nonogram.Classes.BoardUI
             #region 좌측, 상단 힌트 업데이트 기능
             void UpdateLeftHint()
             {
-                var oneLineHint = LeftHintRows[changed_Y];
-                // 힌트가 "0" 한 개이면 아무 작업도 안 하고 리턴
-                if (oneLineHint.Count == 0 && oneLineHint[0].NumString == "0")
-                    return;
-
                 // 힌트 색깔 초기화
+                var oneLineHint = LeftHintRows[changed_Y];
                 foreach (HintNum oneHintNum in oneLineHint)
                 {
                     oneHintNum.IsUsed = false;
@@ -225,7 +217,7 @@ namespace Nonogram.Classes.BoardUI
                 }
 
                 // 왼쪽부터 or 오른쪽부터 한 칸씩 보면서 X로 둘러싸인 FILL 덩어리를 검사
-                // 덩어리를 찾았으면 해당하는 힌트를 흐리게 한다.
+                // 덩어리를 찾았으면 해당하는 힌트 TextBlock 을 흐리게 한다.
                 
                 // TODO : 정방향 및 역방향 힌트 업데이트 기능 구현!
                 throw new NotImplementedException("정방향과 역방향 힌트 업데이트 기능 구현 필요!");

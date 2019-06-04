@@ -21,11 +21,11 @@
                        Margin="5"
                        Text="{Binding Path=NumString}"
                        HorizontalAlignment="Right" VerticalAlignment="Center"
-                       FontSize="15">
+                       FontSize="20">
                 <TextBlock.Style>
                     <Style TargetType="{x:Type TextBlock}">
                         <!-- 힌트가 아직 사용되지 않았을 때 폰트 색깔 및 두께 -->
-                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="Foreground" Value="DarkBlue"/>
                         <Setter Property="FontWeight" Value="Regular"/>
                         <Style.Triggers>
                             <!-- 힌트가 사용되었을때 폰트 색깔 및 두께 -->
@@ -41,7 +41,7 @@
 
         <!-- 위쪽 힌트 한 열 템플릿 -->
         <DataTemplate x:Key="UpperHintRowTemplate">
-            <Border BorderBrush="Black" BorderThickness="1">
+            <Border BorderBrush="BlueViolet" BorderThickness="2.5">
                 <ItemsControl ItemsSource="{Binding}"
                               ItemTemplate="{StaticResource HintNumberTemplate}">
                     <ItemsControl.ItemsPanel>
@@ -56,7 +56,7 @@
 
         <!-- 왼쪽 힌트 한 행 템플릿 -->
         <DataTemplate x:Key="LeftHintColumnTemplate">
-            <Border BorderBrush="Black" BorderThickness="1">
+            <Border BorderBrush="BlueViolet" BorderThickness="2.5">
                 <ItemsControl ItemsSource="{Binding}"
                               ItemTemplate="{StaticResource HintNumberTemplate}">
                     <ItemsControl.ItemsPanel>
@@ -72,14 +72,14 @@
         
         <!-- 보드판 한 칸 템플릿 -->
         <DataTemplate x:Key="CellTemplate">
-            <Border BorderBrush="Black" BorderThickness="1" Background="White">
+            <Border BorderBrush="Transparent" BorderThickness="1" Background="White">
                 <!-- TODO : enum 에 대응시키기 -->
             </Border>
         </DataTemplate>
         
         <!-- 보드판 한 행 템플릿 -->
         <DataTemplate x:Key="BoardRowTemplate">
-            <Border BorderBrush="Black" BorderThickness="1">
+            <Border BorderBrush="Transparent" BorderThickness="1">
                 <ItemsControl ItemsSource="{Binding}"
                               ItemTemplate="{StaticResource CellTemplate}">
                     <ItemsControl.ItemsPanel>
@@ -95,7 +95,7 @@
     
 
 
-    <Grid Background="White">
+    <Grid Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.3*"/>
             <RowDefinition/>
@@ -107,7 +107,7 @@
 
         <!-- 왼쪽 힌트 컨트롤 -->
         <Border Grid.Row="1"
-                BorderBrush="Black" BorderThickness="1">
+                BorderBrush="Indigo" BorderThickness="1">
             <ItemsControl x:Name="LeftHintControl"
                           ItemsSource="{Binding Path=LeftHintRows}"
                           ItemTemplate="{StaticResource LeftHintColumnTemplate}">
@@ -117,11 +117,26 @@
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
+            <Border.Style>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <LinearGradientBrush StartPoint="0, 0" EndPoint="0, 1">
+                                <GradientStop Color="#FFFCCEFC" Offset ="0"/>
+                                <GradientStop Color="#FFD0C2F4" Offset ="0.5"/>
+                                <GradientStop Color="#FFC9C9F3" Offset ="0.75"/>
+                                <GradientStop Color="#FFC1F3F3" Offset ="1"/>
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property ="CornerRadius" Value ="5, 0, 0, 5"/>
+                </Style>
+            </Border.Style>
         </Border>
         
         <!-- 위쪽 힌트 컨트롤 -->
         <Border Grid.Column="1"
-                BorderBrush="Black" BorderThickness="1">
+                BorderBrush="Indigo" BorderThickness="1" >
             <ItemsControl x:Name="UpperHintControl"
                           ItemsSource="{Binding Path=UpperHintColumns}"
                           ItemTemplate="{StaticResource UpperHintRowTemplate}">
@@ -131,11 +146,24 @@
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
+            <Border.Style>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <LinearGradientBrush StartPoint="0, 0" EndPoint="0, 1">
+                                <GradientStop Color="#FFFCFCC3" Offset ="0"/>
+                                <GradientStop Color="#FFF18FEE" Offset ="1"/>
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property ="CornerRadius" Value ="5, 5, 0, 0"/>
+                </Style>
+            </Border.Style>
         </Border>
 
         <!-- 보드판 컨트롤 -->
         <Border Grid.Row="1" Grid.Column="1"
-                BorderBrush="Black" BorderThickness="1">
+                BorderBrush="Indigo" BorderThickness="1">
             <ItemsControl x:Name="BoardControl"
                           ItemsSource="{Binding Path=CurrentBoard}"
                           ItemTemplate="{StaticResource BoardRowTemplate}">
@@ -145,6 +173,21 @@
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
+            <Border.Style>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <LinearGradientBrush StartPoint="0, 0" EndPoint="0, 1">
+                                <GradientStop Color="#FFFCCEFC" Offset ="0"/>
+                                <GradientStop Color="#FFD0C2F4" Offset ="0.5"/>
+                                <GradientStop Color="#FFC9C9F3" Offset ="0.75"/>
+                                <GradientStop Color="#FFC1F3F3" Offset ="1"/>
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property ="CornerRadius" Value ="0, 0, 5, 0"/>
+                </Style>
+            </Border.Style>
         </Border>
     </Grid>
     

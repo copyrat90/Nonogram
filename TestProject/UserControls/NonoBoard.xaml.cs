@@ -37,7 +37,7 @@ namespace Nonogram.UserControls
             this.GameBoard = new Board(new PuzzleAnswerData(6,8,
                 "11101110" +
                 "11011001" +
-                "00000000" + 
+                "10101101" + 
                 "11101111" +
                 "00110101" +
                 "11010010"));
