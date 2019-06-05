@@ -4,9 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Nonogram.Pages"
+      xmlns:uc="clr-namespace:Nonogram.UserControls"
+      xmlns:conv="clr-namespace:Nonogram.Classes.Helper.ValueConverter"
       mc:Ignorable="d" 
       d:DesignHeight="690" d:DesignWidth="1280"
       Title="PuzzlePlay">
+    <Page.Resources>
+        <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </Page.Resources>
 
     <Grid Width="1280" Height="690">
         <Grid.ColumnDefinitions>
@@ -15,31 +20,9 @@
         </Grid.ColumnDefinitions>
 
         <!-- 퍼즐 그리드 -->
-        <Grid Grid.Column="0" Margin="20" ShowGridLines="True">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-
-            <!-- 퍼즐 이름 텍스트 블록 -->
-            <TextBlock x:Name="puzzleNameLabel"
-                       Text="(puzzle name)"
-                       TextWrapping="WrapWithOverflow"
-                       FontSize="30"
-                       FontFamily="/Font/#Pacifico"/>
-        </Grid>
+        <uc:NonoBoard x:Name="nonoBoard"/>
+        <TextBlock Text="Clear!" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="150"
+                   Visibility="{Binding ElementName=nonoBoard, Path=GameBoard.IsSolved, Converter={StaticResource BoolToVisibilityConverter}}"/>
         <Grid Grid.Column="1">
             <!-- 일시정지 버튼 -->
             <Button x:Name="pauseButton"

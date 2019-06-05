@@ -73,11 +73,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\BoardUI\Board.cs" />
+    <Compile Include="Classes\BoardUI\Cell.cs" />
+    <Compile Include="Classes\BoardUI\HintNum.cs" />
+    <Compile Include="Classes\FileData\PuzzleAnswerData.cs" />
+    <Compile Include="Classes\FileData\PuzzleSaveData.cs" />
+    <Compile Include="Classes\Helper\ValueConverter\BoolToVisibilityConverter.cs" />
     <Compile Include="Pages\KeySetting.xaml.cs">
       <DependentUpon>KeySetting.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\NonoBoard.xaml.cs">
+      <DependentUpon>NonoBoard.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -118,6 +127,10 @@
     <Page Include="Pages\StartupPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\NonoBoard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -166,5 +179,6 @@
   <ItemGroup>
     <Resource Include="Images\Return.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
