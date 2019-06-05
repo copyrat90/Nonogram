@@ -11,7 +11,8 @@
              VerticalAlignment="Stretch"
              VerticalContentAlignment="Stretch"
              Foreground="White"
-             Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}">
+             Width="{Binding RelativeSource={RelativeSource Self}, Path=ActualHeight}"
+             MouseLeave="Border_MouseUp">
 
     <UserControl.Resources>
 
@@ -75,7 +76,8 @@
         <!-- 보드판 한 칸 템플릿 -->
         <DataTemplate x:Key="CellTemplate">
             <Border BorderBrush="Transparent" BorderThickness="1" Background="White"
-                    PreviewMouseDown="Border_PreviewMouseDown" PreviewMouseUp="Border_PreviewMouseUp" PreviewMouseMove="Border_PreviewMouseMove">
+                    MouseDown="Border_MouseDown" MouseUp="Border_MouseUp"
+                    MouseEnter="Border_MouseEnter">
                 <!-- TODO : enum 에 대응시키기 -->
                 <ContentControl Content="{Binding}">
                     <ContentControl.Style>

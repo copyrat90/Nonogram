@@ -215,7 +215,7 @@ namespace Nonogram.Classes.BoardUI
                         lastCount = fillCount;
                         fillCount = 0;
                         ++hintIdx;
-                        if (hintIdx >= UpperHintColumns[changed_X].Count)
+                        if (hintIdx >= LeftHintRows[changed_Y].Count)
                         {
                             prevIsFill = curIsFill;
                             break;
