@@ -23,7 +23,7 @@
                            Margin="5"
                            Text="{Binding Path=Num}"
                            HorizontalAlignment="Right" VerticalAlignment="Center"
-                           FontSize="20">
+                           FontSize="8">
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">
                             <!-- 힌트가 아직 사용되지 않았을 때 폰트 색깔 및 두께 -->
@@ -45,31 +45,33 @@
         <!-- 위쪽 힌트 한 열 템플릿 -->
         <DataTemplate x:Key="UpperHintRowTemplate">
             <Border BorderBrush="BlueViolet" BorderThickness="2.5">
-                <ItemsControl ItemsSource="{Binding}"
-                              ItemTemplate="{StaticResource HintNumberTemplate}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel VerticalAlignment="Bottom"
-                                        HorizontalAlignment="Center"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                </ItemsControl>
+                <Viewbox Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                    <ItemsControl ItemsSource="{Binding}"
+                                      ItemTemplate="{StaticResource HintNumberTemplate}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </Viewbox>
             </Border>
         </DataTemplate>
 
         <!-- 왼쪽 힌트 한 행 템플릿 -->
         <DataTemplate x:Key="LeftHintColumnTemplate">
             <Border BorderBrush="BlueViolet" BorderThickness="2.5">
-                <ItemsControl ItemsSource="{Binding}"
-                              ItemTemplate="{StaticResource HintNumberTemplate}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Right"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                </ItemsControl>
+                <Viewbox VerticalAlignment="Center"
+                         HorizontalAlignment="Right">
+                    <ItemsControl ItemsSource="{Binding}"
+                                      ItemTemplate="{StaticResource HintNumberTemplate}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </Viewbox>
             </Border>
         </DataTemplate>
         
