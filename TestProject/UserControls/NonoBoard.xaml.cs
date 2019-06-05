@@ -111,6 +111,10 @@ namespace Nonogram.UserControls
             Border border = (Border)sender;
             Cell cell = (Cell)(((ContentControl)border.Child).Content);
 
+            // 드래그중이 아니라면 pass
+            if (drag == DragStatus.NONE)
+                return;
+
             // 만일 이미 드래그 한 적이 있다면
             // 시작 위치를 바탕으로 X축 or Y축만 변경한 셀을 재선택
             if (isDraggedToNextCell)
@@ -148,12 +152,8 @@ namespace Nonogram.UserControls
                     break;
             }
 
-            if (drag != DragStatus.NONE)
-            {
-                isDraggedToNextCell = true;
-                // 디버그용 콘솔 출력
-                Console.WriteLine($"MouseEnter in [y:{cell.Y}, x:{cell.X}] while dragging");
-            }
+            // 디버그용 콘솔 출력
+            Console.WriteLine($"MouseEnter in [y:{cell.Y}, x:{cell.X}] while dragging");
         }
     }
 }
