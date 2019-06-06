@@ -9,8 +9,6 @@ namespace Nonogram.Classes.FileData
 {
     public class PausedPuzzleSaveData
     {
-        int PuzzleID { get; set; }
-
         int LastModifiedBoard { get; set; }
 
         /// <summary>
@@ -19,5 +17,11 @@ namespace Nonogram.Classes.FileData
         /// 3차원 : x좌표
         /// </summary>
         CellFill[,,] CurBoard { get; set; }
+
+        public PausedPuzzleSaveData(int lastModifiedBoard, CellFill[,,] curBoard)
+        {
+            LastModifiedBoard = lastModifiedBoard;
+            CurBoard = curBoard;
+        }
     }
 }

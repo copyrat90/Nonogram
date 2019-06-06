@@ -37,7 +37,7 @@ namespace Nonogram.UserControls
             //this.GameBoard = new Board(puzzleAnswer);
 
             // 테스트용 퍼즐
-            this.GameBoard = new Board(new PuzzleAnswerData(15,15,
+            this.GameBoard = new Board(new PuzzleData(15,15,
                 "000000100011110" +
                 "001111100110011" +
                 "011111001110111" +

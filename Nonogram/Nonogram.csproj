@@ -91,10 +91,11 @@
     <Compile Include="Classes\BoardUI\Board.cs" />
     <Compile Include="Classes\BoardUI\Cell.cs" />
     <Compile Include="Classes\BoardUI\HintNum.cs" />
-    <Compile Include="Classes\FileData\PuzzleAnswerData.cs" />
+    <Compile Include="Classes\FileData\PuzzleData.cs" />
     <Compile Include="Classes\FileData\PausedPuzzleSaveData.cs" />
     <Compile Include="Classes\Helper\Database\LocalDBHelper.cs" />
     <Compile Include="Classes\Helper\ValueConverter\BoolToVisibilityConverter.cs" />
+    <Compile Include="Classes\PuzzleSelectUI\PuzzleButton.cs" />
     <Compile Include="Pages\KeySetting.xaml.cs">
       <DependentUpon>KeySetting.xaml</DependentUpon>
     </Compile>
@@ -216,8 +217,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Classes\PuzzleSelectUI\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

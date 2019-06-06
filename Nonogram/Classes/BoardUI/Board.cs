@@ -42,7 +42,7 @@ namespace Nonogram.Classes.BoardUI
         #endregion
 
 
-        public Board(PuzzleAnswerData puzzleAnswer)
+        public Board(PuzzleData puzzleAnswer)
         {
             AnswerArray = (bool[,])puzzleAnswer.AnswerArray.Clone();
             CurrentBoard = new ObservableCollection<ObservableCollection<Cell>>();
