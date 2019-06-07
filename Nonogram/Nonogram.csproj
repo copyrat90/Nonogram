@@ -93,9 +93,10 @@
     <Compile Include="Classes\BoardUI\HintNum.cs" />
     <Compile Include="Classes\FileData\PuzzleData.cs" />
     <Compile Include="Classes\FileData\PausedPuzzleSaveData.cs" />
-    <Compile Include="Classes\Helper\Database\LocalDBHelper.cs" />
+    <Compile Include="Classes\Helper\Database\LocalPuzzleDB.cs" />
+    <Compile Include="Classes\Helper\Database\ServerPuzzleDB.cs" />
     <Compile Include="Classes\Helper\ValueConverter\BoolToVisibilityConverter.cs" />
-    <Compile Include="Classes\PuzzleSelectUI\PuzzleButton.cs" />
+    <Compile Include="Classes\PuzzleSelectUI\PuzzleButtonData.cs" />
     <Compile Include="Pages\KeySetting.xaml.cs">
       <DependentUpon>KeySetting.xaml</DependentUpon>
     </Compile>

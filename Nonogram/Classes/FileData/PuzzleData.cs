@@ -8,6 +8,7 @@ namespace Nonogram.Classes.FileData
 {
     public class PuzzleData
     {
+        public int PuzzleID { get; set; }
         public string Name { get; set; }
         public int Height { get { return AnswerArray.GetLength(0); } }
         public int Width { get { return AnswerArray.GetLength(1); } }
@@ -24,8 +25,9 @@ namespace Nonogram.Classes.FileData
         /// <param name="rawPuzzleString">'0'과 '1'로 이루어진 퍼즐 데이터 문자열</param>
         /// <exception cref="PuzzleLengthMismatchException">
         /// 퍼즐 문자열 길이와 (높이x너비)가 일치하지 않을 때 발생하는 예외</exception>
-        public PuzzleData(string name, int height, int width, string rawPuzzleString)
+        public PuzzleData(int puzzleID, string name, int height, int width, string rawPuzzleString)
         {
+            PuzzleID = puzzleID;
             Name = name;
 
             rawPuzzleString.Replace("\n", String.Empty);
