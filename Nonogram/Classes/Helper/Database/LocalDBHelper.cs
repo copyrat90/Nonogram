@@ -25,7 +25,7 @@ namespace Nonogram.Classes.Helper.Database
                 conn.Open();
 
                 string query = "SELECT * FROM " +
-                    "(SELECT * FROM PuzzleAnswer INNER JOIN PausedPuzzleSave ON PuzzleAnswer.ID=PausedPuzzleSave.PuzzleID) " +
+                    "(SELECT * FROM PuzzleAnswer LEFT JOIN PausedPuzzleSave ON PuzzleAnswer.ID=PausedPuzzleSave.PuzzleID) " +
                     "LEFT JOIN PuzzleClear ON ID=PuzzleClear.PuzzleID;";
                 SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                 adapter.Fill(dataTable);
@@ -36,9 +36,11 @@ namespace Nonogram.Classes.Helper.Database
             List<PuzzleButton> puzzleButtons = new List<PuzzleButton>();
             foreach (DataRow data in dataTable.Rows)
             {
-                string[] curBoardStrings = new string[5] { (string)data["CurBoard0"], (string)data["CurBoard1"], (string)data["CurBoard2"], (string)data["CurBoard3"], (string)data["CurBoard4"] };
+                string[] curBoardStrings = null;
+                if (data["curBoard0"] != null)
+                    curBoardStrings = new string[5] { (string)data["CurBoard0"], (string)data["CurBoard1"], (string)data["CurBoard2"], (string)data["CurBoard3"], (string)data["CurBoard4"] };
                 PuzzleButton puzzleButton
-                    = new PuzzleButton((string)data["Name"], (int)data["Height"], (int)data["Width"], (string)data["PuzzleRawString"], (bool)data["IsCleared"], (int)data["LastModifiedBoard"], curBoardStrings);
+                    = new PuzzleButton((string)data["Name"], (int)data["Height"], (int)data["Width"], (string)data["PuzzleRawString"], (bool?)data["IsCleared"], (int?)data["LastModifiedBoard"], curBoardStrings);
                 puzzleButtons.Add(puzzleButton);
             }
             return puzzleButtons;

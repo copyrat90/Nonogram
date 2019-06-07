@@ -14,35 +14,40 @@ namespace Nonogram.Classes.PuzzleSelectUI
         public PausedPuzzleSaveData PuzzleSave { get; set; }
         public bool IsCleared { get; set; }
 
-        public PuzzleButton(string name, int height, int width, string rawPuzzleString, bool isCleared,
-            int lastModifiedBoard, string[] curBoardStrings)
+        public PuzzleButton(string name, int height, int width, string rawPuzzleString, bool? isCleared,
+            int? lastModifiedBoard, string[] curBoardStrings)
         {
             Puzzle = new PuzzleData(name, height, width, rawPuzzleString);
 
-            CellFill[,,] savedBoard = new CellFill[5, height, width];
-            for (int b=0;b<5;++b)
+            IsCleared = isCleared == true;
+
+            if (curBoardStrings != null)
             {
-                for (int y=0;y<height;++y)
+                CellFill[,,] savedBoard = new CellFill[5, height, width];
+                for (int b=0;b<5;++b)
                 {
-                    for (int x=0;x<width;++x)
+                    for (int y=0;y<height;++y)
                     {
-                        switch(curBoardStrings[b][y * width + x])
+                        for (int x=0;x<width;++x)
                         {
-                            case '0':
-                                savedBoard[b, y, x] = CellFill.BLANK;
-                                break;
-                            case '1':
-                                savedBoard[b, y, x] = CellFill.FILL;
-                                break;
-                            case '2':
-                                savedBoard[b, y, x] = CellFill.X;
-                                break;
+                            switch(curBoardStrings[b][y * width + x])
+                            {
+                                case '0':
+                                    savedBoard[b, y, x] = CellFill.BLANK;
+                                    break;
+                                case '1':
+                                    savedBoard[b, y, x] = CellFill.FILL;
+                                    break;
+                                case '2':
+                                    savedBoard[b, y, x] = CellFill.X;
+                                    break;
+                            }
                         }
                     }
                 }
-            }
 
-            PuzzleSave = new PausedPuzzleSaveData(lastModifiedBoard, savedBoard);
+                PuzzleSave = new PausedPuzzleSaveData((int)lastModifiedBoard, savedBoard);
+            }
         }
     }
 }
