@@ -8,7 +8,7 @@
       d:DesignHeight="690" d:DesignWidth="1280"
       Title="PuzzleSelectPage">
 
-    <Grid Background="LightGray"
+    <Grid Background="Transparent"
           Width="1280" Height="690">
         
         <Grid.RowDefinitions>
@@ -29,16 +29,22 @@
                        VerticalAlignment="Center"
                        Text="Puzzle Select"
                        FontSize="80"
-                       Margin="20"/>
-            <Button Canvas.Right="30" Grid.Column="2"
-                    Margin="20">
+                       Margin="20"
+                       Foreground="Orange"/>
+            <Button Canvas.Right="0" Grid.Column="2"
+                    Height="100"
+                    Width="100"
+                    Margin="0"
+                    Click="ReturnButton_Click"
+                    Style="{StaticResource ReturnButtonColor}">
                 <Image Source="/Images/Return.png"
                        Width="70"/>
             </Button>
         </Grid>
 
         <!--TODO : 바인딩 배워서 퍼즐에 적용해보기-->
-        <ListBox Grid.Row="1"
+        <ListBox Background="Transparent"
+                 Grid.Row="1"
                  ItemsSource="{Binding MovieList}"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListBox.ItemTemplate>

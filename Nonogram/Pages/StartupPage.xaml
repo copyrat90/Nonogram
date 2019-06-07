@@ -8,7 +8,7 @@
       d:DesignHeight="690" d:DesignWidth="1280"
       Title="StartupPage"
       MouseLeftButtonDown="Page_MouseLeftButtonDown">
-    <Grid Width="1280" Height="690">
+    <Grid Width="1280" Height="690" Background="Transparent">
         <StackPanel HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Height="400"
@@ -16,6 +16,7 @@
             <Label Content="Nonogram"
                HorizontalAlignment="Center"
                FontSize="140"
+               Foreground="LightPink"
                FontFamily="/Font/#Pacifico"/>
             <Label Content="Press any key or click anywhere"
                HorizontalAlignment="Center"

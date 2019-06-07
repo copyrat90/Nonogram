@@ -19,35 +19,41 @@
             <TextBlock Text="Nonogram"
                        HorizontalAlignment="Center"
                        FontFamily="/Font/#Pacifico"
-                       FontSize="90"/>
+                       FontSize="90"
+                       Foreground="LightSeaGreen"/>
             <Button Content="게임하기"
                     Click="StartingGameButton_Click"
                     HorizontalAlignment="Center"
                     Width="500"
                     Margin="0 30 0 15"
-                    FontSize="50"/>
+                    FontSize="50"
+                    Style="{StaticResource MainPageButtonColor}"/>
             <Button Content="퍼즐 만들기"
                     HorizontalAlignment="Center"
                     Width="500"
                     Margin="15"
-                    FontSize="50"/>
+                    FontSize="50"
+                    Style="{StaticResource MainPageButtonColor}"/>
             <Button Content="튜토리얼"
                     HorizontalAlignment="Center"
                     Width="500"
                     Margin="15"
-                    FontSize="50"/>
+                    FontSize="50"
+                    Style="{StaticResource MainPageButtonColor}"/>
             <Button Content="옵션"
                     Click="OptionButton_Click"
                     HorizontalAlignment="Center"
                     Width="500"
                     Margin="15"
-                    FontSize="50"/>
+                    FontSize="50"
+                    Style="{StaticResource MainPageButtonColor}"/>
             <Button Content="나가기"
                     Click="ExitButton_Click"
                     HorizontalAlignment="Center"
                     Width="500"
                     Margin="15"
-                    FontSize="50"/>
+                    FontSize="50"
+                    Style="{StaticResource MainPageButtonColor}"/>
         </StackPanel>
     </Grid>
 </Page>

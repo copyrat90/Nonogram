@@ -36,7 +36,7 @@ namespace Nonogram.Pages
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            // TODO 나가기 구현
+            Environment.Exit(0);
         }
     }
 }

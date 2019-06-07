@@ -18,14 +18,17 @@
                 <Label Content="Option"
                        Canvas.Left="50"
                        FontSize="100"
-                       FontFamily="/Font/#Pacifico"/>
+                       FontFamily="/Font/#Pacifico"
+                       Foreground="PaleVioletRed"/>
                 <Button 
                         Canvas.Right="0"
                         Height="100"
                         Width="100"
                         Margin="50"
-                        Click="ReturnButton_Click">
-                    돌아가기
+                        Click="ReturnButton_Click"
+                        Style="{StaticResource ReturnButtonColor}">
+                    <Image Source="/Images/Return.png"
+                       Width="70"/>
                 </Button>
             </Canvas>
         </Grid>
