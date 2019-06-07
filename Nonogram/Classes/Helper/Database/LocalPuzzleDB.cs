@@ -20,9 +20,9 @@ namespace Nonogram.Classes.Helper.Database
         /// <returns> 모든 퍼즐 버튼 데이터 리스트 (반환형 : List<PuzzleButtonData>)</returns>
         public static List<PuzzleButtonData> GetPuzzleButtonList()
         {
-            string query = "SELECT * FROM " +
-                    "(SELECT * FROM PuzzleAnswer LEFT JOIN PausedPuzzleSave ON PuzzleAnswer.ID=PausedPuzzleSave.PuzzleID) " +
-                    "LEFT JOIN PuzzleClear ON ID=PuzzleClear.PuzzleID;";
+            string query = "SELECT * FROM PuzzleAnswer " +
+                    "LEFT OUTER JOIN PausedPuzzleSave ON PuzzleAnswer.ID=PausedPuzzleSave.PuzzleID " +
+                    "LEFT OUTER JOIN PuzzleClear ON ID=PuzzleClear.PuzzleID;";
             DataTable dataTable = MSSQLLocal.GetDataTable(query);
 
             List<PuzzleButtonData> puzzleButtons = new List<PuzzleButtonData>();

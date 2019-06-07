@@ -11,7 +11,7 @@ namespace Nonogram.Classes.Helper.Database
     public static class MSSQLLocal
     {
         readonly static string connStr = "Data Source=(LocalDB)\\MSSQLLocalDB;" +
-            "AttachDbFilename=|DataDirectory|\\Nonogram.mdf;" +
+            "AttachDbFilename=|DataDirectory|\\LocalDB\\Nonogram.mdf;" +
             "Integrated Security=True";
 
         public static DataTable GetDataTable(string query)
