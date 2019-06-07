@@ -13,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Nonogram.Pages
+namespace Nonogram.UserControls
 {
     /// <summary>
-    /// PuzzleSelectPage.xaml에 대한 상호 작용 논리
+    /// PuzzleButton.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class PuzzleSelectPage : Page
+    public partial class PuzzleButton : UserControl
     {
-        public PuzzleSelectPage()
+        public PuzzleButton()
         {
             InitializeComponent();
-        }
-
-        private void ReturnButton_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new StartingGamePage());
         }
     }
 }

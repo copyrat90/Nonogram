@@ -106,6 +106,9 @@
     <Compile Include="UserControls\NonoBoard.xaml.cs">
       <DependentUpon>NonoBoard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\PuzzleButton.xaml.cs">
+      <DependentUpon>PuzzleButton.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -149,6 +152,10 @@
     <Page Include="UserControls\NonoBoard.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\PuzzleButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

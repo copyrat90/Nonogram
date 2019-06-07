@@ -29,5 +29,15 @@ namespace Nonogram.Pages
         {
             NavigationService.Navigate(new MainPage());
         }
+
+        private void PuzzleSelectButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new PuzzleSelectPage());
+        }
+
+        private void RandomPuzzleButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new PuzzlePlay());
+        }
     }
 }
