@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Nonogram.Classes.PuzzleSelectUI
 {
-    class PuzzleButton
+    public class PuzzleButton
     {
         public PuzzleData Puzzle { get; set; }
         public PausedPuzzleSaveData PuzzleSave { get; set; }

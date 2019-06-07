@@ -13,10 +13,10 @@ namespace Nonogram.Classes.Helper.Database
     public class LocalDBHelper
     {
         static string connStr = "Data Source=(LocalDB)\\MSSQLLocalDB;" +
-            "AttachDbFilename=D:\\Project\\C#\\Nonogram\\Nonogram\\LocalDB\\Nonogram.mdf;" +
+            "AttachDbFilename=|DataDirectory|\\Nonogram.mdf;" +
             "Integrated Security=True";
 
-        private List<PuzzleButton> GetPuzzleButtonList()
+        public List<PuzzleButton> GetPuzzleButtonList()
         {
             DataTable dataTable = new DataTable();
 
