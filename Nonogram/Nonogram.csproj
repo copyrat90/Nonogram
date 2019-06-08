@@ -98,7 +98,7 @@
     <Compile Include="Classes\Helper\Database\MSSQLLocal.cs" />
     <Compile Include="Classes\Helper\Database\ServerPuzzleDB.cs" />
     <Compile Include="Classes\Helper\ValueConverter\BoolToVisibilityConverter.cs" />
-    <Compile Include="Classes\Helper\PuzzleManager.cs" />
+    <Compile Include="Classes\Helper\PuzzleDataHelper.cs" />
     <Compile Include="Classes\PuzzleModel\PuzzleData.cs" />
     <Compile Include="Pages\KeySetting.xaml.cs">
       <DependentUpon>KeySetting.xaml</DependentUpon>

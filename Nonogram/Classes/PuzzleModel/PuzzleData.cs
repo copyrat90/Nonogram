@@ -12,12 +12,13 @@ namespace Nonogram.Classes.PuzzleModel
         public PuzzleAnswerData Puzzle { get; set; }
         public PausedPuzzleSaveData PuzzleSave { get; set; }
         public bool IsCleared { get; set; }
+        public bool IsRandomPuzzle { get; set; }
 
-        public PuzzleData(int puzzleID, string name, int height, int width, string rawPuzzleString, bool? isCleared,
+        public PuzzleData(int puzzleID, bool isRandomPuzzle, string name, int height, int width, string rawPuzzleString, bool? isCleared,
             int? lastModifiedBoard, string[] curBoardStrings)
         {
             Puzzle = new PuzzleAnswerData(puzzleID, name, height, width, rawPuzzleString);
-
+            IsRandomPuzzle = isRandomPuzzle;
             IsCleared = isCleared == true;
 
             if (curBoardStrings != null)
