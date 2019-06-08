@@ -21,7 +21,7 @@
 
         <!-- 퍼즐 레이어 -->
         <!-- TODO : ContextMenu 로 탭 복사 붙여넣기 병합 기능 구현 -->
-        <TabControl Background="Transparent">
+        <TabControl x:Name="boardTabControl" Background="Transparent">
             <!--<TabControl.ItemTemplate>
                 <DataTemplate>
                     

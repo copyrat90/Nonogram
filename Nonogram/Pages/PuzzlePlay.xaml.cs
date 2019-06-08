@@ -80,8 +80,7 @@ namespace Nonogram.Pages
 
         public void SaveCurrentBoard()
         {
-            PuzzleData puzzleData = PuzzleDataHelper.BoardArrayToPuzzleData(BoardArray);
-            PausedPuzzleSaveData saveData = puzzleData.PuzzleSave;
+            PausedPuzzleSaveData saveData = PuzzleDataHelper.BoardArrayToPuzzleSaveData(puzzleID, boardTabControl.SelectedIndex, BoardArray);
 
             LocalPuzzleDB.SavePausedPuzzleStatus(saveData);
         }
