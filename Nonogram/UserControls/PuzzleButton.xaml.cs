@@ -41,36 +41,45 @@ namespace Nonogram.UserControls
             PuzzleData data = (PuzzleData)e.NewValue;
 
             //StackPanal에 풀던 퍼즐 보여주기
-
-            //StackPanel 격자 생성
-            int height = data.Puzzle.Height;
-            int width = data.Puzzle.Width;
-
-            //string PuzzleString = data.PuzzleSave.RawBoardStringArr[data.PuzzleSave.LastModifiedBoard];
-            CellFill[,] userInputBoard = data.PuzzleSave.CurBoard[data.PuzzleSave.LastModifiedBoard];
-
-            for (int i = 0; i < height; i++)
+            if (data.PuzzleSave == null)
             {
-                StackPanel stackPanel = new StackPanel() { Orientation=Orientation.Horizontal };
-                puzzleButtonData.PuzzledataLoadGrid.Children.Add(stackPanel);
+                TextBlock nothingBlock = new TextBlock();
+                nothingBlock.HorizontalAlignment = HorizontalAlignment.Center;
+                nothingBlock.Text = "?";
+                nothingBlock.FontSize = 150;
+                nothingBlock.FontWeight = FontWeights.Bold;
+                puzzleButtonData.PuzzledataLoadGrid.Children.Add(nothingBlock);
+            }
+            else
+            {
+                CellFill[,] userInputBoard = data.PuzzleSave.CurBoard[data.PuzzleSave.LastModifiedBoard];
 
-                for (int j = 0; j < width; j++)
+                int height = data.Puzzle.Height;
+                int width = data.Puzzle.Width;
+
+                for (int i = 0; i < height; i++)
                 {
-                    if (userInputBoard[i,j] == CellFill.FILL)
+                    StackPanel stackPanel = new StackPanel() { Orientation = Orientation.Horizontal };
+                    puzzleButtonData.PuzzledataLoadGrid.Children.Add(stackPanel);
+
+                    for (int j = 0; j < width; j++)
                     {
-                        Rectangle rectangle = new Rectangle();
-                        rectangle.Height = 220 / puzzleButtonData.PuzzleName.Height;
-                        rectangle.Width = 220 / puzzleButtonData.PuzzleName.Width;
-                        rectangle.Fill = new SolidColorBrush(Colors.Black);
-                        stackPanel.Children.Add(rectangle);
-                    }
-                    else
-                    {
-                        Rectangle rectangle = new Rectangle();
-                        rectangle.Height = 220 / puzzleButtonData.PuzzleName.Height;
-                        rectangle.Width = 220 / puzzleButtonData.PuzzleName.Width;
-                        rectangle.Fill = new SolidColorBrush(Colors.White);
-                        stackPanel.Children.Add(rectangle);
+                        if (userInputBoard[i, j] == CellFill.FILL)
+                        {
+                            Rectangle rectangle = new Rectangle();
+                            rectangle.Height = 220 / puzzleButtonData.PuzzleName.Height;
+                            rectangle.Width = 220 / puzzleButtonData.PuzzleName.Width;
+                            rectangle.Fill = new SolidColorBrush(Colors.Black);
+                            stackPanel.Children.Add(rectangle);
+                        }
+                        else
+                        {
+                            Rectangle rectangle = new Rectangle();
+                            rectangle.Height = 220 / puzzleButtonData.PuzzleName.Height;
+                            rectangle.Width = 220 / puzzleButtonData.PuzzleName.Width;
+                            rectangle.Fill = new SolidColorBrush(Colors.White);
+                            stackPanel.Children.Add(rectangle);
+                        }
                     }
                 }
             }

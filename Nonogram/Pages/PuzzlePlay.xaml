@@ -27,7 +27,7 @@
                     
                 </DataTemplate>
             </TabControl.ItemTemplate>-->
-            <TabItem Header="Tab 1" FontSize="30" Width="150">
+            <TabItem Header="Tab 1" FontSize="30" Width="150" >
                 <uc:NonoBoard x:Name="nonoBoard0"/>
             </TabItem>
             <TabItem Header="Tab 2" FontSize="30" Width="150">
@@ -49,8 +49,9 @@
         <Menu Margin="30"
               VerticalAlignment="Top"
               Grid.Column="1"
-              FontSize="30">
-              <MenuItem Header="        Menu"
+              FontSize="30"
+              Style="{StaticResource PuzzlePlayMenuColor}">
+              <MenuItem Header="          Menu"
                         Width="260">
                   <MenuItem Header="세이브"
                             x:Name="Save"

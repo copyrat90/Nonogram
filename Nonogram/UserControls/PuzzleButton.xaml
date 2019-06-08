@@ -12,12 +12,13 @@
               Background="#FFFDFD7F"
               Height="250"
               Width="250">
-            <Button Background="Transparent"/>
-            <StackPanel x:Name="PuzzledataLoadGrid"
+            <Button Background="Transparent">
+                <StackPanel x:Name="PuzzledataLoadGrid"
                   Height="220"
                   Width="220"
                   Margin="15"
                   Background="GhostWhite"/>
+            </Button>
         </Grid>
         <TextBlock x:Name="PuzzleName"
                    Margin="0, 0, 0, 10"
