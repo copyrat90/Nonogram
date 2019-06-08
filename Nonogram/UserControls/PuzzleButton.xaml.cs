@@ -1,4 +1,4 @@
-﻿using Nonogram.Classes.PuzzleSelectUI;
+﻿using Nonogram.Classes.PuzzleModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,15 +23,15 @@ namespace Nonogram.UserControls
     {
 
 
-        public PuzzleButtonData LastPuzzleData
+        public PuzzleData LastPuzzleData
         {
-            get { return (PuzzleButtonData)GetValue(LastPuzzleDataProperty); }
+            get { return (PuzzleData)GetValue(LastPuzzleDataProperty); }
             set { SetValue(LastPuzzleDataProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for LastPuzzleData.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty LastPuzzleDataProperty =
-            DependencyProperty.Register("LastPuzzleData", typeof(PuzzleButtonData), typeof(PuzzleButton), new PropertyMetadata(/*new PuzzleButtonData(), */FillPuzzleButtonGrid));
+            DependencyProperty.Register("LastPuzzleData", typeof(PuzzleData), typeof(PuzzleButton), new PropertyMetadata(/*new PuzzleButtonData(), */FillPuzzleButtonGrid));
 
         private static void FillPuzzleButtonGrid(DependencyObject source, DependencyPropertyChangedEventArgs e)
         {
