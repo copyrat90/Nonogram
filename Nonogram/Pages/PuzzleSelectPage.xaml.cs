@@ -1,4 +1,5 @@
 ﻿using Nonogram.Classes.Helper.Database;
+using Nonogram.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,12 @@ namespace Nonogram.Pages
         private void ReturnButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new StartingGamePage());
+        }
+
+        private void PuzzleButton_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            PuzzleButton puzzleButton = sender as PuzzleButton;
+            NavigationService.Navigate(new PuzzlePlay(puzzleButton.LastPuzzleData)); 
         }
     }
 }
