@@ -13,7 +13,9 @@
               Height="250"
               Width="250">
             <Button Background="Transparent"/>
-            <Grid x:Name="PuzzledataLoadGrid"
+            <StackPanel x:Name="PuzzledataLoadGrid"
+                  Height="220"
+                  Width="220"
                   Margin="15"
                   Background="GhostWhite"/>
         </Grid>

@@ -40,17 +40,40 @@ namespace Nonogram.UserControls
 
             PuzzleData data = (PuzzleData)e.NewValue;
 
-            //Canvas에 풀던 퍼즐 보여주기
+            //StackPanal에 풀던 퍼즐 보여주기
 
-            //Canvas 격자 생성
-            puzzleButtonData.PuzzleName.Height = data.Puzzle.Height;
-            puzzleButtonData.PuzzleName.Width = data.Puzzle.Width;
+            //StackPanel 격자 생성
+            int height = data.Puzzle.Height;
+            int width = data.Puzzle.Width;
 
-            Rectangle rectangle = new Rectangle();
-            rectangle.Height = puzzleButtonData.PuzzleName.Height
+            //string PuzzleString = data.PuzzleSave.RawBoardStringArr[data.PuzzleSave.LastModifiedBoard];
+            CellFill[,] userInputBoard = data.PuzzleSave.CurBoard[data.PuzzleSave.LastModifiedBoard];
 
-            //Canvas 사각형으로 채우기
+            for (int i = 0; i < height; i++)
+            {
+                StackPanel stackPanel = new StackPanel() { Orientation=Orientation.Horizontal };
+                puzzleButtonData.PuzzledataLoadGrid.Children.Add(stackPanel);
 
+                for (int j = 0; j < width; j++)
+                {
+                    if (userInputBoard[i,j] == CellFill.FILL)
+                    {
+                        Rectangle rectangle = new Rectangle();
+                        rectangle.Height = 220 / puzzleButtonData.PuzzleName.Height;
+                        rectangle.Width = 220 / puzzleButtonData.PuzzleName.Width;
+                        rectangle.Fill = new SolidColorBrush(Colors.Black);
+                        stackPanel.Children.Add(rectangle);
+                    }
+                    else
+                    {
+                        Rectangle rectangle = new Rectangle();
+                        rectangle.Height = 220 / puzzleButtonData.PuzzleName.Height;
+                        rectangle.Width = 220 / puzzleButtonData.PuzzleName.Width;
+                        rectangle.Fill = new SolidColorBrush(Colors.White);
+                        stackPanel.Children.Add(rectangle);
+                    }
+                }
+            }
 
             //퍼즐 이름 보여주기
             puzzleButtonData.PuzzleName.Text = data.Puzzle.Name;
