@@ -1,4 +1,5 @@
-﻿using Nonogram.Classes.PuzzleModel;
+﻿using Nonogram.Classes.BoardVM;
+using Nonogram.Classes.PuzzleModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,13 +32,28 @@ namespace Nonogram.UserControls
 
         // Using a DependencyProperty as the backing store for LastPuzzleData.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty LastPuzzleDataProperty =
-            DependencyProperty.Register("LastPuzzleData", typeof(PuzzleData), typeof(PuzzleButton), new PropertyMetadata(/*new PuzzleButtonData(), */FillPuzzleButtonGrid));
+            DependencyProperty.Register("LastPuzzleData", typeof(PuzzleData), typeof(PuzzleButton), new PropertyMetadata(FillPuzzleButtonGrid));
 
         private static void FillPuzzleButtonGrid(DependencyObject source, DependencyPropertyChangedEventArgs e)
         {
-            throw new NotImplementedException();
-
             PuzzleButton puzzleButtonData = (PuzzleButton)source;
+
+            PuzzleData data = (PuzzleData)e.NewValue;
+            puzzleButtonData.PuzzleName.Text = data.Puzzle.Name;
+        }
+
+        private void PuzzleGridload()
+        {
+            int height = LastPuzzleData.Puzzle.Height;
+            int width = LastPuzzleData.Puzzle.Width;
+
+            // height, width 개수로 Grid.ColumnDefinition, Grid.RowDefinition 개수 추가
+
+            int lastTab = LastPuzzleData.PuzzleSave.LastModifiedBoard;
+            CellFill[,] arr = LastPuzzleData.PuzzleSave.CurBoard[lastTab];
+
+            // arr 바탕으로 Grid 에 사각형을 추가
+
         }
 
         public PuzzleButton()

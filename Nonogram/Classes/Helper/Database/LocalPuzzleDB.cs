@@ -17,7 +17,7 @@ namespace Nonogram.Classes.Helper.Database
         /// 로컬 데이터베이스에서 모든 퍼즐에 관한 정보를 불러와 리스트로 반환한다.
         /// </summary>
         /// <returns> 모든 퍼즐 데이터 리스트 (반환형 : List<PuzzleData>)</returns>
-        public static List<PuzzleData> GetPuzzleButtonList()
+        public static List<PuzzleData> GetPuzzleDataList()
         {
             string query = "SELECT * FROM PuzzleAnswer " +
                     "LEFT OUTER JOIN PausedPuzzleSave ON PuzzleAnswer.ID=PausedPuzzleSave.PuzzleID " +

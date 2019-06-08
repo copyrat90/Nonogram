@@ -19,7 +19,7 @@ namespace Nonogram.Classes.Helper.Database
             // 이미 있는 퍼즐 ID 목록 문자열 (ex: "1,3,4,5,7")
             string puzzleIDs_AlreadyDownloaded = string.Empty;
 
-            foreach (var puzzleButtonData in LocalPuzzleDB.GetPuzzleButtonList())
+            foreach (var puzzleButtonData in LocalPuzzleDB.GetPuzzleDataList())
             {
                 puzzleIDs_AlreadyDownloaded += puzzleButtonData.Puzzle.PuzzleID + ",";
             }

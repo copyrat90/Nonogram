@@ -4,9 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Nonogram.Pages"
+      xmlns:uc="clr-namespace:Nonogram.UserControls"
       mc:Ignorable="d" 
       d:DesignHeight="690" d:DesignWidth="1280"
       Title="PuzzleSelectPage">
+
+    <Page.Resources>
+        
+    </Page.Resources>
 
     <Grid Background="Transparent"
           Width="1280" Height="690">
@@ -43,26 +48,23 @@
         </Grid>
 
         <!--TODO : 바인딩 배워서 퍼즐에 적용해보기-->
-        <ListBox Background="Transparent"
+        <ItemsControl x:Name="PuzzleListBox"
+            Background="Transparent"
                  Grid.Row="1"
-                 ItemsSource="{Binding MovieList}"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-            <ListBox.ItemTemplate>
+            <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Vertical">
-                        <Image Source="{Binding Image}" Stretch="None"/>
-                        <Label Content="{Binding TitleWithYear}"/>
-                    </StackPanel>
+                    <uc:PuzzleButton LastPuzzleData="{Binding}"/>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-            <ListBox.ItemsPanel>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel IsItemsHost="True" Orientation="Horizontal"  />
+                    <WrapPanel IsItemsHost="True" Orientation="Horizontal"/>
                 </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
+            </ItemsControl.ItemsPanel>
 
             
             
-        </ListBox>
+        </ItemsControl>
     </Grid>
 </Page>

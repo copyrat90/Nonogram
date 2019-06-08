@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nonogram.Classes.Helper.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,9 @@ namespace Nonogram.Pages
         public PuzzleSelectPage()
         {
             InitializeComponent();
+
+            ServerPuzzleDB.DownloadPuzzle();
+            PuzzleListBox.ItemsSource = LocalPuzzleDB.GetPuzzleDataList();
         }
 
         private void ReturnButton_Click(object sender, RoutedEventArgs e)
