@@ -39,6 +39,20 @@ namespace Nonogram.UserControls
             PuzzleButton puzzleButtonData = (PuzzleButton)source;
 
             PuzzleData data = (PuzzleData)e.NewValue;
+
+            //Canvas에 풀던 퍼즐 보여주기
+
+            //Canvas 격자 생성
+            puzzleButtonData.PuzzleName.Height = data.Puzzle.Height;
+            puzzleButtonData.PuzzleName.Width = data.Puzzle.Width;
+
+            Rectangle rectangle = new Rectangle();
+            rectangle.Height = puzzleButtonData.PuzzleName.Height
+
+            //Canvas 사각형으로 채우기
+
+
+            //퍼즐 이름 보여주기
             puzzleButtonData.PuzzleName.Text = data.Puzzle.Name;
         }
 

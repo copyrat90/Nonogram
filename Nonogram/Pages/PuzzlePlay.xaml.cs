@@ -83,5 +83,20 @@ namespace Nonogram.Pages
 
             MessageBox.Show("저장이 완료되었습니다.");
         }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Zeroize_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new StartingGamePage());
+        }
     }
 }
