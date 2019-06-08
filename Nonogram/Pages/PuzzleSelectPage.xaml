@@ -54,7 +54,8 @@
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <uc:PuzzleButton LastPuzzleData="{Binding}"/>
+                    <uc:PuzzleButton LastPuzzleData="{Binding}"
+                                     MouseDown="PuzzleButton_MouseDown"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
             <ItemsControl.ItemsPanel>
@@ -62,8 +63,6 @@
                     <WrapPanel IsItemsHost="True" Orientation="Horizontal"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
-
-            
             
         </ItemsControl>
     </Grid>

@@ -22,7 +22,7 @@ namespace Nonogram.UserControls
     /// </summary>
     public partial class PuzzleButton : UserControl
     {
-
+        
 
         public PuzzleData LastPuzzleData
         {

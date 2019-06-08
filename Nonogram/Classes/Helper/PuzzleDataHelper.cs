@@ -27,15 +27,31 @@ namespace Nonogram.Classes.Helper
         }
 
         /// <summary>
-        /// 5개짜리 보드 배열을 받아 퍼즐 데이터를 만든다.
+        /// 5개짜리 보드 배열을 받아 퍼즐 세이브 데이터를 만든다.
         /// </summary>
         /// <param name="boardArr"></param>
-        /// <returns>저장할 퍼즐 데이터</returns>
-        public static PuzzleData BoardArrayToPuzzleData(Board[] boardArr)
+        /// <returns>저장할 퍼즐 세이브 데이터</returns>
+        public static PausedPuzzleSaveData BoardArrayToPuzzleSaveData(int puzzleID, int lastModifiedBoard, Board[] boardArr)
         {
             throw new NotImplementedException("BoardArrayToPuzzleData() Is Not Implemented");
 
+            int height = boardArr[0].CurrentBoard.Count;
+            int width = boardArr[0].CurrentBoard[0].Count;
 
+            CellFill[][,] curBoard = new CellFill[5][,];
+            for (int b = 0; b < 5; ++b)
+            {
+                curBoard[b] = new CellFill[height, width];
+                for (int y = 0; y < height; ++y)
+                {
+                    for (int x=0; x < width; ++x)
+                    {
+                        curBoard[b][y,x] = boardArr[b].CurrentBoard[y][x].FillValue;
+                    }
+                }
+            }
+
+            return new PausedPuzzleSaveData(puzzleID, lastModifiedBoard, curBoard);
         }
     }
 }
