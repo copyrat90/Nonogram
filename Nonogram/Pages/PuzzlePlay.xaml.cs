@@ -23,12 +23,13 @@ namespace Nonogram.Pages
     /// </summary>
     public partial class PuzzlePlay : Page
     {
+        PuzzleData puzzleData;
         Board[] BoardArray { get; set; }
 
         /// <summary>
         /// 퍼즐 테스트용 기본 생성자(제거 요망)
         /// </summary>
-        public PuzzlePlay() : this(new PuzzleData(-1, "test", 5, 5, "1111100000010100000010101",
+        public PuzzlePlay() : this(new PuzzleData(-1, true, "test", 5, 5, "1111100000010100000010101",
             null, 3, new string[5] { "1000002222000000000000000", "0000000022222000000000001", "2222222000011000000000000", "1000011000001110000011100", "0000000000000000000000000" } )) { }
 
         /// <summary>
@@ -39,6 +40,7 @@ namespace Nonogram.Pages
         {
             InitializeComponent();
 
+            this.puzzleData = data;
             BoardArray = PuzzleDataHelper.PuzzleDataToBoardArray(data);
 
             nonoBoard0.GameBoard = BoardArray[0];

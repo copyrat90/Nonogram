@@ -37,8 +37,8 @@
                 <uc:NonoBoard x:Name="nonoBoard4"/>
             </TabItem>
         </TabControl>
-        <!--<TextBlock Text="Clear!" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="150"
-                   Visibility="{Binding ElementName=nonoBoard0, Path=GameBoard.IsSolved, Converter={StaticResource BoolToVisibilityConverter}}"/>-->
+        <TextBlock Text="Clear!" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="150"
+                   Visibility="{Binding ElementName=nonoBoard0, Path=GameBoard.IsSolved, Converter={StaticResource BoolToVisibilityConverter}}"/>
         <Grid Grid.Column="1">
             <!-- 일시정지 버튼 -->
             <Button x:Name="pauseButton"

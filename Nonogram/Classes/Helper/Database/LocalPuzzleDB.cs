@@ -31,7 +31,7 @@ namespace Nonogram.Classes.Helper.Database
                 if (data["curBoard0"].ToString() != "")
                     curBoardStrings = new string[5] { data["CurBoard0"] as string, data["CurBoard1"] as string, data["CurBoard2"] as string, data["CurBoard3"] as string, data["CurBoard4"] as string };
                 PuzzleData puzzleButton
-                    = new PuzzleData((int)data["ID"], data["Name"] as string, (int)data["Height"], (int)data["Width"], data["PuzzleRawString"] as string, data["IsCleared"] as bool?, data["LastModifiedBoard"] as int?, curBoardStrings);
+                    = new PuzzleData((int)data["ID"], false, data["Name"] as string, (int)data["Height"], (int)data["Width"], data["PuzzleRawString"] as string, data["IsCleared"] as bool?, data["LastModifiedBoard"] as int?, curBoardStrings);
                 puzzleButtons.Add(puzzleButton);
             }
             return puzzleButtons;
