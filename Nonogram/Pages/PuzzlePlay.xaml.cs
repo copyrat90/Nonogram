@@ -1,5 +1,6 @@
 ﻿using Nonogram.Classes.BoardVM;
 using Nonogram.Classes.Helper;
+using Nonogram.Classes.Helper.Database;
 using Nonogram.Classes.PuzzleModel;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace Nonogram.Pages
     /// </summary>
     public partial class PuzzlePlay : Page
     {
-        PuzzleData puzzleData;
+        int puzzleID;
         Board[] BoardArray { get; set; }
 
         /// <summary>
@@ -39,15 +40,48 @@ namespace Nonogram.Pages
         public PuzzlePlay(PuzzleData data)
         {
             InitializeComponent();
+            puzzleID = data.Puzzle.PuzzleID;
 
-            this.puzzleData = data;
             BoardArray = PuzzleDataHelper.PuzzleDataToBoardArray(data);
+
+            foreach (Board board in BoardArray)
+            {
+                board.PropertyChanged += Board_PropertyChanged;
+            }
 
             nonoBoard0.GameBoard = BoardArray[0];
             nonoBoard1.GameBoard = BoardArray[1];
             nonoBoard2.GameBoard = BoardArray[2];
             nonoBoard3.GameBoard = BoardArray[3];
             nonoBoard4.GameBoard = BoardArray[4];
+        }
+
+        /// <summary>
+        /// 퍼즐을 풀었을 때 발동할 이벤트 핸들러
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Board_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            throw new NotImplementedException();
+
+            if (e.PropertyName == "IsSolved")
+            {
+                LocalPuzzleDB.ErasePausedPuzzleStatus(this.puzzleID);
+                LocalPuzzleDB.SavePuzzleClear(this.puzzleID, true);
+
+                // TODO : 축하합니다로 채워 퍼즐 못 누르게 하기
+            }
+        }
+
+        public void SaveCurrentBoard()
+        {
+            PuzzleData puzzleData = PuzzleDataHelper.BoardArrayToPuzzleData(BoardArray);
+            PausedPuzzleSaveData saveData = puzzleData.PuzzleSave;
+
+            LocalPuzzleDB.SavePausedPuzzleStatus(saveData);
+
+            MessageBox.Show("저장이 완료되었습니다.");
         }
     }
 }

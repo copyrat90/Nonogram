@@ -49,6 +49,17 @@ namespace Nonogram.Classes.Helper.Database
         }
 
         /// <summary>
+        /// 퍼즐 중단 데이터를 데이터베이스에서 삭제한다.
+        /// </summary>
+        /// <param name="puzzleID">삭제할 퍼즐 중단 데이터의 PuzzleID</param>
+        public static void ErasePausedPuzzleStatus(int puzzleID)
+        {
+            string cmdStr = $"DELETE FROM PausedPuzzleSave WHERE PuzzleID={puzzleID};";
+
+            SQLiteLocal.NonQueryCommand(cmdStr);
+        }
+
+        /// <summary>
         /// 퍼즐 클리어 여부를 데이터베이스에 저장한다.
         /// </summary>
         /// <param name="puzzleID">퍼즐 고유 ID</param>
