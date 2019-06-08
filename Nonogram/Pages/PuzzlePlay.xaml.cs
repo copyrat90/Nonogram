@@ -25,6 +25,7 @@ namespace Nonogram.Pages
     public partial class PuzzlePlay : Page
     {
         int puzzleID;
+        bool isRandomPuzzle;
         Board[] BoardArray { get; set; }
 
         /// <summary>
@@ -41,6 +42,7 @@ namespace Nonogram.Pages
         {
             InitializeComponent();
             puzzleID = data.Puzzle.PuzzleID;
+            isRandomPuzzle = data.IsRandomPuzzle;
 
             BoardArray = PuzzleDataHelper.PuzzleDataToBoardArray(data);
 
@@ -63,14 +65,16 @@ namespace Nonogram.Pages
         /// <param name="e"></param>
         private void Board_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            throw new NotImplementedException();
-
             if (e.PropertyName == "IsSolved")
             {
-                LocalPuzzleDB.ErasePausedPuzzleStatus(this.puzzleID);
-                LocalPuzzleDB.SavePuzzleClear(this.puzzleID, true);
+                if (!isRandomPuzzle)
+                {
+                    LocalPuzzleDB.ErasePausedPuzzleStatus(this.puzzleID);
+                    LocalPuzzleDB.SavePuzzleClear(this.puzzleID, true);
+                }
 
-                // TODO : 축하합니다로 채워 퍼즐 못 누르게 하기
+                clearBoarder.Visibility = Visibility.Visible;
+                clearTextBlock.Visibility = Visibility.Visible;
             }
         }
 
@@ -80,21 +84,46 @@ namespace Nonogram.Pages
             PausedPuzzleSaveData saveData = puzzleData.PuzzleSave;
 
             LocalPuzzleDB.SavePausedPuzzleStatus(saveData);
+        }
 
-            MessageBox.Show("저장이 완료되었습니다.");
+        public void ResetCurrentBoard()
+        {
+            foreach (Board board in BoardArray)
+            {
+                board.ResetBoard();
+            }
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-
+            if (!isRandomPuzzle)
+            {
+                SaveCurrentBoard();
+                MessageBox.Show("저장이 완료되었습니다.");
+            }
+            else
+            {
+                MessageBox.Show("랜덤 퍼즐은 저장할 수 없습니다.");
+            }
         }
 
         private void Zeroize_Click(object sender, RoutedEventArgs e)
         {
-
+            if (MessageBox.Show("정말 모든 보드를 초기화하시겠습니까?\n저장되지 않은 데이터는 사라집니다!", "모든 퍼즐 초기화", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                ResetCurrentBoard();
+            }
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("정말 나가시겠습니까?\n저장되지 않은 데이터는 사라집니다!", "나가기", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                NavigationService.Navigate(new StartingGamePage());
+            }
+        }
+
+        private void ClearBoarder_MouseDown(object sender, MouseButtonEventArgs e)
         {
             NavigationService.Navigate(new StartingGamePage());
         }
