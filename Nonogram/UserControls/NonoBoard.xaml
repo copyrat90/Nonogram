@@ -77,7 +77,7 @@
         
         <!-- 보드판 한 칸 템플릿 -->
         <DataTemplate x:Key="CellTemplate">
-            <Border BorderBrush="Transparent" BorderThickness="1" Background="White"
+            <Border BorderBrush="Transparent" BorderThickness="1" Background="Transparent"
                     MouseDown="Border_MouseDown" MouseUp="Border_MouseUp"
                     MouseEnter="Border_MouseEnter">
                 <!-- TODO : enum 에 대응시키기 -->
@@ -88,7 +88,7 @@
                             <Setter Property="ContentTemplate">
                                 <Setter.Value>
                                     <DataTemplate>
-                                        <Border Background="White"/>
+                                        <Border Style="{StaticResource BlankCellBorderColor}"/>
                                     </DataTemplate>
                                 </Setter.Value>
                             </Setter>
@@ -98,7 +98,7 @@
                                     <Setter Property="ContentTemplate">
                                         <Setter.Value>
                                             <DataTemplate>
-                                                <Border Background="BlueViolet"/>
+                                                <Border Style="{StaticResource FilledCellBorderColer}"/>
                                             </DataTemplate>
                                         </Setter.Value>
                                     </Setter>
@@ -108,9 +108,9 @@
                                     <Setter Property="ContentTemplate">
                                         <Setter.Value>
                                             <DataTemplate>
-                                                <Border Background="White">
+                                                <Border Style="{StaticResource XCellBorderColor}">
                                                     <Viewbox Stretch="Uniform">
-                                                        <TextBlock Text="X" Foreground="Gray" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        <TextBlock Text="X" Foreground="DarkBlue" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                     </Viewbox>
                                                 </Border>
                                             </DataTemplate>

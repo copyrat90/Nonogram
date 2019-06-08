@@ -21,7 +21,39 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <!--빈칸 셀 디자인-->
+        <Style TargetType="Border" x:Key="BlankCellBorderColor">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <RadialGradientBrush GradientOrigin="0.75, 0.25" Center="0.5, 0.5" RadiusX="0.5" RadiusY="0.5">
+                        <GradientStop Color="White" Offset="0"/>
+                        <GradientStop Color="#FFEEEEC6" Offset="1"/>
+                    </RadialGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderBrush" Value="#FF4FA4EA"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="7"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="DeepPink"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         
+        <!--채워진 칸 셀 디자인-->
+        <Style TargetType="Border" x:Key="FilledCellBorderColer">
+            <Setter Property="Background" Value="BlueViolet"/>
+            <Setter Property="CornerRadius" Value="7"/>
+        </Style>
+        
+        <!--X 칸 셀 디자인-->
+        <Style TargetType="Border" x:Key="XCellBorderColor">
+            <Setter Property="Background" Value="#FFFFFEE8"/>
+            <Setter Property="CornerRadius" Value="7"/>
+        </Style>
+
         <!--MainPage 버튼-->
         <Style TargetType="Button" x:Key="MainPageButtonColor">
             <Setter Property="Background" Value="LightYellow"/>
