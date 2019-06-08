@@ -16,10 +16,6 @@ namespace Nonogram.Classes.Helper.Database
         static readonly string fullDBPath = System.IO.Path.Combine(folderPath, databaseName);
         static readonly string connStr = $@"Data Source={fullDBPath};Pooling=true;FailIfMissing=false";
 
-        //readonly static string connStr = "Data Source=(LocalDB)\\MSSQLLocalDB;" +
-        //    "AttachDbFilename=|DataDirectory|\\LocalDB\\Nonogram.mdf;" +
-        //    "Integrated Security=True";
-
         public static DataTable GetDataTable(string query)
         {
             DataTable dt = new DataTable();

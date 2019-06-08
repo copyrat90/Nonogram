@@ -11,8 +11,6 @@ namespace Nonogram.Classes.Helper.Database
 {
     public static class LocalPuzzleDB
     {
-        
-
         /// <summary>
         /// 로컬 데이터베이스에서 모든 퍼즐에 관한 정보를 불러와 리스트로 반환한다.
         /// </summary>
@@ -43,14 +41,9 @@ namespace Nonogram.Classes.Helper.Database
         /// <param name="saveData">저장할 퍼즐 중단 데이터</param>
         public static void SavePausedPuzzleStatus(PausedPuzzleSaveData saveData)
         {
-            string boardDataStr = $" LastModifiedBoard={saveData.LastModifiedBoard}, " +
-                    $"CurBoard0='{saveData.RawBoardStringArr[0]}', CurBoard1='{saveData.RawBoardStringArr[1]}', CurBoard2='{saveData.RawBoardStringArr[2]}', " +
-                    $"CurBoard3='{saveData.RawBoardStringArr[3]}', CurBoard4='{saveData.RawBoardStringArr[4]}' ";
-
-            string cmdStr = $"UPDATE PausedPuzzleSave SET {boardDataStr} " +
-                $"WHERE PuzzleID={saveData.PuzzleID}; " +
-                $"INSERT INTO PausedPuzzleSave (PuzzleID, LastModifiedBoard, CurBoard0, CurBoard1, CurBoard2, CurBoard3, CurBoard4) " +
-                $"SELECT PuzzleID={saveData.PuzzleID}, {boardDataStr} WHERE NOT EXISTS (SELECT PuzzleID FROM PausedPuzzleSave WHERE PuzzleID={saveData.PuzzleID});";
+            string cmdStr = $"INSERT OR REPLACE INTO PausedPuzzleSave (PuzzleID, LastModifiedBoard, CurBoard0, CurBoard1, CurBoard2, CurBoard3, CurBoard4) " +
+                $"VALUES ({saveData.PuzzleID}, {saveData.LastModifiedBoard}, '{saveData.RawBoardStringArr[0]}', '{saveData.RawBoardStringArr[1]}', " +
+                $"'{saveData.RawBoardStringArr[2]}', '{saveData.RawBoardStringArr[3]}', '{saveData.RawBoardStringArr[4]}');";
 
             SQLiteLocal.NonQueryCommand(cmdStr);
         }
@@ -64,10 +57,7 @@ namespace Nonogram.Classes.Helper.Database
         {
             string bit = (isCleared) ? "1" : "0";
 
-            string cmdStr = $"UPDATE PuzzleClear SET IsCleared={bit} " +
-                $"WHERE PuzzleID={puzzleID}; " +
-                $"INSERT INTO PuzzleClear (PuzzleID, IsCleared) " +
-                $"SELECT PuzzleID={puzzleID}, IsCleared={bit} WHERE NOT EXISTS (SELECT PuzzleID FROM PuzzleClear WHERE PuzzleID={puzzleID});";
+            string cmdStr = $"INSERT OR REPLACE INTO PuzzleClear (PuzzleID, IsCleared) VALUES ({puzzleID}, {bit});";
 
             SQLiteLocal.NonQueryCommand(cmdStr);
         }
@@ -79,7 +69,7 @@ namespace Nonogram.Classes.Helper.Database
         public static void InsertPuzzle(PuzzleAnswerData puzzle)
         {
             string cmdStr = "INSERT OR REPLACE INTO PuzzleAnswer(ID, Name, Height, Width, PuzzleRawString) " +
-                    $"values ({puzzle.PuzzleID}, '{puzzle.Name}', {puzzle.Height}, {puzzle.Width}, '{puzzle.RawPuzzleString}');";
+                    $"VALUES ({puzzle.PuzzleID}, '{puzzle.Name}', {puzzle.Height}, {puzzle.Width}, '{puzzle.RawPuzzleString}');";
 
             SQLiteLocal.NonQueryCommand(cmdStr);
         }
@@ -90,9 +80,9 @@ namespace Nonogram.Classes.Helper.Database
         public static void CreateTables()
         {
             string cmdStr = "CREATE TABLE IF NOT EXISTS PuzzleAnswer (ID INT PRIMARY KEY, Name NVARCHAR(255), Height INT, Width INT, PuzzleRawString NVARCHAR(10000));" +
-                "CREATE TABLE IF NOT EXISTS PausedPuzzleSave (PuzzleID INT, LastModifiedBoard INT, CurBoard0 NVARCHAR(10000), CurBoard1 NVARCHAR(10000), " +
+                "CREATE TABLE IF NOT EXISTS PausedPuzzleSave (PuzzleID INT PRIMARY KEY, LastModifiedBoard INT, CurBoard0 NVARCHAR(10000), CurBoard1 NVARCHAR(10000), " +
                 "CurBoard2 NVARCHAR(10000), CurBoard3 NVARCHAR(10000), CurBoard4 NVARCHAR(10000));" +
-                "CREATE TABLE IF NOT EXISTS PuzzleClear (PuzzleID INT, IsCleared INT);";
+                "CREATE TABLE IF NOT EXISTS PuzzleClear (PuzzleID INT PRIMARY KEY, IsCleared INT);";
 
             SQLiteLocal.NonQueryCommand(cmdStr);
         }
