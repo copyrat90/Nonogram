@@ -40,34 +40,42 @@
         <TextBlock Text="Clear!" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="150"
                    Visibility="{Binding ElementName=nonoBoard0, Path=GameBoard.IsSolved, Converter={StaticResource BoolToVisibilityConverter}}"/>
         <Grid Grid.Column="1">
-            <!-- 일시정지 버튼 -->
-            <Button x:Name="pauseButton"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Top"
-                    Margin="20"
-                    Height="100"
-                    Width="100"
-                    FontSize="70">
-                <Grid Height="100" Width="100">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Rectangle Width="16" Height="56" Fill="Black" Grid.Column="1"/>
-                    <Rectangle Width="16" Height="56" Fill="Black" Grid.Column="3"/>
-                </Grid>
+            <Menu Margin="30"
+                  VerticalAlignment="Top"
+                  
+                  FontSize="30">
+                <MenuItem Header="        Menu"
+                          Width="260">
+                    <MenuItem Header="세이브"
+                              x:Name="Save"
+                              Click="Save_Click"/>
+                    <MenuItem Header="퍼즐 초기화"
+                              x:Name="Zeroize"
+                              Click="Zeroize_Click"/>
+                    <MenuItem Header="나가기"
+                              x:Name="Exit"
+                              Click="Exit_Click"/>
+                </MenuItem>
+            </Menu>
+            <!--<TreeView Margin="30"
+                      VerticalAlignment="Top">
+                <TreeViewItem Header="asdf"
+                              FontSize="40">
+                    <TreeViewItem Header="세이브"
+                                  x:Name="Save"
+                                  Selected="Save_Selected">
+                    </TreeViewItem>
+                    <TreeViewItem Header="퍼즐 초기화"
+                                  x:Name="Zeroize"
+                                  Selected="Zeroize_Selected">
+                    </TreeViewItem>
+                    <TreeViewItem Header="나가기"
+                                  x:Name="Exit"
+                                  Selected="Exit_Selected">
 
-            </Button>
-
-            <!-- 타이머 -->
-            <Label HorizontalAlignment="Center"
-                   VerticalAlignment="Bottom"
-                   Margin="0 0 0 20"
-                   Content="0 : 00"
-                   FontSize="70"/>
+                    </TreeViewItem>
+                </TreeViewItem>
+            </TreeView>-->
         </Grid>
     </Grid>
 </Page>

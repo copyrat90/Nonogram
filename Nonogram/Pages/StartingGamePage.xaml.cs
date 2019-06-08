@@ -37,7 +37,7 @@ namespace Nonogram.Pages
 
         private void RandomPuzzleButton_Click(object sender, RoutedEventArgs e)
         {
-            //NavigationService.Navigate(new PuzzlePlay());
+            NavigationService.Navigate(new PuzzlePlay());
         }
     }
 }

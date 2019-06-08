@@ -49,5 +49,20 @@ namespace Nonogram.Pages
             nonoBoard3.GameBoard = BoardArray[3];
             nonoBoard4.GameBoard = BoardArray[4];
         }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Zeroize_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new StartingGamePage());
+        }
     }
 }

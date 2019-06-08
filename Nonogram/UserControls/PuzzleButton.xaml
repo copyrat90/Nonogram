@@ -9,10 +9,13 @@
     
     <StackPanel Background="Transparent">
         <Grid Margin="30, 30, 30, 10"
-              Background="GhostWhite"
+              Background="#FFFDFD7F"
               Height="250"
               Width="250">
             <Button Background="Transparent"/>
+            <Grid x:Name="PuzzledataLoadGrid"
+                  Margin="15"
+                  Background="GhostWhite"/>
         </Grid>
         <TextBlock x:Name="PuzzleName"
                    Margin="0, 0, 0, 10"
