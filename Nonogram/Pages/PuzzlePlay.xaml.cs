@@ -44,6 +44,8 @@ namespace Nonogram.Pages
             puzzleID = data.Puzzle.PuzzleID;
             isRandomPuzzle = data.IsRandomPuzzle;
 
+            boardTabControl.SelectedIndex = (data.PuzzleSave == null) ? 0 : data.PuzzleSave.LastModifiedBoard;
+
             BoardArray = PuzzleDataHelper.PuzzleDataToBoardArray(data);
 
             foreach (Board board in BoardArray)

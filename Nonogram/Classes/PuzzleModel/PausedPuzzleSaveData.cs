@@ -27,9 +27,9 @@ namespace Nonogram.Classes.PuzzleModel
                 for (int b = 0; b < 5; ++b)
                 {
                     rawArr[b] = string.Empty;
-                    for (int y = 0; y < CurBoard.GetLength(1); ++y)
+                    for (int y = 0; y < CurBoard[0].GetLength(0); ++y)
                     {
-                        for (int x = 0; x < CurBoard.GetLength(2); ++x)
+                        for (int x = 0; x < CurBoard[0].GetLength(1); ++x)
                         {
                             string numStr = string.Empty;
                             switch(CurBoard[b][y, x])

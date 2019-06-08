@@ -20,7 +20,7 @@ namespace Nonogram.Classes.Helper
             Board[] boardArray = new Board[5];
             for (int i = 0; i < 5; ++i)
             {
-                boardArray[i] = new Board(data.Puzzle, data.PuzzleSave.CurBoard[i]);
+                boardArray[i] = new Board(data.Puzzle, data.PuzzleSave?.CurBoard[i]);
             }
 
             return boardArray;
@@ -33,8 +33,6 @@ namespace Nonogram.Classes.Helper
         /// <returns>저장할 퍼즐 세이브 데이터</returns>
         public static PausedPuzzleSaveData BoardArrayToPuzzleSaveData(int puzzleID, int lastModifiedBoard, Board[] boardArr)
         {
-            throw new NotImplementedException("BoardArrayToPuzzleData() Is Not Implemented");
-
             int height = boardArr[0].CurrentBoard.Count;
             int width = boardArr[0].CurrentBoard[0].Count;
 

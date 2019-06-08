@@ -67,16 +67,16 @@ namespace Nonogram.UserControls
                         if (userInputBoard[i, j] == CellFill.FILL)
                         {
                             Rectangle rectangle = new Rectangle();
-                            rectangle.Height = 220 / puzzleButtonData.PuzzleName.Height;
-                            rectangle.Width = 220 / puzzleButtonData.PuzzleName.Width;
+                            rectangle.Height = 220 / height;
+                            rectangle.Width = 220 / width;
                             rectangle.Fill = new SolidColorBrush(Colors.Black);
                             stackPanel.Children.Add(rectangle);
                         }
                         else
                         {
                             Rectangle rectangle = new Rectangle();
-                            rectangle.Height = 220 / puzzleButtonData.PuzzleName.Height;
-                            rectangle.Width = 220 / puzzleButtonData.PuzzleName.Width;
+                            rectangle.Height = 220 / height;
+                            rectangle.Width = 220 / width;
                             rectangle.Fill = new SolidColorBrush(Colors.White);
                             stackPanel.Children.Add(rectangle);
                         }

@@ -105,9 +105,9 @@
         </Style>
         
         <!--PuzzlePlay 메뉴 디자인-->
-        <Style TargetType="Menu" x:Name="PuzzlePlayMenuColor">
+        <Style TargetType="Menu" x:Key="PuzzlePlayMenuColor">
             <Setter Property="Background" Value="#FFFFCB7A"/>
-            <Setter Property="Template">
+            <!--<Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Menu">
                         <Border CornerRadius="20" Background="{TemplateBinding Background}" BorderBrush="#FFC3A980" BorderThickness="10">
@@ -117,7 +117,7 @@
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
-            </Setter>
+            </Setter>-->
             <Setter Property="Cursor" Value="Hand"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
