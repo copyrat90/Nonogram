@@ -29,10 +29,10 @@ namespace Nonogram.Classes.Helper.Database
             foreach (DataRow data in dataTable.Rows)
             {
                 string[] curBoardStrings = null;
-                if (data["curBoard0"] != null)
-                    curBoardStrings = new string[5] { (string)data["CurBoard0"], (string)data["CurBoard1"], (string)data["CurBoard2"], (string)data["CurBoard3"], (string)data["CurBoard4"] };
+                if (data["curBoard0"].ToString() != "")
+                    curBoardStrings = new string[5] { data["CurBoard0"] as string, data["CurBoard1"] as string, data["CurBoard2"] as string, data["CurBoard3"] as string, data["CurBoard4"] as string };
                 PuzzleButtonData puzzleButton
-                    = new PuzzleButtonData((int)data["ID"], (string)data["Name"], (int)data["Height"], (int)data["Width"], (string)data["PuzzleRawString"], (bool?)data["IsCleared"], (int?)data["LastModifiedBoard"], curBoardStrings);
+                    = new PuzzleButtonData((int)data["ID"], data["Name"] as string, (int)data["Height"], (int)data["Width"], data["PuzzleRawString"] as string, data["IsCleared"] as bool?, data["LastModifiedBoard"] as int?, curBoardStrings);
                 puzzleButtons.Add(puzzleButton);
             }
             return puzzleButtons;
