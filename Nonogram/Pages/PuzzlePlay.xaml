@@ -15,67 +15,60 @@
 
     <Grid Width="1280" Height="690">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2.5*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <!-- 퍼즐 레이어 -->
+        <!-- TODO : ContextMenu 로 탭 복사 붙여넣기 병합 기능 구현 -->
         <TabControl Background="Transparent">
-            <TabItem Header="Tab 1">
+            <!--<TabControl.ItemTemplate>
+                <DataTemplate>
+                    
+                </DataTemplate>
+            </TabControl.ItemTemplate>-->
+            <TabItem Header="Tab 1" FontSize="30" Width="150">
                 <uc:NonoBoard x:Name="nonoBoard0"/>
             </TabItem>
-            <TabItem Header="Tab 2">
+            <TabItem Header="Tab 2" FontSize="30" Width="150">
                 <uc:NonoBoard x:Name="nonoBoard1"/>
             </TabItem>
-            <TabItem Header="Tab 3">
+            <TabItem Header="Tab 3" FontSize="30" Width="150">
                 <uc:NonoBoard x:Name="nonoBoard2"/>
             </TabItem>
-            <TabItem Header="Tab 4">
+            <TabItem Header="Tab 4" FontSize="30" Width="150">
                 <uc:NonoBoard x:Name="nonoBoard3"/>
             </TabItem>
-            <TabItem Header="Tab 5">
+            <TabItem Header="Tab 5" FontSize="30" Width="150">
                 <uc:NonoBoard x:Name="nonoBoard4"/>
             </TabItem>
+            <TabItem/>
         </TabControl>
-        <TextBlock Text="Clear!" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="150"
-                   Visibility="{Binding ElementName=nonoBoard0, Path=GameBoard.IsSolved, Converter={StaticResource BoolToVisibilityConverter}}"/>
-        <Grid Grid.Column="1">
-            <Menu Margin="30"
-                  VerticalAlignment="Top"
-                  
-                  FontSize="30">
-                <MenuItem Header="        Menu"
-                          Width="260">
-                    <MenuItem Header="세이브"
-                              x:Name="Save"
-                              Click="Save_Click"/>
-                    <MenuItem Header="퍼즐 초기화"
-                              x:Name="Zeroize"
-                              Click="Zeroize_Click"/>
-                    <MenuItem Header="나가기"
-                              x:Name="Exit"
-                              Click="Exit_Click"/>
-                </MenuItem>
-            </Menu>
-            <!--<TreeView Margin="30"
-                      VerticalAlignment="Top">
-                <TreeViewItem Header="asdf"
-                              FontSize="40">
-                    <TreeViewItem Header="세이브"
-                                  x:Name="Save"
-                                  Selected="Save_Selected">
-                    </TreeViewItem>
-                    <TreeViewItem Header="퍼즐 초기화"
-                                  x:Name="Zeroize"
-                                  Selected="Zeroize_Selected">
-                    </TreeViewItem>
-                    <TreeViewItem Header="나가기"
-                                  x:Name="Exit"
-                                  Selected="Exit_Selected">
+        
+        <!-- 메뉴 -->
+        <Menu Margin="30"
+              VerticalAlignment="Top"
+              Grid.Column="1"
+              FontSize="30">
+              <MenuItem Header="        Menu"
+                        Width="260">
+                  <MenuItem Header="세이브"
+                            x:Name="Save"
+                            Click="Save_Click"/>
+                  <MenuItem Header="모든 퍼즐 초기화"
+                            x:Name="Zeroize"
+                            Click="Zeroize_Click"/>
+                  <MenuItem Header="나가기"
+                            x:Name="Exit"
+                            Click="Exit_Click"/>
+              </MenuItem>
+        </Menu>
 
-                    </TreeViewItem>
-                </TreeViewItem>
-            </TreeView>-->
-        </Grid>
+        <Border x:Name="clearBoarder" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                Background="White" Opacity="0.5" Grid.ColumnSpan="2"
+                Visibility="Collapsed" MouseDown="ClearBoarder_MouseDown">
+        </Border>
+        <TextBlock x:Name="clearTextBlock" Text="Clear!" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="150"
+                    Grid.ColumnSpan="2" Visibility="Collapsed" MouseDown="ClearBoarder_MouseDown"/>
     </Grid>
 </Page>

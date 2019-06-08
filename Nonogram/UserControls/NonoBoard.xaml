@@ -238,7 +238,7 @@
         </Border>
         
         <!-- 디버그용 클리어체크 -->
-        <TextBlock Text="{Binding Path=IsSolved}" Foreground="Black" FontSize="30"/>
+        <!--<TextBlock Text="{Binding Path=IsSolved}" Foreground="Black" FontSize="30"/>-->
     </Grid>
     
 </UserControl>

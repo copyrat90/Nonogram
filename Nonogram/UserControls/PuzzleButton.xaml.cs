@@ -47,7 +47,7 @@ namespace Nonogram.UserControls
             puzzleButtonData.PuzzleName.Width = data.Puzzle.Width;
 
             Rectangle rectangle = new Rectangle();
-            rectangle.Height = puzzleButtonData.PuzzleName.Height
+            rectangle.Height = puzzleButtonData.PuzzleName.Height;
 
             //Canvas 사각형으로 채우기
 

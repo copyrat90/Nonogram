@@ -504,6 +504,20 @@ namespace Nonogram.Classes.BoardVM
             return true;
         }
 
+        /// <summary>
+        /// 현재 보드판을 초기화하는 메서드
+        /// </summary>
+        public void ResetBoard()
+        {
+            foreach (var row in CurrentBoard)
+            {
+                foreach(Cell cell in row)
+                {
+                    cell.FillValue = CellFill.BLANK;
+                }
+            }
+        }
+
         #region INotifyPropertyChanged 멤버
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
