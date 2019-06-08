@@ -1,5 +1,5 @@
-﻿using Nonogram.Classes.BoardUI;
-using Nonogram.Classes.FileData;
+﻿using Nonogram.Classes.BoardVM;
+using Nonogram.Classes.PuzzleModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,22 +37,22 @@ namespace Nonogram.UserControls
             //this.GameBoard = new Board(puzzleAnswer);
 
             // 테스트용 퍼즐
-            this.GameBoard = new Board(new PuzzleData(0, "test",15,15,
-                "000000100011110" +
-                "001111100110011" +
-                "011111001110111" +
-                "111011001101001" +
-                "111111001101011" +
-                "011111101110111" +
-                "000111101110111" +
-                "001101111111101" +
-                "011011111111101" +
-                "000111111111010" +
-                "001111111111010" +
-                "001111111110100" +
-                "000101111001000" +
-                "000010111110000" +
-                "000111111000000"));
+            //this.GameBoard = new Board(new PuzzleData(0, "test",15,15,
+            //    "000000100011110" +
+            //    "001111100110011" +
+            //    "011111001110111" +
+            //    "111011001101001" +
+            //    "111111001101011" +
+            //    "011111101110111" +
+            //    "000111101110111" +
+            //    "001101111111101" +
+            //    "011011111111101" +
+            //    "000111111111010" +
+            //    "001111111111010" +
+            //    "001111111110100" +
+            //    "000101111001000" +
+            //    "000010111110000" +
+            //    "000111111000000"));
         }
 
         private enum DragStatus { NONE, FILL, X, FILL_ERASE, X_ERASE }

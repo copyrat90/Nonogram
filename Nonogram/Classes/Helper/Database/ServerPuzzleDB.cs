@@ -1,5 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
-using Nonogram.Classes.FileData;
+using Nonogram.Classes.PuzzleModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -31,7 +31,7 @@ namespace Nonogram.Classes.Helper.Database
             // 각 행을 현재 데이터베이스에 삽입
             foreach (DataRow data in dt.Rows)
             {
-                PuzzleData puzzle = new PuzzleData((int)data["ID"], (string)data["Name"], (int)data["Height"], (int)data["Width"], (string)data["PuzzleRawString"]);
+                PuzzleAnswerData puzzle = new PuzzleAnswerData((int)data["ID"], (string)data["Name"], (int)data["Height"], (int)data["Width"], (string)data["PuzzleRawString"]);
                 LocalPuzzleDB.InsertPuzzle(puzzle);
             }
         }

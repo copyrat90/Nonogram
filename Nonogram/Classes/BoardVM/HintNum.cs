@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestProject.Classes.BoardUI
+namespace Nonogram.Classes.BoardVM
 {
     public class HintNum : INotifyPropertyChanged
     {

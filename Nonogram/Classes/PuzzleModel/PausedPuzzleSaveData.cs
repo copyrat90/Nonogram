@@ -1,11 +1,11 @@
-﻿using Nonogram.Classes.BoardUI;
+﻿using Nonogram.Classes.BoardVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nonogram.Classes.FileData
+namespace Nonogram.Classes.PuzzleModel
 {
     public class PausedPuzzleSaveData
     {
@@ -13,11 +13,11 @@ namespace Nonogram.Classes.FileData
         public int LastModifiedBoard { get; set; }
 
         /// <summary>
-        /// 1차원 : 가정 레이어 탭 0~4
-        /// 2차원 : y좌표
-        /// 3차원 : x좌표
+        /// 1차원 : 보드판 탭 0~4
+        /// 2-1차원 : y좌표
+        /// 2-2차원 : x좌표
         /// </summary>
-        public CellFill[,,] CurBoard { get; set; }
+        public CellFill[][,] CurBoard { get; set; }
 
         public string[] RawBoardStringArr
         {
@@ -32,7 +32,7 @@ namespace Nonogram.Classes.FileData
                         for (int x = 0; x < CurBoard.GetLength(2); ++x)
                         {
                             string numStr = string.Empty;
-                            switch(CurBoard[b, y, x])
+                            switch(CurBoard[b][y, x])
                             {
                                 case CellFill.BLANK: numStr = "0"; break;
                                 case CellFill.FILL:  numStr = "1"; break;
@@ -47,7 +47,7 @@ namespace Nonogram.Classes.FileData
             }
         }
 
-        public PausedPuzzleSaveData(int puzzleID, int lastModifiedBoard, CellFill[,,] curBoard)
+        public PausedPuzzleSaveData(int puzzleID, int lastModifiedBoard, CellFill[][,] curBoard)
         {
             PuzzleID = puzzleID;
             LastModifiedBoard = lastModifiedBoard;

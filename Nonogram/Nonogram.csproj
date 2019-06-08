@@ -88,17 +88,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Classes\BoardUI\Board.cs" />
-    <Compile Include="Classes\BoardUI\Cell.cs" />
-    <Compile Include="Classes\BoardUI\HintNum.cs" />
-    <Compile Include="Classes\FileData\PuzzleData.cs" />
-    <Compile Include="Classes\FileData\PausedPuzzleSaveData.cs" />
+    <Compile Include="Classes\BoardVM\Board.cs" />
+    <Compile Include="Classes\BoardVM\Cell.cs" />
+    <Compile Include="Classes\BoardVM\HintNum.cs" />
+    <Compile Include="Classes\PuzzleModel\PuzzleAnswerData.cs" />
+    <Compile Include="Classes\PuzzleModel\PausedPuzzleSaveData.cs" />
     <Compile Include="Classes\Helper\Database\LocalPuzzleDB.cs" />
     <Compile Include="Classes\Helper\Database\MariaDBServer.cs" />
     <Compile Include="Classes\Helper\Database\MSSQLLocal.cs" />
     <Compile Include="Classes\Helper\Database\ServerPuzzleDB.cs" />
     <Compile Include="Classes\Helper\ValueConverter\BoolToVisibilityConverter.cs" />
-    <Compile Include="Classes\PuzzleSelectUI\PuzzleButtonData.cs" />
+    <Compile Include="Classes\Helper\PuzzleManager.cs" />
+    <Compile Include="Classes\PuzzleModel\PuzzleData.cs" />
     <Compile Include="Pages\KeySetting.xaml.cs">
       <DependentUpon>KeySetting.xaml</DependentUpon>
     </Compile>

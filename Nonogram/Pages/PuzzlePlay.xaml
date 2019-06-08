@@ -19,10 +19,26 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <!-- 퍼즐 그리드 -->
-        <uc:NonoBoard x:Name="nonoBoard"/>
-        <TextBlock Text="Clear!" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="150"
-                   Visibility="{Binding ElementName=nonoBoard, Path=GameBoard.IsSolved, Converter={StaticResource BoolToVisibilityConverter}}"/>
+        <!-- 퍼즐 레이어 -->
+        <TabControl Background="Transparent">
+            <TabItem Header="Tab 1">
+                <uc:NonoBoard x:Name="nonoBoard0"/>
+            </TabItem>
+            <TabItem Header="Tab 2">
+                <uc:NonoBoard x:Name="nonoBoard1"/>
+            </TabItem>
+            <TabItem Header="Tab 3">
+                <uc:NonoBoard x:Name="nonoBoard2"/>
+            </TabItem>
+            <TabItem Header="Tab 4">
+                <uc:NonoBoard x:Name="nonoBoard3"/>
+            </TabItem>
+            <TabItem Header="Tab 5">
+                <uc:NonoBoard x:Name="nonoBoard4"/>
+            </TabItem>
+        </TabControl>
+        <!--<TextBlock Text="Clear!" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="150"
+                   Visibility="{Binding ElementName=nonoBoard0, Path=GameBoard.IsSolved, Converter={StaticResource BoolToVisibilityConverter}}"/>-->
         <Grid Grid.Column="1">
             <!-- 일시정지 버튼 -->
             <Button x:Name="pauseButton"

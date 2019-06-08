@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Nonogram.UserControls"
-             xmlns:boardui="clr-namespace:Nonogram.Classes.BoardUI"
+             xmlns:boardvm="clr-namespace:Nonogram.Classes.BoardVM"
              mc:Ignorable="d" 
              HorizontalAlignment="Stretch"
              HorizontalContentAlignment="Stretch"
@@ -94,7 +94,7 @@
                             </Setter>
                             <Style.Triggers>
                                 <!-- 채워진 칸 스타일 -->
-                                <DataTrigger Binding="{Binding Path=FillValue}" Value="{x:Static boardui:CellFill.FILL}">
+                                <DataTrigger Binding="{Binding Path=FillValue}" Value="{x:Static boardvm:CellFill.FILL}">
                                     <Setter Property="ContentTemplate">
                                         <Setter.Value>
                                             <DataTemplate>
@@ -104,7 +104,7 @@
                                     </Setter>
                                 </DataTrigger>
                                 <!-- X 칸 스타일 -->
-                                <DataTrigger Binding="{Binding Path=FillValue}" Value="{x:Static boardui:CellFill.X}">
+                                <DataTrigger Binding="{Binding Path=FillValue}" Value="{x:Static boardvm:CellFill.X}">
                                     <Setter Property="ContentTemplate">
                                         <Setter.Value>
                                             <DataTemplate>

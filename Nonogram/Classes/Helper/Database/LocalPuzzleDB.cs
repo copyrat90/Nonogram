@@ -1,5 +1,4 @@
-﻿using Nonogram.Classes.FileData;
-using Nonogram.Classes.PuzzleSelectUI;
+﻿using Nonogram.Classes.PuzzleModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,22 +16,22 @@ namespace Nonogram.Classes.Helper.Database
         /// <summary>
         /// 로컬 데이터베이스에서 모든 퍼즐에 관한 정보를 불러와 리스트로 반환한다.
         /// </summary>
-        /// <returns> 모든 퍼즐 버튼 데이터 리스트 (반환형 : List<PuzzleButtonData>)</returns>
-        public static List<PuzzleButtonData> GetPuzzleButtonList()
+        /// <returns> 모든 퍼즐 데이터 리스트 (반환형 : List<PuzzleData>)</returns>
+        public static List<PuzzleData> GetPuzzleButtonList()
         {
             string query = "SELECT * FROM PuzzleAnswer " +
                     "LEFT OUTER JOIN PausedPuzzleSave ON PuzzleAnswer.ID=PausedPuzzleSave.PuzzleID " +
                     "LEFT OUTER JOIN PuzzleClear ON ID=PuzzleClear.PuzzleID;";
             DataTable dataTable = MSSQLLocal.GetDataTable(query);
 
-            List<PuzzleButtonData> puzzleButtons = new List<PuzzleButtonData>();
+            List<PuzzleData> puzzleButtons = new List<PuzzleData>();
             foreach (DataRow data in dataTable.Rows)
             {
                 string[] curBoardStrings = null;
                 if (data["curBoard0"].ToString() != "")
                     curBoardStrings = new string[5] { data["CurBoard0"] as string, data["CurBoard1"] as string, data["CurBoard2"] as string, data["CurBoard3"] as string, data["CurBoard4"] as string };
-                PuzzleButtonData puzzleButton
-                    = new PuzzleButtonData((int)data["ID"], data["Name"] as string, (int)data["Height"], (int)data["Width"], data["PuzzleRawString"] as string, data["IsCleared"] as bool?, data["LastModifiedBoard"] as int?, curBoardStrings);
+                PuzzleData puzzleButton
+                    = new PuzzleData((int)data["ID"], data["Name"] as string, (int)data["Height"], (int)data["Width"], data["PuzzleRawString"] as string, data["IsCleared"] as bool?, data["LastModifiedBoard"] as int?, curBoardStrings);
                 puzzleButtons.Add(puzzleButton);
             }
             return puzzleButtons;
@@ -77,7 +76,7 @@ namespace Nonogram.Classes.Helper.Database
         /// 새로운 퍼즐을 데이터베이스에 저장한다.
         /// </summary>
         /// <param name="puzzle">저장할 퍼즐</param>
-        public static void InsertPuzzle(PuzzleData puzzle)
+        public static void InsertPuzzle(PuzzleAnswerData puzzle)
         {
             string cmdStr = "INSERT INTO PuzzleAnswer(ID, Name, Height, Width, PuzzleRawString) " +
                     $"values ({puzzle.PuzzleID}, N'{puzzle.Name}', {puzzle.Height}, {puzzle.Width}, N'{puzzle.RawPuzzleString}');";

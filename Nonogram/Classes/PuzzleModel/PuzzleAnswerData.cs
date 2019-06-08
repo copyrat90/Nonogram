@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nonogram.Classes.FileData
+namespace Nonogram.Classes.PuzzleModel
 {
-    public class PuzzleData
+    public class PuzzleAnswerData
     {
         public int PuzzleID { get; set; }
         public string Name { get; set; }
@@ -25,7 +25,7 @@ namespace Nonogram.Classes.FileData
         /// <param name="rawPuzzleString">'0'과 '1'로 이루어진 퍼즐 데이터 문자열</param>
         /// <exception cref="PuzzleLengthMismatchException">
         /// 퍼즐 문자열 길이와 (높이x너비)가 일치하지 않을 때 발생하는 예외</exception>
-        public PuzzleData(int puzzleID, string name, int height, int width, string rawPuzzleString)
+        public PuzzleAnswerData(int puzzleID, string name, int height, int width, string rawPuzzleString)
         {
             PuzzleID = puzzleID;
             Name = name;

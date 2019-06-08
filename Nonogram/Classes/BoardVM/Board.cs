@@ -6,10 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using Nonogram.Classes.FileData;
-using TestProject.Classes.BoardUI;
+using Nonogram.Classes.PuzzleModel;
 
-namespace Nonogram.Classes.BoardUI
+namespace Nonogram.Classes.BoardVM
 {
     public class Board : INotifyPropertyChanged
     {
@@ -42,7 +41,14 @@ namespace Nonogram.Classes.BoardUI
         #endregion
 
 
-        public Board(PuzzleData puzzleAnswer)
+        /// <summary>
+        /// Board 클래스의 생성자
+        /// 새로운 퍼즐을 시작할 때 == 저장된 색칠 null : 빈 보드를 생성
+        /// 중단된 퍼즐을 불러올 때 == 저장된 색칠 존재 : 색칠된 채로 생성
+        /// </summary>
+        /// <param name="puzzleAnswer">퍼즐 정답 데이터</param>
+        /// <param name="savedFillArr">저장된 색칠 데이터</param>
+        public Board(PuzzleAnswerData puzzleAnswer, CellFill[,] savedFillArr)
         {
             AnswerArray = (bool[,])puzzleAnswer.AnswerArray.Clone();
             CurrentBoard = new ObservableCollection<ObservableCollection<Cell>>();
@@ -53,7 +59,7 @@ namespace Nonogram.Classes.BoardUI
                 for (int x = 0; x < puzzleAnswer.Width; ++x)
                 {
                     // TODO : 중단된 퍼즐 불러오기 할 때 Fill 처리 추가
-                    CurrentBoard[y].Add(new Cell(y, x));
+                    CurrentBoard[y].Add(new Cell(y, x, (savedFillArr==null) ? CellFill.BLANK : savedFillArr[y,x] ));
                     // Cell 이 변경되면 Callback 될 이벤트 등록
                     CurrentBoard[y][x].PropertyChanged += DoWhenCellPropertyChanged;
                 }

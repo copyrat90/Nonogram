@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Nonogram.Classes.BoardUI
+namespace Nonogram.Classes.BoardVM
 {
     /// <summary>
     /// 한 칸이 비어있는지, 칠해져 있는지, X 표시 되어있는지 나타내는 enum
@@ -46,8 +46,8 @@ namespace Nonogram.Classes.BoardUI
         /// </summary>
         /// <param name="y"> y좌표 (0-based index) </param>
         /// <param name="x"> x좌표 (0-based index) </param>
-        /// <param name="fill"> 색칠 상태 (default=BLANK, 중단된 게임을 불러오기 할 때 필요) </param>
-        public Cell(int y, int x, CellFill fill = CellFill.BLANK)
+        /// <param name="fill"> 색칠 상태 (중단된 퍼즐을 불러오기 할 때 필요) </param>
+        public Cell(int y, int x, CellFill fill)
         {
             Y = y;
             X = x;
