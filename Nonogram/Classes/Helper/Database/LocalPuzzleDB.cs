@@ -22,7 +22,7 @@ namespace Nonogram.Classes.Helper.Database
             string query = "SELECT * FROM PuzzleAnswer " +
                     "LEFT OUTER JOIN PausedPuzzleSave ON PuzzleAnswer.ID=PausedPuzzleSave.PuzzleID " +
                     "LEFT OUTER JOIN PuzzleClear ON ID=PuzzleClear.PuzzleID;";
-            DataTable dataTable = MSSQLLocal.GetDataTable(query);
+            DataTable dataTable = SQLiteLocal.GetDataTable(query);
 
             List<PuzzleData> puzzleButtons = new List<PuzzleData>();
             foreach (DataRow data in dataTable.Rows)
@@ -52,7 +52,7 @@ namespace Nonogram.Classes.Helper.Database
                 $"INSERT INTO PausedPuzzleSave (PuzzleID, LastModifiedBoard, CurBoard0, CurBoard1, CurBoard2, CurBoard3, CurBoard4) " +
                 $"SELECT PuzzleID={saveData.PuzzleID}, {boardDataStr} WHERE NOT EXISTS (SELECT PuzzleID FROM PausedPuzzleSave WHERE PuzzleID={saveData.PuzzleID});";
 
-            MSSQLLocal.NonQueryCommand(cmdStr);
+            SQLiteLocal.NonQueryCommand(cmdStr);
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Nonogram.Classes.Helper.Database
                 $"INSERT INTO PuzzleClear (PuzzleID, IsCleared) " +
                 $"SELECT PuzzleID={puzzleID}, IsCleared={bit} WHERE NOT EXISTS (SELECT PuzzleID FROM PuzzleClear WHERE PuzzleID={puzzleID});";
 
-            MSSQLLocal.NonQueryCommand(cmdStr);
+            SQLiteLocal.NonQueryCommand(cmdStr);
         }
 
         /// <summary>
@@ -78,10 +78,23 @@ namespace Nonogram.Classes.Helper.Database
         /// <param name="puzzle">저장할 퍼즐</param>
         public static void InsertPuzzle(PuzzleAnswerData puzzle)
         {
-            string cmdStr = "INSERT INTO PuzzleAnswer(ID, Name, Height, Width, PuzzleRawString) " +
-                    $"values ({puzzle.PuzzleID}, N'{puzzle.Name}', {puzzle.Height}, {puzzle.Width}, N'{puzzle.RawPuzzleString}');";
+            string cmdStr = "INSERT OR REPLACE INTO PuzzleAnswer(ID, Name, Height, Width, PuzzleRawString) " +
+                    $"values ({puzzle.PuzzleID}, '{puzzle.Name}', {puzzle.Height}, {puzzle.Width}, '{puzzle.RawPuzzleString}');";
 
-            MSSQLLocal.NonQueryCommand(cmdStr);
+            SQLiteLocal.NonQueryCommand(cmdStr);
+        }
+
+        /// <summary>
+        /// 테이블을 생성한다.
+        /// </summary>
+        public static void CreateTables()
+        {
+            string cmdStr = "CREATE TABLE IF NOT EXISTS PuzzleAnswer (ID INT PRIMARY KEY, Name NVARCHAR(255), Height INT, Width INT, PuzzleRawString NVARCHAR(10000));" +
+                "CREATE TABLE IF NOT EXISTS PausedPuzzleSave (PuzzleID INT, LastModifiedBoard INT, CurBoard0 NVARCHAR(10000), CurBoard1 NVARCHAR(10000), " +
+                "CurBoard2 NVARCHAR(10000), CurBoard3 NVARCHAR(10000), CurBoard4 NVARCHAR(10000));" +
+                "CREATE TABLE IF NOT EXISTS PuzzleClear (PuzzleID INT, IsCleared INT);";
+
+            SQLiteLocal.NonQueryCommand(cmdStr);
         }
     }
 }
