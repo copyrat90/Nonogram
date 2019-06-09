@@ -132,6 +132,15 @@ namespace Nonogram.UserControls
 
                 //퍼즐 사이즈 보여주기
                 puzzleButtonData.PuzzleSize.Text = height + " x " + width;
+
+
+                //퍼즐 클리어했으면 퍼즐 크기 대신 클리어 축하
+                if (data.IsCleared)
+                {
+                    puzzleButtonData.PuzzleSize.Text = "Clear";
+                    puzzleButtonData.PuzzleSize.Foreground = new SolidColorBrush(Colors.Red);
+                }
+
             }
 
             //퍼즐 이름 보여주기

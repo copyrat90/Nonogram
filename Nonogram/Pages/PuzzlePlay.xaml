@@ -165,9 +165,9 @@
                        Foreground="DeepSkyBlue"
                        FontSize="50"
                        FontWeight="UltraBlack"
-                   FontStyle="Italic"
-                   VerticalAlignment="Bottom"
-                   HorizontalAlignment="Center"/>
+                       FontFamily="돋움"
+                       VerticalAlignment="Bottom"
+                       HorizontalAlignment="Center"/>
         </Border>
         
 

@@ -48,7 +48,7 @@
         </Grid>
 
         <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                      Grid.Row="1">
+                      Grid.Row="1" Margin="0 0 20 0">
             <ItemsControl x:Name="PuzzleListBox"
                           Background="Transparent"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled">
