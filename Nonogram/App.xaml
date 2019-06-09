@@ -21,6 +21,70 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <!--별 찍기-->
+        <Style TargetType="Line" x:Key="BGStar_SizeLocation1">
+            <Setter Property="X1" Value="0"/>
+            <Setter Property="Y1" Value="0"/>
+            <Setter Property="X2" Value="30"/>
+            <Setter Property="Y2" Value="0"/>
+            <Setter Property="StrokeThickness" Value="30"/>
+            <Setter Property="Canvas.Left" Value="100"/>
+            <Setter Property="Canvas.Top" Value="300"/>
+        </Style>
+        <Style TargetType="Line" x:Key="BGStar_SizeLocation2">
+            <Setter Property="X1" Value="0"/>
+            <Setter Property="Y1" Value="0"/>
+            <Setter Property="X2" Value="60"/>
+            <Setter Property="Y2" Value="0"/>
+            <Setter Property="StrokeThickness" Value="60"/>
+            <Setter Property="Canvas.Left" Value="900"/>
+            <Setter Property="Canvas.Top" Value="100"/>
+        </Style>
+        <Style TargetType="Line" x:Key="BGStar_SizeLocation3">
+            <Setter Property="X1" Value="0"/>
+            <Setter Property="Y1" Value="0"/>
+            <Setter Property="X2" Value="46"/>
+            <Setter Property="Y2" Value="0"/>
+            <Setter Property="StrokeThickness" Value="46"/>
+            <Setter Property="Canvas.Left" Value="570"/>
+            <Setter Property="Canvas.Top" Value="230"/>
+        </Style>
+        <Style TargetType="Line" x:Key="BGStar_SizeLocation4">
+            <Setter Property="X1" Value="0"/>
+            <Setter Property="Y1" Value="0"/>
+            <Setter Property="X2" Value="70"/>
+            <Setter Property="Y2" Value="0"/>
+            <Setter Property="StrokeThickness" Value="70"/>
+            <Setter Property="Canvas.Left" Value="380"/>
+            <Setter Property="Canvas.Top" Value="170"/>
+        </Style>
+        <Style TargetType="Line" x:Key="BGStar_SizeLocation5">
+            <Setter Property="X1" Value="0"/>
+            <Setter Property="Y1" Value="0"/>
+            <Setter Property="X2" Value="20"/>
+            <Setter Property="Y2" Value="0"/>
+            <Setter Property="StrokeThickness" Value="20"/>
+            <Setter Property="Canvas.Left" Value="690"/>
+            <Setter Property="Canvas.Top" Value="247"/>
+        </Style>
+        <Style TargetType="Line" x:Key="BGStar_SizeLocation6">
+            <Setter Property="X1" Value="0"/>
+            <Setter Property="Y1" Value="0"/>
+            <Setter Property="X2" Value="26"/>
+            <Setter Property="Y2" Value="0"/>
+            <Setter Property="StrokeThickness" Value="26"/>
+            <Setter Property="Canvas.Left" Value="1000"/>
+            <Setter Property="Canvas.Top" Value="95"/>
+        </Style>
+        <Style TargetType="Line" x:Key="BGStar_SizeLocation7">
+            <Setter Property="X1" Value="0"/>
+            <Setter Property="Y1" Value="0"/>
+            <Setter Property="X2" Value="31"/>
+            <Setter Property="Y2" Value="0"/>
+            <Setter Property="StrokeThickness" Value="31"/>
+            <Setter Property="Canvas.Left" Value="1143"/>
+            <Setter Property="Canvas.Top" Value="139"/>
+        </Style>
 
         <!--빈칸 셀 디자인-->
         <Style TargetType="Border" x:Key="BlankCellBorderColor">

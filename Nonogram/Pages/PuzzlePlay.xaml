@@ -49,20 +49,45 @@
               VerticalAlignment="Top"
               Grid.Column="1"
               FontSize="30"
-              Style="{StaticResource PuzzlePlayMenuColor}">
+              Style="{StaticResource PuzzlePlayMenuColor}" Background="#FFFCFCDE">
               <MenuItem Header="          Menu"
-                        Width="306">
+                        Width="306"
+                        FontWeight="SemiBold">
                   <MenuItem Header="세이브"
                             x:Name="Save"
-                            Click="Save_Click"/>
+                            Click="Save_Click"
+                            Background="#FFFFFFF3"/>
                   <MenuItem Header="모든 퍼즐 초기화"
                             x:Name="Zeroize"
-                            Click="Zeroize_Click"/>
+                            Click="Zeroize_Click"
+                            Background="#FFFFFFF3"/>
                   <MenuItem Header="나가기"
                             x:Name="Exit"
-                            Click="Exit_Click"/>
+                            Click="Exit_Click"
+                            Background="#FFFFFFF3"/>
               </MenuItem>
         </Menu>
+        
+        <!--퍼즐 이름-->
+        <Border Grid.Column="1"
+                Background="#FF620101"
+                BorderBrush="Magenta"
+                BorderThickness="10"
+                VerticalAlignment="Bottom"
+                Margin="0, 0, 0, 70"
+                Height="80"
+                Width="350"
+                CornerRadius="20">
+            <TextBlock x:Name="PuzzleName"
+                       Text="Puzzle Name"
+                       Foreground="DeepSkyBlue"
+                       FontSize="50"
+                       FontWeight="UltraBlack"
+                   FontStyle="Italic"
+                   VerticalAlignment="Bottom"
+                   HorizontalAlignment="Center"/>
+        </Border>
+        
 
         <Border x:Name="clearBoarder" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                 Background="White" Opacity="0.5" Grid.ColumnSpan="2"

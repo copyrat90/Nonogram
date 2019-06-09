@@ -58,6 +58,9 @@ namespace Nonogram.Pages
             nonoBoard2.GameBoard = BoardArray[2];
             nonoBoard3.GameBoard = BoardArray[3];
             nonoBoard4.GameBoard = BoardArray[4];
+
+            //퍼즐 이름 받아오기
+            PuzzleName.Text = data.Puzzle.Name;
         }
 
         /// <summary>

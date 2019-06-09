@@ -55,12 +55,13 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <uc:PuzzleButton LastPuzzleData="{Binding}"
-                                         MouseDown="PuzzleButton_MouseDown"/>
+                                         MouseDown="PuzzleButton_MouseDown"
+                                         Margin="20"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel IsItemsHost="True" Orientation="Horizontal"/>
+                        <WrapPanel IsItemsHost="True" Orientation="Horizontal" Margin="70, 20, 50, 20"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
 

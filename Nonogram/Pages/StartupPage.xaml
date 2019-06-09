@@ -16,11 +16,11 @@
             <Label Content="Nonogram"
                HorizontalAlignment="Center"
                FontSize="140"
-               Foreground="LightPink"
+               Foreground="DeepPink"
                FontFamily="/Font/#Pacifico"/>
-            <Label Content="Press any key or click anywhere"
-               HorizontalAlignment="Center"
-               FontSize="30"/>
+            <Label Content="Click anywhere"
+                   HorizontalAlignment="Center"
+                   FontSize="30"/>
         </StackPanel>
     </Grid>
 </Page>

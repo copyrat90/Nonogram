@@ -5,21 +5,20 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Nonogram.UserControls"
              mc:Ignorable="d">
-    
-    <StackPanel Background="Transparent">
-        <Grid Margin="30, 30, 30, 10"
-              Background="#FFFDFD7F"
-              Height="250"
-              Width="250">
-            <Button x:Name="button"  Background="Transparent">
+
+    <Grid>
+        <StackPanel Background="#FFFDFD7F"
+                Cursor="Hand">
+            <Grid x:Name="grid"
+                Margin="30, 30, 30, 10"
+                Background="#FF08E83B"
+                Height="250"
+                Width="250">
                 <StackPanel x:Name="PuzzledataLoadGrid"
-                    Height="220"
-                    Width="220"
-                    Margin="15"
-                    Background="GhostWhite"/>
-            </Button>
-        </Grid>
-        <TextBlock x:Name="PuzzleName"
+                        Margin="15"
+                        Background="GhostWhite"/>
+            </Grid>
+            <TextBlock x:Name="PuzzleName"
                    Margin="0, 0, 0, 10"
                    FontSize="40"
                    FontWeight="Bold"
@@ -27,6 +26,14 @@
                    Text="Name"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Bottom">
-        </TextBlock>
-    </StackPanel>
+            </TextBlock>
+        </StackPanel>
+        <TextBlock x:Name="PuzzleSize"
+                   Opacity="0.5"
+                   Text="m X n"
+                   FontSize="50"
+                   HorizontalAlignment="Center"
+                   Margin="0, 170, 10, 0"/>
+    </Grid>
+    
 </UserControl>

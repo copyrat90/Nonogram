@@ -11,8 +11,80 @@
         ResizeMode="CanResizeWithGrip">
 
     <Border Style="{StaticResource BGColor}">
-        <Viewbox>
-            <Frame x:Name="frame" NavigationUIVisibility="Hidden"/>
-        </Viewbox>
+        <Canvas>
+            <Line Style="{StaticResource BGStar_SizeLocation1}">
+                <Line.Stroke>
+                    <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                        <RadialGradientBrush.GradientStops>
+                            <GradientStop Color="Red" Offset="0" />
+                            <GradientStop Color="#FF180826" Offset="0.8" />
+                        </RadialGradientBrush.GradientStops>
+                    </RadialGradientBrush>
+                </Line.Stroke>
+            </Line>
+            <Line Style="{StaticResource BGStar_SizeLocation2}">
+                <Line.Stroke>
+                    <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                        <RadialGradientBrush.GradientStops>
+                            <GradientStop Color="#FFA3C8FF" Offset="0" />
+                            <GradientStop Color="#FF180826" Offset="1" />
+                        </RadialGradientBrush.GradientStops>
+                    </RadialGradientBrush>
+                </Line.Stroke>
+            </Line>
+            <Line Style="{StaticResource BGStar_SizeLocation3}">
+                <Line.Stroke>
+                    <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                        <RadialGradientBrush.GradientStops>
+                            <GradientStop Color="#FFAAC07B" Offset="0" />
+                            <GradientStop Color="#FF180826" Offset="1" />
+                        </RadialGradientBrush.GradientStops>
+                    </RadialGradientBrush>
+                </Line.Stroke>
+            </Line>
+            <Line Style="{StaticResource BGStar_SizeLocation4}">
+                <Line.Stroke>
+                    <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                        <RadialGradientBrush.GradientStops>
+                            <GradientStop Color="#FF697949" Offset="0" />
+                            <GradientStop Color="#FF180826" Offset="0.9" />
+                        </RadialGradientBrush.GradientStops>
+                    </RadialGradientBrush>
+                </Line.Stroke>
+            </Line>
+            <Line Style="{StaticResource BGStar_SizeLocation5}">
+                <Line.Stroke>
+                    <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                        <RadialGradientBrush.GradientStops>
+                            <GradientStop Color="#FF2D45F6" Offset="0" />
+                            <GradientStop Color="#FF180826" Offset="1" />
+                        </RadialGradientBrush.GradientStops>
+                    </RadialGradientBrush>
+                </Line.Stroke>
+            </Line>
+            <Line Style="{StaticResource BGStar_SizeLocation6}">
+                <Line.Stroke>
+                    <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                        <RadialGradientBrush.GradientStops>
+                            <GradientStop Color="#FFF79A2D" Offset="0" />
+                            <GradientStop Color="#FF180826" Offset="1" />
+                        </RadialGradientBrush.GradientStops>
+                    </RadialGradientBrush>
+                </Line.Stroke>
+            </Line>
+            <Line Style="{StaticResource BGStar_SizeLocation7}">
+                <Line.Stroke>
+                    <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                        <RadialGradientBrush.GradientStops>
+                            <GradientStop Color="#FFA8A303" Offset="0" />
+                            <GradientStop Color="#FF180826" Offset="1" />
+                        </RadialGradientBrush.GradientStops>
+                    </RadialGradientBrush>
+                </Line.Stroke>
+            </Line>
+            <Viewbox>
+                <Frame x:Name="frame" NavigationUIVisibility="Hidden"/>
+            </Viewbox>
+        </Canvas>
     </Border>
 </Window>

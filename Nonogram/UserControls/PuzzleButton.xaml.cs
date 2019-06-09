@@ -63,7 +63,7 @@ namespace Nonogram.UserControls
                                 Rectangle rectangle = new Rectangle();
                                 rectangle.Height = 220 / height;
                                 rectangle.Width = 220 / width;
-                                rectangle.Fill = new SolidColorBrush(Colors.Black);
+                                rectangle.Fill = new SolidColorBrush(Colors.Purple);
                                 stackPanel.Children.Add(rectangle);
                             }
                             else
@@ -76,10 +76,18 @@ namespace Nonogram.UserControls
                             }
                         }
                     }
+                    //퍼즐 클리어했으면 퍼즐 크기 대신 클리어 축하
+                    puzzleButtonData.PuzzleSize.Text = "Clear";
+                    puzzleButtonData.PuzzleSize.Foreground = new SolidColorBrush(Colors.Red);
                 }
                 // 퍼즐 클리어 못 했으면 ? 를 보여줌
                 else
                 {
+                    //퍼즐 크기 보여주기
+                    int height = data.Puzzle.Height;
+                    int width = data.Puzzle.Width;
+                    puzzleButtonData.PuzzleSize.Text = height + " x " + width;
+
                     TextBlock nothingBlock = new TextBlock();
                     nothingBlock.HorizontalAlignment = HorizontalAlignment.Center;
                     nothingBlock.Text = "?";
@@ -108,7 +116,7 @@ namespace Nonogram.UserControls
                             Rectangle rectangle = new Rectangle();
                             rectangle.Height = 220 / height;
                             rectangle.Width = 220 / width;
-                            rectangle.Fill = new SolidColorBrush(Colors.Black);
+                            rectangle.Fill = new SolidColorBrush(Colors.CornflowerBlue);
                             stackPanel.Children.Add(rectangle);
                         }
                         else
@@ -121,24 +129,13 @@ namespace Nonogram.UserControls
                         }
                     }
                 }
+
+                //퍼즐 사이즈 보여주기
+                puzzleButtonData.PuzzleSize.Text = height + " x " + width;
             }
 
             //퍼즐 이름 보여주기
             puzzleButtonData.PuzzleName.Text = data.Puzzle.Name;
-        }
-
-        private void PuzzleGridload()
-        {
-            int height = LastPuzzleData.Puzzle.Height;
-            int width = LastPuzzleData.Puzzle.Width;
-
-            // height, width 개수로 Grid.ColumnDefinition, Grid.RowDefinition 개수 추가
-
-            int lastTab = LastPuzzleData.PuzzleSave.LastModifiedBoard;
-            CellFill[,] arr = LastPuzzleData.PuzzleSave.CurBoard[lastTab];
-
-            // arr 바탕으로 Grid 에 사각형을 추가
-
         }
 
         public PuzzleButton()
