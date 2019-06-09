@@ -24,7 +24,7 @@ namespace Nonogram.Classes.PuzzleModel
         /// <param name="height">퍼즐의 높이</param>
         /// <param name="width">퍼즐의 너비</param>
         /// <param name="rawPuzzleString">'0'과 '1'로 이루어진 퍼즐 데이터 문자열</param>
-        /// <exception cref="PuzzleSizeMismatchException">
+        /// <exception cref="PuzzleStringLengthMismatchException">
         /// 퍼즐 문자열 길이와 (높이x너비)가 일치하지 않을 때 발생하는 예외</exception>
         public PuzzleAnswerData(int puzzleID, string name, int height, int width, string rawPuzzleString)
         {
@@ -36,7 +36,7 @@ namespace Nonogram.Classes.PuzzleModel
             rawPuzzleString.Replace(" ", String.Empty);
 
             if (rawPuzzleString.Length != (height * width))
-                throw new PuzzleSizeMismatchException(height, width, rawPuzzleString);
+                throw new PuzzleStringLengthMismatchException(height, width, rawPuzzleString);
             if (height > 100 || width > 100 || height <= 0 || width <= 0)
                 throw new PuzzleSizeTooBigOrSmallException(height, width);
 

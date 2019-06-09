@@ -57,9 +57,9 @@
                         Click="RandomPuzzleButton_Click"/>
                 <StackPanel x:Name="randomPuzzleSizeStackPanel" Visibility="Collapsed"
                     HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Background="Wheat">
-                    <TextBlock x:Name="randomWidthTextBlock" FontSize="40" Text="10"/>
+                    <TextBox x:Name="randomWidthTextBox" FontSize="40" Text="10"/>
                     <TextBlock FontSize="40" Text="x"/>
-                    <TextBlock x:Name="randomHeightTextBlock" FontSize="40" Text="10"/>
+                    <TextBox x:Name="randomHeightTextBox" FontSize="40" Text="10"/>
                 </StackPanel>
             </Grid>
         </Grid>

@@ -36,13 +36,13 @@ namespace Nonogram.Classes.MyException
     /// <summary>
     /// 퍼즐 문자열 길이와 (높이x너비)가 일치하지 않을 때 발생하는 예외
     /// </summary>
-    public class PuzzleSizeMismatchException : PuzzleSizeException
+    public class PuzzleStringLengthMismatchException : PuzzleSizeException
     {
-        public PuzzleSizeMismatchException() : base()
+        public PuzzleStringLengthMismatchException() : base()
         {
             RawPuzzleString = String.Empty;
         }
-        public PuzzleSizeMismatchException(int height, int width, string rawPuzzleString) : base(height, width)
+        public PuzzleStringLengthMismatchException(int height, int width, string rawPuzzleString) : base(height, width)
         {
             RawPuzzleString = rawPuzzleString;
         }
@@ -67,5 +67,32 @@ namespace Nonogram.Classes.MyException
     {
         public PuzzleSizeTooBigOrSmallException() : base() { }
         public PuzzleSizeTooBigOrSmallException(int height, int width) : base(height, width) { }
+    }
+
+    /// <summary>
+    /// 깊은 복사를 하려는 퍼즐의 크기가 다를 때 발생하는 예외
+    /// </summary>
+    public class PuzzleSizeMismatchException : PuzzleSizeException
+    {
+        public int SourceHeight { get; set; }
+        public int SourceWidth { get; set; }
+        public PuzzleSizeMismatchException() : base()
+        {
+            SourceHeight = 0;
+            SourceWidth = 0;
+        }
+        public PuzzleSizeMismatchException(int destHeight, int destWidth, int srcHeight, int srcWidth) : base(destHeight, destWidth)
+        {
+            SourceHeight = srcHeight;
+            SourceWidth = srcWidth;
+        }
+
+        public override string Message
+        {
+            get
+            {
+                return $"DestHeight : {Height}\nDestWidth : {Width}\nSourceHeight : {SourceHeight}\nSourceWidth : {SourceWidth}";
+            }
+        }
     }
 }

@@ -11,6 +11,7 @@
       Title="PuzzlePlay">
     <Page.Resources>
         <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <conv:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
     </Page.Resources>
 
     <Grid Width="1280" Height="690">
@@ -22,29 +23,105 @@
         <!-- 퍼즐 레이어 -->
         <!-- TODO : ContextMenu 로 탭 복사 붙여넣기 병합 기능 구현 -->
         <TabControl x:Name="boardTabControl" Background="Transparent">
-            <TabControl.ContextMenu>
-                <ContextMenu>
-                    
-                </ContextMenu>
-            </TabControl.ContextMenu>
-            <!--<TabControl.ItemTemplate>
-                <DataTemplate>
-                    
-                </DataTemplate>
-            </TabControl.ItemTemplate>-->
-            <TabItem Header="Tab 1" FontSize="30" Width="150" >
+            <TabItem FontSize="30" Width="150">
+                <TabItem.Header>
+                    <TextBlock Text="Tab 0" Background="White" Width="150">
+                        <TextBlock.ContextMenu>
+                            <ContextMenu Tag="0">
+                                <MenuItem Header="복사" Click="TabCopy_Click"/>
+                                <MenuItem x:Name="pasteMenuItem0" Header="붙여넣기" Click="TabPaste_Click" Visibility="Collapsed"/>
+                                <MenuItem x:Name="mergeMenuItem0" Header="병합" Visibility="Collapsed">
+                                    <MenuItem Header="빈 칸으로 만들기" Tag="BLANK" Click="TabMerge_Click"/>
+                                    <MenuItem Header="색칠 우선" Tag="KEEP_FILL" Click="TabMerge_Click"/>
+                                    <MenuItem Header="원본을 유지" Tag="KEEP_ORIGINAL" Click="TabMerge_Click"/>
+                                    <MenuItem Header="사본으로 덮어쓰기" Tag="OVERRIDE_WITH_NEW" Click="TabMerge_Click"/>
+                                </MenuItem>
+                                <MenuItem Header="삭제" Click="TabReset_Click"/>
+                            </ContextMenu>
+                        </TextBlock.ContextMenu>
+                    </TextBlock>
+                </TabItem.Header>
+
                 <uc:NonoBoard x:Name="nonoBoard0"/>
             </TabItem>
-            <TabItem Header="Tab 2" FontSize="30" Width="150">
+            <TabItem FontSize="30" Width="150">
+                <TabItem.Header>
+                    <TextBlock Text="Tab 1" Background="White" Width="150">
+                        <TextBlock.ContextMenu>
+                            <ContextMenu Tag="1">
+                                <MenuItem Header="복사" Click="TabCopy_Click"/>
+                                <MenuItem x:Name="pasteMenuItem1" Header="붙여넣기" Click="TabPaste_Click" Visibility="Collapsed"/>
+                                <MenuItem x:Name="mergeMenuItem1" Header="병합" Visibility="Collapsed">
+                                    <MenuItem Header="빈 칸으로 만들기" Tag="BLANK" Click="TabMerge_Click"/>
+                                    <MenuItem Header="색칠 우선" Tag="KEEP_FILL" Click="TabMerge_Click"/>
+                                    <MenuItem Header="원본을 유지" Tag="KEEP_ORIGINAL" Click="TabMerge_Click"/>
+                                    <MenuItem Header="사본으로 덮어쓰기" Tag="OVERRIDE_WITH_NEW" Click="TabMerge_Click"/>
+                                </MenuItem>
+                                <MenuItem Header="삭제" Click="TabReset_Click"/>
+                            </ContextMenu>
+                        </TextBlock.ContextMenu>
+                    </TextBlock>
+                </TabItem.Header>
                 <uc:NonoBoard x:Name="nonoBoard1"/>
             </TabItem>
-            <TabItem Header="Tab 3" FontSize="30" Width="150">
+            <TabItem FontSize="30" Width="150">
+                <TabItem.Header>
+                    <TextBlock Text="Tab 2" Background="White" Width="150">
+                        <TextBlock.ContextMenu>
+                            <ContextMenu Tag="2">
+                                <MenuItem Header="복사" Click="TabCopy_Click"/>
+                                <MenuItem x:Name="pasteMenuItem2" Header="붙여넣기" Click="TabPaste_Click" Visibility="Collapsed"/>
+                                <MenuItem x:Name="mergeMenuItem2" Header="병합" Visibility="Collapsed">
+                                    <MenuItem Header="빈 칸으로 만들기" Tag="BLANK" Click="TabMerge_Click"/>
+                                    <MenuItem Header="색칠 우선" Tag="KEEP_FILL" Click="TabMerge_Click"/>
+                                    <MenuItem Header="원본을 유지" Tag="KEEP_ORIGINAL" Click="TabMerge_Click"/>
+                                    <MenuItem Header="사본으로 덮어쓰기" Tag="OVERRIDE_WITH_NEW" Click="TabMerge_Click"/>
+                                </MenuItem>
+                                <MenuItem Header="삭제" Click="TabReset_Click"/>
+                            </ContextMenu>
+                        </TextBlock.ContextMenu>
+                    </TextBlock>
+                </TabItem.Header>
                 <uc:NonoBoard x:Name="nonoBoard2"/>
             </TabItem>
-            <TabItem Header="Tab 4" FontSize="30" Width="150">
+            <TabItem FontSize="30" Width="150">
+                <TabItem.Header>
+                    <TextBlock Text="Tab 3" Background="White" Width="150">
+                        <TextBlock.ContextMenu>
+                            <ContextMenu Tag="3">
+                                <MenuItem Header="복사" Click="TabCopy_Click"/>
+                                <MenuItem x:Name="pasteMenuItem3" Header="붙여넣기" Click="TabPaste_Click" Visibility="Collapsed"/>
+                                <MenuItem x:Name="mergeMenuItem3" Header="병합" Visibility="Collapsed">
+                                    <MenuItem Header="빈 칸으로 만들기" Tag="BLANK" Click="TabMerge_Click"/>
+                                    <MenuItem Header="색칠 우선" Tag="KEEP_FILL" Click="TabMerge_Click"/>
+                                    <MenuItem Header="원본을 유지" Tag="KEEP_ORIGINAL" Click="TabMerge_Click"/>
+                                    <MenuItem Header="사본으로 덮어쓰기" Tag="OVERRIDE_WITH_NEW" Click="TabMerge_Click"/>
+                                </MenuItem>
+                                <MenuItem Header="삭제" Click="TabReset_Click"/>
+                            </ContextMenu>
+                        </TextBlock.ContextMenu>
+                    </TextBlock>
+                </TabItem.Header>
                 <uc:NonoBoard x:Name="nonoBoard3"/>
             </TabItem>
-            <TabItem Header="Tab 5" FontSize="30" Width="150">
+            <TabItem FontSize="30" Width="150">
+                <TabItem.Header>
+                    <TextBlock Text="Tab 4" Background="White" Width="150">
+                        <TextBlock.ContextMenu>
+                            <ContextMenu Tag="4">
+                                <MenuItem Header="복사" Click="TabCopy_Click"/>
+                                <MenuItem x:Name="pasteMenuItem4" Header="붙여넣기" Click="TabPaste_Click" Visibility="Collapsed"/>
+                                <MenuItem x:Name="mergeMenuItem4" Header="병합" Visibility="Collapsed">
+                                    <MenuItem Header="빈 칸으로 만들기" Tag="BLANK" Click="TabMerge_Click"/>
+                                    <MenuItem Header="색칠 우선" Tag="KEEP_FILL" Click="TabMerge_Click"/>
+                                    <MenuItem Header="원본을 유지" Tag="KEEP_ORIGINAL" Click="TabMerge_Click"/>
+                                    <MenuItem Header="사본으로 덮어쓰기" Tag="OVERRIDE_WITH_NEW" Click="TabMerge_Click"/>
+                                </MenuItem>
+                                <MenuItem Header="삭제" Click="TabReset_Click"/>
+                            </ContextMenu>
+                        </TextBlock.ContextMenu>
+                    </TextBlock>
+                </TabItem.Header>
                 <uc:NonoBoard x:Name="nonoBoard4"/>
             </TabItem>
         </TabControl>
