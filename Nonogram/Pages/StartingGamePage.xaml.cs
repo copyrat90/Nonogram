@@ -59,7 +59,7 @@ namespace Nonogram.Pages
                     Random random = new Random();
                     for (int i = 0; i < height * width; ++i)
                     {
-                        randomStr += (random.Next() % 2).ToString();
+                        randomStr += (random.NextDouble() < 0.6) ? "1" : "0";
                     }
 
                     PuzzleData randomPuzzle = new PuzzleData(-1, true, "랜덤퍼즐", height, width, randomStr, null, null, null);
