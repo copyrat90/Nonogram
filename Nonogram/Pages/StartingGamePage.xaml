@@ -55,6 +55,12 @@
                         Margin="0, 0, 0, 100"
                         Style="{StaticResource StartingGamePageButtonColor}"
                         Click="RandomPuzzleButton_Click"/>
+                <StackPanel x:Name="randomPuzzleSizeStackPanel" Visibility="Collapsed"
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Background="Wheat">
+                    <TextBlock x:Name="randomWidthTextBlock" FontSize="40" Text="10"/>
+                    <TextBlock FontSize="40" Text="x"/>
+                    <TextBlock x:Name="randomHeightTextBlock" FontSize="40" Text="10"/>
+                </StackPanel>
             </Grid>
         </Grid>
     </Grid>

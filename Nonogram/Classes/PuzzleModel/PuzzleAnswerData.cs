@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nonogram.Classes.MyException;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,7 @@ namespace Nonogram.Classes.PuzzleModel
         /// <param name="height">퍼즐의 높이</param>
         /// <param name="width">퍼즐의 너비</param>
         /// <param name="rawPuzzleString">'0'과 '1'로 이루어진 퍼즐 데이터 문자열</param>
-        /// <exception cref="PuzzleLengthMismatchException">
+        /// <exception cref="PuzzleSizeMismatchException">
         /// 퍼즐 문자열 길이와 (높이x너비)가 일치하지 않을 때 발생하는 예외</exception>
         public PuzzleAnswerData(int puzzleID, string name, int height, int width, string rawPuzzleString)
         {
@@ -35,7 +36,9 @@ namespace Nonogram.Classes.PuzzleModel
             rawPuzzleString.Replace(" ", String.Empty);
 
             if (rawPuzzleString.Length != (height * width))
-                throw new PuzzleLengthMismatchException(height, width, rawPuzzleString);
+                throw new PuzzleSizeMismatchException(height, width, rawPuzzleString);
+            if (height > 100 || width > 100 || height <= 0 || width <= 0)
+                throw new PuzzleSizeTooBigOrSmallException(height, width);
 
             AnswerArray = new bool[height, width];
 
@@ -63,35 +66,6 @@ namespace Nonogram.Classes.PuzzleModel
         public bool this[int y, int x]
         {
             get { return AnswerArray[y, x]; }
-        }
-    }
-
-    /// <summary>
-    /// 퍼즐 문자열 길이와 (높이x너비)가 일치하지 않을 때 발생하는 예외
-    /// </summary>
-    public class PuzzleLengthMismatchException : Exception
-    {
-        public PuzzleLengthMismatchException()
-        {
-            Height = 0;
-            Width = 0;
-            RawPuzzleString = String.Empty;
-        }
-        public PuzzleLengthMismatchException(int height, int width, string rawPuzzleString)
-        {
-            Height = height;
-            Width = width;
-            RawPuzzleString = rawPuzzleString;
-        }
-
-        public int Height { get; }
-        public int Width { get; }
-        public string RawPuzzleString { get; }
-        public override string Message
-        {
-            get { return $"Length of RawPuzzleString : {RawPuzzleString.Length}\n" +
-                    $"Expected Height : {Height}\n" +
-                    $"Expected Width : {Width}"; }
         }
     }
 }

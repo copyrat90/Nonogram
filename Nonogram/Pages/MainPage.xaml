@@ -37,7 +37,7 @@
                     FontSize="50"
                     Style="{StaticResource MainPageButtonColor}"/>
             <Button Content="퍼즐 다운로드"
-                    Click="OptionButton_Click"
+                    Click="DownloadButton_Click"
                     HorizontalAlignment="Center"
                     Width="500"
                     Margin="15"
@@ -51,5 +51,9 @@
                     FontSize="50"
                     Style="{StaticResource MainPageButtonColor}"/>
         </StackPanel>
+        <TextBox x:Name="downloadingTextBox" Visibility="Collapsed"
+                 Margin="300" Background="AliceBlue" Text="다운로드 중..."
+                 TextAlignment="Center" VerticalContentAlignment="Center"
+                 FontSize="40"/>
     </Grid>
 </Page>
