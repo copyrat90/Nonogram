@@ -42,7 +42,6 @@
             <TabItem Header="Tab 5" FontSize="30" Width="150">
                 <uc:NonoBoard x:Name="nonoBoard4"/>
             </TabItem>
-            <TabItem/>
         </TabControl>
         
         <!-- 메뉴 -->
@@ -52,7 +51,7 @@
               FontSize="30"
               Style="{StaticResource PuzzlePlayMenuColor}">
               <MenuItem Header="          Menu"
-                        Width="260">
+                        Width="306">
                   <MenuItem Header="세이브"
                             x:Name="Save"
                             Click="Save_Click"/>
