@@ -16,17 +16,8 @@ namespace Nonogram.Classes.Helper.Database
         /// </summary>
         public static void DownloadPuzzle()
         {
-            // 이미 있는 퍼즐 ID 목록 문자열 (ex: "1,3,4,5,7")
-            string puzzleIDs_AlreadyDownloaded = string.Empty;
-
-            foreach (var puzzleButtonData in LocalPuzzleDB.GetPuzzleDataList())
-            {
-                puzzleIDs_AlreadyDownloaded += puzzleButtonData.Puzzle.PuzzleID + ",";
-            }
-            puzzleIDs_AlreadyDownloaded = puzzleIDs_AlreadyDownloaded.Remove(puzzleIDs_AlreadyDownloaded.Length - 1, 1);
-
-            // 이미 있는 거 빼고 퍼즐을 서버에서 가져옴
-            DataTable dt = MariaDBServer.GetDataTable($"SELECT * FROM PuzzleAnswer WHERE ID NOT IN ({puzzleIDs_AlreadyDownloaded})");
+            // 모든 퍼즐을 서버에서 가져옴
+            DataTable dt = MariaDBServer.GetDataTable($"SELECT * FROM PuzzleAnswer");
 
             // 각 행을 현재 데이터베이스에 삽입
             foreach (DataRow data in dt.Rows)
