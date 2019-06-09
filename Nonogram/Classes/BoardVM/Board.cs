@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using Nonogram.Classes.MyException;
 using Nonogram.Classes.PuzzleModel;
 
 namespace Nonogram.Classes.BoardVM
@@ -68,6 +69,108 @@ namespace Nonogram.Classes.BoardVM
             InitializeHint();
         }
 
+        /// <summary>
+        /// 깊은 복사를 지원하기 위한 복사 생성자
+        /// </summary>
+        /// <param name="other"> 다른 Board 객체</param>
+        public Board(in Board other)
+        {
+            AnswerArray = (bool[,])other.AnswerArray.Clone();
+            CurrentBoard = new ObservableCollection<ObservableCollection<Cell>>();
+            for (int y=0;y<Height;++y)
+            {
+                CurrentBoard.Add(new ObservableCollection<Cell>());
+                for (int x = 0; x < Width; ++x)
+                {
+                    CurrentBoard[y].Add(new Cell(y, x, other.CurrentBoard[y][x].FillValue));
+                    CurrentBoard[y][x].PropertyChanged += DoWhenCellPropertyChanged;
+                }
+            }
+            InitializeHint();
+        }
+
+        /// <summary>
+        /// 현재 Board 객체의 복사본을 반환
+        /// </summary>
+        /// <returns> 현재 Board instance 의 복사본 </returns>
+        public Board Clone()
+        {
+            return new Board(this);
+        }
+
+        public int Height { get { return AnswerArray.GetLength(0); } }
+        public int Width { get { return AnswerArray.GetLength(1); } }
+
+        /// <summary>
+        /// 현재 보드판 상태를 복사하는 깊은 복사 메서드
+        /// </summary>
+        /// <param name="dest">보드판을 붙여넣을 객체</param>
+        /// <param name="src">보드판을 복사할 객체</param>
+        public static void CurrentBoardCopy(Board dest, Board src)
+        {
+            if (dest.Height != src.Height || dest.Width != src.Width)
+                throw new PuzzleSizeException();
+
+            for (int y = 0; y < dest.Height; ++y)
+            {
+                for (int x = 0; x < dest.Width; ++x)
+                {
+                    dest.CurrentBoard[y][x].FillValue = src.CurrentBoard[y][x].FillValue;
+                }
+            }
+        }
+
+        public enum MergeMode { BLANK, KEEP_ORIGINAL, OVERRIDE_WITH_NEW, KEEP_FILL };
+
+        /// <summary>
+        /// 현재 보드판 상태를 병합하는 메서드
+        /// </summary>
+        /// <param name="dest">붙여넣을 객체</param>
+        /// <param name="src">복사할 객체</param>
+        public static void CurrentBoardMerge(Board dest, Board src, MergeMode mode)
+        {
+            for (int y = 0; y < dest.Height; ++y)
+            {
+                for (int x = 0; x < dest.Width; ++x)
+                {
+                    CellFill destFill = dest.CurrentBoard[y][x].FillValue;
+                    CellFill srcFill = src.CurrentBoard[y][x].FillValue;
+                    dest.CurrentBoard[y][x].FillValue = FillMerge(y, x, destFill, srcFill);
+                }
+            }
+
+            CellFill FillMerge(int y, int x, CellFill destFill, CellFill srcFill)
+            {
+                if (destFill == CellFill.BLANK)
+                    return srcFill;
+                else if (srcFill == CellFill.BLANK)
+                    return destFill;
+
+                // 둘 다 Blank 가 아닌 경우 처리
+                switch (mode)
+                {
+                    case MergeMode.BLANK:
+                        if (destFill != srcFill)
+                            return CellFill.BLANK;
+                        else
+                            return destFill;
+
+                    case MergeMode.KEEP_ORIGINAL:
+                        return destFill;
+
+                    case MergeMode.OVERRIDE_WITH_NEW:
+                        return srcFill;
+
+                    case MergeMode.KEEP_FILL:
+                        if (destFill == CellFill.FILL || srcFill == CellFill.FILL)
+                            return CellFill.FILL;
+                        else
+                            return destFill;
+                }
+
+                return CellFill.BLANK;
+            }
+        }
 
         /// <summary>
         /// 색칠이 바뀌었을 때 Cell에서 수행할 이벤트
@@ -490,9 +593,9 @@ namespace Nonogram.Classes.BoardVM
         /// <returns>현재 보드판이 정답이면 true, 아니면 false</returns>
         public bool CheckSolved()
         {
-            for (int y = 0; y < AnswerArray.GetLength(0); ++y)
+            for (int y = 0; y < Height; ++y)
             {
-                for (int x = 0; x < AnswerArray.GetLength(1); ++x)
+                for (int x = 0; x < Width; ++x)
                 {
                     bool currentIsFill = CurrentBoard[y][x].FillValue == CellFill.FILL;
                     bool answerIsFill = AnswerArray[y, x];

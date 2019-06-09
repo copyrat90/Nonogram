@@ -49,8 +49,8 @@ namespace Nonogram.Pages
             {
                 try
                 {
-                    int width = int.Parse(randomWidthTextBlock.Text);
-                    int height = int.Parse(randomHeightTextBlock.Text);
+                    int width = int.Parse(randomWidthTextBox.Text);
+                    int height = int.Parse(randomHeightTextBox.Text);
 
                     if (height > 100 || width > 100 || height < 0 || width < 0)
                         throw new PuzzleSizeTooBigOrSmallException(height, width);
