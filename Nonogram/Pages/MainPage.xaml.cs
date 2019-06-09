@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using Nonogram.Classes.Helper.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,9 +31,22 @@ namespace Nonogram.Pages
             NavigationService.Navigate(new StartingGamePage());
         }
 
-        private void OptionButton_Click(object sender, RoutedEventArgs e)
+        private void DownloadButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new OptionPage());
+            try
+            {
+                downloadingTextBox.Visibility = Visibility.Visible;
+                ServerPuzzleDB.DownloadPuzzle();
+                MessageBox.Show("퍼즐 다운로드가 완료되었습니다.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("DB 서버 연결에 실패했습니다.\n\n" + ex.Message);
+            }
+            finally
+            {
+                downloadingTextBox.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)

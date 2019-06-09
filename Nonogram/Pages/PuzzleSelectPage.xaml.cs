@@ -25,8 +25,6 @@ namespace Nonogram.Pages
         public PuzzleSelectPage()
         {
             InitializeComponent();
-
-            ServerPuzzleDB.DownloadPuzzle();
             PuzzleListBox.ItemsSource = LocalPuzzleDB.GetPuzzleDataList();
         }
 

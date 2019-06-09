@@ -96,6 +96,7 @@
     <Compile Include="Classes\BoardVM\Board.cs" />
     <Compile Include="Classes\BoardVM\Cell.cs" />
     <Compile Include="Classes\BoardVM\HintNum.cs" />
+    <Compile Include="Classes\MyException\PuzzleSizeException.cs" />
     <Compile Include="Classes\PuzzleModel\PuzzleAnswerData.cs" />
     <Compile Include="Classes\PuzzleModel\PausedPuzzleSaveData.cs" />
     <Compile Include="Classes\Helper\Database\LocalPuzzleDB.cs" />

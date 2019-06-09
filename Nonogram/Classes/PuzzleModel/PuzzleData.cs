@@ -1,4 +1,5 @@
 ﻿using Nonogram.Classes.BoardVM;
+using Nonogram.Classes.MyException;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,9 @@ namespace Nonogram.Classes.PuzzleModel
         public PuzzleData(int puzzleID, bool isRandomPuzzle, string name, int height, int width, string rawPuzzleString, int? isCleared,
             int? lastModifiedBoard, string[] curBoardStrings)
         {
+            if (height > 100 || width > 100 || height < 0 || width < 0)
+                throw new PuzzleSizeTooBigOrSmallException(height, width);
+
             Puzzle = new PuzzleAnswerData(puzzleID, name, height, width, rawPuzzleString);
             IsRandomPuzzle = isRandomPuzzle;
             IsCleared = isCleared == 1;
