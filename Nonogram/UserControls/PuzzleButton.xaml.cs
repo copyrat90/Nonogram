@@ -40,16 +40,55 @@ namespace Nonogram.UserControls
 
             PuzzleData data = (PuzzleData)e.NewValue;
 
-            //StackPanal에 풀던 퍼즐 보여주기
+            // 중단 데이터가 없을 때
             if (data.PuzzleSave == null)
             {
-                TextBlock nothingBlock = new TextBlock();
-                nothingBlock.HorizontalAlignment = HorizontalAlignment.Center;
-                nothingBlock.Text = "?";
-                nothingBlock.FontSize = 150;
-                nothingBlock.FontWeight = FontWeights.Bold;
-                puzzleButtonData.PuzzledataLoadGrid.Children.Add(nothingBlock);
+                // 퍼즐 클리어했으면 클리어 된 화면을 보여줌
+                if (data.IsCleared)
+                {
+                    bool[,] userInputBoard = data.Puzzle.AnswerArray;
+
+                    int height = data.Puzzle.Height;
+                    int width = data.Puzzle.Width;
+
+                    for (int i = 0; i < height; i++)
+                    {
+                        StackPanel stackPanel = new StackPanel() { Orientation = Orientation.Horizontal };
+                        puzzleButtonData.PuzzledataLoadGrid.Children.Add(stackPanel);
+
+                        for (int j = 0; j < width; j++)
+                        {
+                            if (userInputBoard[i, j])
+                            {
+                                Rectangle rectangle = new Rectangle();
+                                rectangle.Height = 220 / height;
+                                rectangle.Width = 220 / width;
+                                rectangle.Fill = new SolidColorBrush(Colors.Black);
+                                stackPanel.Children.Add(rectangle);
+                            }
+                            else
+                            {
+                                Rectangle rectangle = new Rectangle();
+                                rectangle.Height = 220 / height;
+                                rectangle.Width = 220 / width;
+                                rectangle.Fill = new SolidColorBrush(Colors.White);
+                                stackPanel.Children.Add(rectangle);
+                            }
+                        }
+                    }
+                }
+                // 퍼즐 클리어 못 했으면 ? 를 보여줌
+                else
+                {
+                    TextBlock nothingBlock = new TextBlock();
+                    nothingBlock.HorizontalAlignment = HorizontalAlignment.Center;
+                    nothingBlock.Text = "?";
+                    nothingBlock.FontSize = 150;
+                    nothingBlock.FontWeight = FontWeights.Bold;
+                    puzzleButtonData.PuzzledataLoadGrid.Children.Add(nothingBlock);
+                }
             }
+            // 중단 데이터가 있으면 마지막 화면을 보여줌
             else
             {
                 CellFill[,] userInputBoard = data.PuzzleSave.CurBoard[data.PuzzleSave.LastModifiedBoard];

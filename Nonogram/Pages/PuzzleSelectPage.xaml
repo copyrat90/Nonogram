@@ -47,23 +47,24 @@
             </Button>
         </Grid>
 
-        <!--TODO : 바인딩 배워서 퍼즐에 적용해보기-->
-        <ItemsControl x:Name="PuzzleListBox"
-            Background="Transparent"
-                 Grid.Row="1"
-                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <uc:PuzzleButton LastPuzzleData="{Binding}"
-                                     MouseDown="PuzzleButton_MouseDown"/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel IsItemsHost="True" Orientation="Horizontal"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            
-        </ItemsControl>
+        <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      Grid.Row="1">
+            <ItemsControl x:Name="PuzzleListBox"
+                          Background="Transparent"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <uc:PuzzleButton LastPuzzleData="{Binding}"
+                                         MouseDown="PuzzleButton_MouseDown"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel IsItemsHost="True" Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 </Page>
