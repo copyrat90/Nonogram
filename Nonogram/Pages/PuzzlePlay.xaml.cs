@@ -170,7 +170,7 @@ namespace Nonogram.Pages
                 m.Visibility = Visibility.Visible;
             }
 
-            MessageBox.Show($"{tabIdx}번 탭이 복사되었습니다.");
+            MessageBox.Show($"{tabIdx+1}번 탭이 복사되었습니다.");
         }
 
         private void TabPaste_Click(object sender, RoutedEventArgs e)
@@ -179,10 +179,10 @@ namespace Nonogram.Pages
             ContextMenu cmenu = (ContextMenu)(menu.Parent);
             int tabIdx = int.Parse((string)(cmenu.Tag));
 
-            if (MessageBox.Show($"정말 {tabIdx}번 탭에 붙여넣으시겠습니까?\n모든 칸이 덮어씌워집니다!","붙여넣기",MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show($"정말 {tabIdx+1}번 탭에 붙여넣으시겠습니까?\n모든 칸이 덮어씌워집니다!","붙여넣기",MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 Board.CurrentBoardCopy(BoardArray[tabIdx], board_ClipBoard);
-                MessageBox.Show($"{tabIdx}번 탭에 붙여넣었습니다.");
+                MessageBox.Show($"{tabIdx+1}번 탭에 붙여넣었습니다.");
             }
         }
 
@@ -196,7 +196,7 @@ namespace Nonogram.Pages
             string modeStr = (string)mmenu.Tag;
             string modeText = (string)mmenu.Header;
 
-            if (MessageBox.Show($"{tabIdx}번 탭에 [{modeText}]모드로 병합합니다.\n계속하시겠습니까?","병합",MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show($"{tabIdx+1}번 탭에 [{modeText}]모드로 병합합니다.\n계속하시겠습니까?","병합",MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 switch (modeStr)
                 {
@@ -225,7 +225,7 @@ namespace Nonogram.Pages
             ContextMenu cmenu = (ContextMenu)(menu.Parent);
             int tabIdx = int.Parse((string)(cmenu.Tag));
 
-            if (MessageBox.Show($"정말 {tabIdx}번 보드를 초기화하시겠습니까?","보드 초기화", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show($"정말 {tabIdx+1}번 보드를 초기화하시겠습니까?","보드 초기화", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 BoardArray[tabIdx].ResetBoard();
             }
