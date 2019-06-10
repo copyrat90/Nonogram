@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Loaded="Window_Loaded"
         Title="MainWindow" Height="720" Width="1280"
-        MinHeight="360" MinWidth="640"
-        ResizeMode="CanResizeWithGrip">
+        MinHeight="720" MinWidth="1280"
+        MaxHeight="720" MaxWidth="1280">
 
     <Border Style="{StaticResource BGColor}">
         <Canvas>
