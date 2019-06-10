@@ -33,11 +33,11 @@ namespace Nonogram.Pages
 
         private void DownloadButton_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
                 downloadingTextBox.Visibility = Visibility.Visible;
                 ServerPuzzleDB.DownloadPuzzle();
                 MessageBox.Show("퍼즐 다운로드가 완료되었습니다.");
-            try
-            {
             }
             catch (Exception ex)
             {
