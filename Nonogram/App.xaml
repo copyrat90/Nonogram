@@ -167,6 +167,17 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <!--PuzzleSelectPage 버튼 디자인-->
+        <Style TargetType="Grid" x:Key="PuzzleButtonColor">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Background" Value="#FFFDFD7F"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         
         <!--PuzzlePlay 메뉴 디자인-->
         <Style TargetType="Menu" x:Key="PuzzlePlayMenuColor">

@@ -6,9 +6,8 @@
              xmlns:local="clr-namespace:Nonogram.UserControls"
              mc:Ignorable="d">
 
-    <Grid>
-        <StackPanel Background="#FFFDFD7F"
-                Cursor="Hand">
+    <Grid Style="{StaticResource PuzzleButtonColor}">
+        <StackPanel Background="Transparent">
             <Grid x:Name="grid"
                 Margin="30, 30, 30, 10"
                 Background="#FF08E83B"
