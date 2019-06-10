@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:Nonogram"
         mc:Ignorable="d"
         Loaded="Window_Loaded"
-        Title="MainWindow" Height="720" Width="1280"
-        MinHeight="720" MinWidth="1280"
-        MaxHeight="720" MaxWidth="1280">
+        Title="MainWindow" Height="730" Width="1280"
+        MinHeight="730" MinWidth="1280"
+        MaxHeight="730" MaxWidth="1280">
 
     <Border Style="{StaticResource BGColor}">
         <Canvas>
