@@ -33,15 +33,15 @@ namespace Nonogram.Pages
 
         private void DownloadButton_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
                 downloadingTextBox.Visibility = Visibility.Visible;
                 ServerPuzzleDB.DownloadPuzzle();
                 MessageBox.Show("퍼즐 다운로드가 완료되었습니다.");
+            try
+            {
             }
             catch (Exception ex)
             {
-                MessageBox.Show("DB 서버 연결에 실패했습니다.\n\n" + ex.Message);
+                MessageBox.Show($"퍼즐 다운로드에 실패했습니다.\n\n{ex.GetType()}\n{ex.Message}\n{ex.StackTrace}");
             }
             finally
             {

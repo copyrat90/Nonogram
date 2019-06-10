@@ -53,8 +53,7 @@ namespace Nonogram.Classes.MyException
             get
             {
                 return $"Length of RawPuzzleString : {RawPuzzleString.Length}\n" +
-                  $"Expected Height : {Height}\n" +
-                  $"Expected Width : {Width}";
+                  $"Expected Length : {Height * Width} (h:{Height}, w:{Width})";
             }
         }
     }

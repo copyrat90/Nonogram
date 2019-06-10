@@ -18,7 +18,7 @@ namespace Nonogram.Classes.PuzzleModel
         public PuzzleData(int puzzleID, bool isRandomPuzzle, string name, int height, int width, string rawPuzzleString, int? isCleared,
             int? lastModifiedBoard, string[] curBoardStrings)
         {
-            if (height > 100 || width > 100 || height < 0 || width < 0)
+            if (height > 50 || width > 50 || height < 0 || width < 0)
                 throw new PuzzleSizeTooBigOrSmallException(height, width);
 
             Puzzle = new PuzzleAnswerData(puzzleID, name, height, width, rawPuzzleString);

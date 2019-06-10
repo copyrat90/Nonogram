@@ -37,7 +37,7 @@ namespace Nonogram.Classes.PuzzleModel
 
             if (rawPuzzleString.Length != (height * width))
                 throw new PuzzleStringLengthMismatchException(height, width, rawPuzzleString);
-            if (height > 100 || width > 100 || height <= 0 || width <= 0)
+            if (height > 50 || width > 50 || height <= 0 || width <= 0)
                 throw new PuzzleSizeTooBigOrSmallException(height, width);
 
             AnswerArray = new bool[height, width];

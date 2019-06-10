@@ -52,7 +52,7 @@ namespace Nonogram.Pages
                     int width = int.Parse(randomWidthTextBox.Text);
                     int height = int.Parse(randomHeightTextBox.Text);
 
-                    if (height > 100 || width > 100 || height < 0 || width < 0)
+                    if (height > 50 || width > 50 || height < 0 || width < 0)
                         throw new PuzzleSizeTooBigOrSmallException(height, width);
 
                     string randomStr = string.Empty;
@@ -71,7 +71,7 @@ namespace Nonogram.Pages
                 }
                 catch(PuzzleSizeTooBigOrSmallException ex)
                 {
-                    MessageBox.Show("행 또는 열의 길이는 1~100 사이여야 합니다.\n" + ex.Message);
+                    MessageBox.Show("행 또는 열의 길이는 1~50 사이여야 합니다.\n" + ex.Message);
                 }
             }
         }

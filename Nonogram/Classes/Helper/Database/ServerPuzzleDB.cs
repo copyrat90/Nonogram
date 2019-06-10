@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Nonogram.Classes.Helper.Database
 {
@@ -22,7 +23,23 @@ namespace Nonogram.Classes.Helper.Database
             // 각 행을 현재 데이터베이스에 삽입
             foreach (DataRow data in dt.Rows)
             {
-                PuzzleAnswerData puzzle = new PuzzleAnswerData((int)data["ID"], (string)data["Name"], (int)data["Height"], (int)data["Width"], (string)data["PuzzleRawString"]);
+                int id = (int)data["ID"];
+                string name = (string)data["Name"];
+                int height = (int)data["Height"];
+                int width = (int)data["Width"];
+                string raw = (string)data["PuzzleRawString"];
+
+                raw.Replace("\n", String.Empty);
+                raw.Replace("\t", String.Empty);
+                raw.Replace(" ", String.Empty);
+
+                if (raw.Length != height * width)
+                {
+                    MessageBox.Show($"서버 퍼즐에 오류가 있어 다운로드를 스킵하였습니다.\n해당 퍼즐 = {id} : {name}\nstrLen == {raw.Length} != {width * height} == w({width}) * h({height})");
+                    continue;
+                }
+
+                PuzzleAnswerData puzzle = new PuzzleAnswerData(id, name, height, width, raw);
                 LocalPuzzleDB.InsertPuzzle(puzzle);
             }
         }
