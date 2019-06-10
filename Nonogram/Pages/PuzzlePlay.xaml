@@ -36,7 +36,7 @@
                                     <MenuItem Header="원본을 유지" Tag="KEEP_ORIGINAL" Click="TabMerge_Click"/>
                                     <MenuItem Header="사본으로 덮어쓰기" Tag="OVERRIDE_WITH_NEW" Click="TabMerge_Click"/>
                                 </MenuItem>
-                                <MenuItem Header="삭제" Click="TabReset_Click"/>
+                                <MenuItem Header="초기화" Click="TabReset_Click"/>
                             </ContextMenu>
                         </TextBlock.ContextMenu>
                     </TextBlock>
@@ -57,7 +57,7 @@
                                     <MenuItem Header="원본을 유지" Tag="KEEP_ORIGINAL" Click="TabMerge_Click"/>
                                     <MenuItem Header="사본으로 덮어쓰기" Tag="OVERRIDE_WITH_NEW" Click="TabMerge_Click"/>
                                 </MenuItem>
-                                <MenuItem Header="삭제" Click="TabReset_Click"/>
+                                <MenuItem Header="초기화" Click="TabReset_Click"/>
                             </ContextMenu>
                         </TextBlock.ContextMenu>
                     </TextBlock>
@@ -77,7 +77,7 @@
                                     <MenuItem Header="원본을 유지" Tag="KEEP_ORIGINAL" Click="TabMerge_Click"/>
                                     <MenuItem Header="사본으로 덮어쓰기" Tag="OVERRIDE_WITH_NEW" Click="TabMerge_Click"/>
                                 </MenuItem>
-                                <MenuItem Header="삭제" Click="TabReset_Click"/>
+                                <MenuItem Header="초기화" Click="TabReset_Click"/>
                             </ContextMenu>
                         </TextBlock.ContextMenu>
                     </TextBlock>
@@ -97,7 +97,7 @@
                                     <MenuItem Header="원본을 유지" Tag="KEEP_ORIGINAL" Click="TabMerge_Click"/>
                                     <MenuItem Header="사본으로 덮어쓰기" Tag="OVERRIDE_WITH_NEW" Click="TabMerge_Click"/>
                                 </MenuItem>
-                                <MenuItem Header="삭제" Click="TabReset_Click"/>
+                                <MenuItem Header="초기화" Click="TabReset_Click"/>
                             </ContextMenu>
                         </TextBlock.ContextMenu>
                     </TextBlock>
@@ -117,7 +117,7 @@
                                     <MenuItem Header="원본을 유지" Tag="KEEP_ORIGINAL" Click="TabMerge_Click"/>
                                     <MenuItem Header="사본으로 덮어쓰기" Tag="OVERRIDE_WITH_NEW" Click="TabMerge_Click"/>
                                 </MenuItem>
-                                <MenuItem Header="삭제" Click="TabReset_Click"/>
+                                <MenuItem Header="초기화" Click="TabReset_Click"/>
                             </ContextMenu>
                         </TextBlock.ContextMenu>
                     </TextBlock>
