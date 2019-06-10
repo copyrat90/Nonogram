@@ -61,16 +61,16 @@ namespace Nonogram.UserControls
                             if (userInputBoard[i, j])
                             {
                                 Rectangle rectangle = new Rectangle();
-                                rectangle.Height = 220 / height;
-                                rectangle.Width = 220 / width;
+                                rectangle.Height = (double)(220 / height);
+                                rectangle.Width = (double)(220 / width);
                                 rectangle.Fill = new SolidColorBrush(Colors.Purple);
                                 stackPanel.Children.Add(rectangle);
                             }
                             else
                             {
                                 Rectangle rectangle = new Rectangle();
-                                rectangle.Height = 220 / height;
-                                rectangle.Width = 220 / width;
+                                rectangle.Height = (double)(220 / height);
+                                rectangle.Width = (double)(220 / width);
                                 rectangle.Fill = new SolidColorBrush(Colors.White);
                                 stackPanel.Children.Add(rectangle);
                             }
@@ -114,16 +114,16 @@ namespace Nonogram.UserControls
                         if (userInputBoard[i, j] == CellFill.FILL)
                         {
                             Rectangle rectangle = new Rectangle();
-                            rectangle.Height = 220 / height;
-                            rectangle.Width = 220 / width;
+                            rectangle.Height = (double)(220 / height);
+                            rectangle.Width = (double)(220 / width);
                             rectangle.Fill = new SolidColorBrush(Colors.CornflowerBlue);
                             stackPanel.Children.Add(rectangle);
                         }
                         else
                         {
                             Rectangle rectangle = new Rectangle();
-                            rectangle.Height = 220 / height;
-                            rectangle.Width = 220 / width;
+                            rectangle.Height = (double)(220 / height);
+                            rectangle.Width = (double)(220 / width);
                             rectangle.Fill = new SolidColorBrush(Colors.White);
                             stackPanel.Children.Add(rectangle);
                         }

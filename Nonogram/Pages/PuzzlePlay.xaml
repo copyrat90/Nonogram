@@ -158,7 +158,7 @@
                 VerticalAlignment="Bottom"
                 Margin="0, 0, 0, 70"
                 Height="80"
-                Width="350"
+                Width="320"
                 CornerRadius="20">
             <TextBlock x:Name="PuzzleName"
                        Text="Puzzle Name"
