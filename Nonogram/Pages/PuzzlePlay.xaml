@@ -25,7 +25,7 @@
         <TabControl x:Name="boardTabControl" Background="Transparent">
             <TabItem FontSize="30" Width="150">
                 <TabItem.Header>
-                    <TextBlock Text="Tab 0" Background="White" Width="150">
+                    <TextBlock Text="Tab 1" Background="Transparent" Width="150">
                         <TextBlock.ContextMenu>
                             <ContextMenu Tag="0">
                                 <MenuItem Header="복사" Click="TabCopy_Click"/>
@@ -46,7 +46,7 @@
             </TabItem>
             <TabItem FontSize="30" Width="150">
                 <TabItem.Header>
-                    <TextBlock Text="Tab 1" Background="White" Width="150">
+                    <TextBlock Text="Tab 2" Background="Transparent" Width="150">
                         <TextBlock.ContextMenu>
                             <ContextMenu Tag="1">
                                 <MenuItem Header="복사" Click="TabCopy_Click"/>
@@ -66,7 +66,7 @@
             </TabItem>
             <TabItem FontSize="30" Width="150">
                 <TabItem.Header>
-                    <TextBlock Text="Tab 2" Background="White" Width="150">
+                    <TextBlock Text="Tab 3" Background="Transparent" Width="150">
                         <TextBlock.ContextMenu>
                             <ContextMenu Tag="2">
                                 <MenuItem Header="복사" Click="TabCopy_Click"/>
@@ -86,7 +86,7 @@
             </TabItem>
             <TabItem FontSize="30" Width="150">
                 <TabItem.Header>
-                    <TextBlock Text="Tab 3" Background="White" Width="150">
+                    <TextBlock Text="Tab 4" Background="Transparent" Width="150">
                         <TextBlock.ContextMenu>
                             <ContextMenu Tag="3">
                                 <MenuItem Header="복사" Click="TabCopy_Click"/>
@@ -106,7 +106,7 @@
             </TabItem>
             <TabItem FontSize="30" Width="150">
                 <TabItem.Header>
-                    <TextBlock Text="Tab 4" Background="White" Width="150">
+                    <TextBlock Text="Tab 5" Background="Transparent" Width="150">
                         <TextBlock.ContextMenu>
                             <ContextMenu Tag="4">
                                 <MenuItem Header="복사" Click="TabCopy_Click"/>
@@ -125,31 +125,31 @@
                 <uc:NonoBoard x:Name="nonoBoard4"/>
             </TabItem>
         </TabControl>
-        
+
         <!-- 메뉴 -->
         <Menu Margin="30"
               VerticalAlignment="Top"
               Grid.Column="1"
               FontSize="30"
               Style="{StaticResource PuzzlePlayMenuColor}" Background="#FFFCFCDE">
-              <MenuItem Header="          Menu"
+            <MenuItem Header="          Menu"
                         Width="306"
                         FontWeight="SemiBold">
-                  <MenuItem Header="세이브"
+                <MenuItem Header="세이브"
                             x:Name="Save"
                             Click="Save_Click"
                             Background="#FFFFFFF3"/>
-                  <MenuItem Header="모든 퍼즐 초기화"
+                <MenuItem Header="모든 퍼즐 초기화"
                             x:Name="Zeroize"
                             Click="Zeroize_Click"
                             Background="#FFFFFFF3"/>
-                  <MenuItem Header="나가기"
+                <MenuItem Header="나가기"
                             x:Name="Exit"
                             Click="Exit_Click"
                             Background="#FFFFFFF3"/>
-              </MenuItem>
+            </MenuItem>
         </Menu>
-        
+
         <!--퍼즐 이름-->
         <Border Grid.Column="1"
                 Background="#FF620101"
@@ -162,14 +162,21 @@
                 CornerRadius="20">
             <TextBlock x:Name="PuzzleName"
                        Text="Puzzle Name"
-                       Foreground="DeepSkyBlue"
                        FontSize="50"
                        FontWeight="UltraBlack"
                        FontFamily="돋움"
                        VerticalAlignment="Bottom"
-                       HorizontalAlignment="Center"/>
+                       HorizontalAlignment="Center">
+                <TextBlock.Foreground>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFFFDC00" Offset="0"/>
+                        <GradientStop Color="White" Offset="1"/>
+                        <GradientStop Color="#FFCDBA45" Offset="0.5"/>
+                    </LinearGradientBrush>
+                </TextBlock.Foreground>
+            </TextBlock>
         </Border>
-        
+
 
         <Border x:Name="clearBoarder" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                 Background="White" Opacity="0.5" Grid.ColumnSpan="2"
