@@ -307,6 +307,7 @@ namespace Nonogram.Classes.BoardVM
                     if (curIsFill)
                     {
                         ++fillCount;
+                        lastCount = fillCount;
                         if (fillCount > hintNum)
                         {
                             lineIsCandidate = false;
@@ -460,6 +461,7 @@ namespace Nonogram.Classes.BoardVM
                     if (curIsFill)
                     {
                         ++fillCount;
+                        lastCount = fillCount;
                         if (fillCount > hintNum)
                         {
                             lineIsCandidate = false;
